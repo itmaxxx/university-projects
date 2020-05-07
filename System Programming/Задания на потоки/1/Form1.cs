@@ -26,7 +26,7 @@ namespace SPTimer
 		{
 			for (int i = 1; i > 0; i++)
 			{
-				label1.Text = $"{i}";
+				label1.BeginInvoke((MethodInvoker)(() => label1.Text = $"{i}"));
 				Thread.Sleep(500);
 			}
 		}
@@ -35,7 +35,7 @@ namespace SPTimer
 		{
 			for (int i = 1; i > 0; i++)
 			{
-				label2.Text = $"{i}";
+				label2.BeginInvoke((MethodInvoker)(() => label2.Text = $"{i}"));
 				Thread.Sleep(1000);
 			}
 		}
@@ -44,7 +44,7 @@ namespace SPTimer
 		{
 			for (int i = 1; i > 0; i++)
 			{
-				label3.Text = $"{i}";
+				label3.BeginInvoke((MethodInvoker)(() => label3.Text = $"{i}"));
 				Thread.Sleep(1500);
 			}
 		}
