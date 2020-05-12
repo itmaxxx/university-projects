@@ -9,9 +9,10 @@ namespace CSMatrix
 {
 	class Program
 	{
-		static Random RANDOM = new Random();
-		static int CONSOLE_WIDTH = 120;
-		static int CONSOLE_HEIGHT = 30;
+		private static char[] CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ^&$%#@".ToCharArray();
+		private static Random RANDOM = new Random();
+		private static int CONSOLE_WIDTH = 100;
+		private static int CONSOLE_HEIGHT = 30;
 
 		class Position
 		{
@@ -58,7 +59,7 @@ namespace CSMatrix
 
 			public void PickSymbol()
 			{
-				_symbol = (char)RANDOM.Next(0, 255);
+				_symbol = CHARS[RANDOM.Next(0, CHARS.Length - 1)];
 			}
 
 			public char GetSymbol()
@@ -136,7 +137,7 @@ namespace CSMatrix
 			{
 				for (int i = 0; i < _symbols.Count - 1; i++)
 				{
-					if (_position.Y - i >= 0 && _position.Y <= CONSOLE_HEIGHT - 4)
+					if (_position.Y - i >= 0 && _position.Y <= CONSOLE_HEIGHT - _symbols.Count)
 					{	
 						Console.SetCursorPosition(_position.X, _position.Y - i);
 						Console.ForegroundColor = (System.ConsoleColor)_symbols.ElementAt(i).GetColor();
@@ -184,13 +185,14 @@ namespace CSMatrix
 			private Thread thread;
 			private Chain chain;
 			private int pauseTime;
+			static object locker = new object();
 
 			public MatrixThread()
 			{
 				thread = new Thread(new ThreadStart(Process));
 				chain = new Chain();
 
-				pauseTime = RANDOM.Next(200, 500);
+				pauseTime = RANDOM.Next(10, 100);
 
 				thread.IsBackground = false;
 				thread.Start();
@@ -200,7 +202,7 @@ namespace CSMatrix
 			{
 				while(true)
 				{
-					lock (this)
+					lock (locker)
 					{
 						if (chain.CheckIfOutOfField())
 							chain.SetAlive(false);
@@ -209,9 +211,9 @@ namespace CSMatrix
 							chain.Move();
 						else
 							chain.Respawn();
-
-						Thread.Sleep(pauseTime);
 					}
+
+					Thread.Sleep(pauseTime);
 				}
 			}
 		}
@@ -233,10 +235,9 @@ namespace CSMatrix
 
 		static void Main(string[] args)
 		{
-			//                        |
-			//                        |    тут ставим количество потоков
-			//                        \/
-			Matrix matrix = new Matrix(1);
+			Console.SetWindowSize(CONSOLE_WIDTH, CONSOLE_HEIGHT);
+			Console.CursorVisible = false;
+			Matrix matrix = new Matrix(20);
 		}
 	}
 }
