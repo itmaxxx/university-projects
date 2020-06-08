@@ -8,6 +8,8 @@ namespace Bridge
 {
     class Program
     {
+        private static Random random = new Random();
+
         interface Component
         {
             void ShowInfo();
@@ -32,7 +34,12 @@ namespace Bridge
         {
             public void ShowInfo()
             {
-                Console.WriteLine("It is graphic card info");
+                Console.WriteLine("Graphic Card status : (working)");
+                Console.WriteLine($"3D : {random.Next(0, 100)}%");
+                Console.WriteLine($"Copy : {random.Next(0, 100)}%");
+                Console.WriteLine($"Vieo encode : {random.Next(0, 100)}%");
+                Console.WriteLine($"Video decode :  {random.Next(0, 100)}%");
+                Console.WriteLine($"Graphic memory use :  {random.Next(0, 1024 * 8)} MB");
             }
         }
 
@@ -40,7 +47,9 @@ namespace Bridge
         {
             public void ShowInfo()
             {
-                Console.WriteLine("It is processor info");
+                Console.WriteLine("Processor status : (working)");
+                Console.WriteLine($"Usage : {random.Next(0, 100)}%");
+                Console.WriteLine($"Processes : {random.Next(0, 500)} processes");
             }
         }
 
@@ -48,7 +57,8 @@ namespace Bridge
         {
             public void ShowInfo()
             {
-                Console.WriteLine("It is HDD info");
+                Console.WriteLine("HDD status : (working)");
+                Console.WriteLine($"Active time : {random.Next(0, 100)}%");
             }
         }
 
@@ -56,7 +66,8 @@ namespace Bridge
         {
             public void ShowInfo()
             {
-                Console.WriteLine("It is RAM info");
+                Console.WriteLine("RAM status : (working)");
+                Console.WriteLine($"Memory usage : {random.Next(0, 1024 * 16)} MB");
             }
         }
 
