@@ -10,6 +10,7 @@ namespace Bridge
     {
         private static Random random = new Random();
 
+        // Implementor
         public interface IComponent
         {
             void ShowInfo();
@@ -56,7 +57,18 @@ namespace Bridge
             }
         }
 
-        public class PC
+        public interface IPC
+        {
+            void AddComponent(IComponent component);
+            void RemoveComponent(IComponent component);
+            void NextComponent();
+            void PreviousComponent();
+            void ShowCurrentComponent();
+            void ShowAllComponents();
+        }
+
+        // Remote control
+        public class PCComponentsManager : IPC
         {
             private readonly List<IComponent> components = new List<IComponent>();
             private int currentComponent = 0;
@@ -103,10 +115,46 @@ namespace Bridge
                     component.ShowInfo();
                 }
             }
+        }
 
-            public string GetCounterString()
+        // Concrete remove
+        public class PC : IPC
+        {
+            PCComponentsManager componentsManager;
+
+            public PC()
             {
-                return $"{currentComponent + 1}/{components.Count}";
+                componentsManager = new PCComponentsManager();
+            }
+
+            public void AddComponent(IComponent component)
+            {
+                componentsManager.AddComponent(component);
+            }
+
+            public void RemoveComponent(IComponent component)
+            {
+                componentsManager.RemoveComponent(component);
+            }
+
+            public void NextComponent()
+            {
+                componentsManager.NextComponent();
+            }
+
+            public void PreviousComponent()
+            {
+                componentsManager.PreviousComponent();
+            }
+
+            public void ShowCurrentComponent()
+            {
+                componentsManager.ShowCurrentComponent();
+            }
+
+            public void ShowAllComponents()
+            {
+                componentsManager.ShowAllComponents();
             }
         }
 
