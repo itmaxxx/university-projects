@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -9,21 +10,22 @@ namespace Battle
 {
     class Program
     {
-        public static Random random = new Random();
-        public static object lockObj = new object();
-        public const int RESPAWN_MAX = 20;
+        private static Random random = new Random();
+        private static object lockObj = new object();
+        private const int maxUnitsRespawned = 10;
 
         public class Team
         {
-            public Thread thread;
             private Team enemy;
             private ConsoleColor color;
-            public int count;
 
-            public Team(ConsoleColor _color, int _count)
+            public Thread GetThread { get; set; }
+            public int Count;
+
+            public Team(ConsoleColor color, int count)
             {
-                color = _color;
-                count = _count;
+                this.color = color;
+                Count = count;
             }
 
             public void SetEnemy(Team team)
@@ -33,66 +35,72 @@ namespace Battle
 
             public void Fight()
             {
-                while (count > 0)
+                while (Count > 0)
                 {
                     lock (lockObj)
                     {
                         Console.ForegroundColor = color;
-                        int Killed = random.Next(0, this.count);
-                        enemy.count -= Killed;
-                        Console.WriteLine($"{Killed} воинов врага было убито");
+
+                        int killed = random.Next(0, Count);
+                        enemy.Count -= killed;
+                        Console.WriteLine($"убили {killed} бойцов врага");
                         Thread.Sleep(random.Next(300, 900));
 
-                        int Died = random.Next(0, Killed);
-                        this.count -= Died;
-                        Console.WriteLine($"{Died} наших воинов было убито");
+                        int dead = random.Next(0, killed);
+                        Count -= dead;
+                        Console.WriteLine($"умерло {dead} наших бойцов");
                         Thread.Sleep(random.Next(300, 900));
 
-                        int Revived = random.Next(0, RESPAWN_MAX);
-                        this.count += Revived;
-                        Console.WriteLine($"{Revived} воинов добавилось в ряды сражений");
+                        int respawned = random.Next(0, maxUnitsRespawned);
+                        Count += respawned;
+                        Console.WriteLine($"{respawned} бойцов было добавлено в команду");
+
+                        if (Count < 0)
+                        {
+                            Count = 0;
+                        }
                     }
+
                     Thread.Sleep(random.Next(300, 900));
                 }
 
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine("- - - - - - - - - - - - - - - - - -");
+                Console.WriteLine("-= Итоговая Статистика =-");
+
+                Console.ForegroundColor = color;
+                Console.WriteLine($"{Count} бойцов выжило");
 
                 Console.ForegroundColor = enemy.color;
-                Console.WriteLine($"<!> {enemy.count}");
+                Console.WriteLine($"{enemy.Count} бойцов осталось");
 
-                Console.ForegroundColor = this.color;
-                Console.WriteLine($"<!> {this.count}");
-
-
-                enemy.thread.Abort();
-                this.thread.Abort();
+                enemy.GetThread.Abort();
+                GetThread.Abort();
             }
         }
 
-        public class Arena
+        public class Battle
         {
-            Team teamRed = new Team(ConsoleColor.Red, 20);
-            Team teamBlue = new Team(ConsoleColor.Blue, 20);
+            Team firstTeam = new Team(ConsoleColor.Green, 15);
+            Team secondTeam = new Team(ConsoleColor.Yellow, 15);
 
             public void Start()
             {
-                teamBlue.SetEnemy(teamRed);
-                teamBlue.thread = new Thread(new ThreadStart(teamBlue.Fight));
-                teamBlue.thread.Start();
+                Console.WriteLine("-= Битва Начинается =-");
 
-                teamRed.SetEnemy(teamBlue);
-                teamRed.thread = new Thread(new ThreadStart(teamRed.Fight));
-                teamRed.thread.Start();
+                firstTeam.SetEnemy(secondTeam);
+                firstTeam.GetThread = new Thread(new ThreadStart(firstTeam.Fight));
+                firstTeam.GetThread.Start();
+
+                secondTeam.SetEnemy(firstTeam);
+                secondTeam.GetThread = new Thread(new ThreadStart(secondTeam.Fight));
+                secondTeam.GetThread.Start();
             }
         }
 
         static void Main(string[] args)
         {
-            Arena arena = new Arena();
-            arena.Start();
-
-            Console.ReadKey();
+            Battle battle = new Battle();
+            battle.Start();
         }
     }
 }
