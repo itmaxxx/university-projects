@@ -13,39 +13,40 @@ namespace Semaphore
 {
     public partial class SemaphoreForm : Form
     {
-        public static int THREAD_COUNT = 0;
+        private static int threadCount = 0;
 
-        public int MAX_INITIAL_COUNT = 2;
-        public int MAX_COUNT = 2;
+        private int initialCount = 1;
+        private int maxCount = 5;
 
         private static object lockObj = new object();
 
         private static System.Threading.Semaphore semaphore;
 
-        public static List<ThreadObject> threadsCreated = new List<ThreadObject>();
-        public static List<ThreadObject> threadsWaiting = new List<ThreadObject>();
-        public static List<ThreadObject> threadsWorking = new List<ThreadObject>();
+        private static List<ThreadObject> threadsCreated = new List<ThreadObject>();
+        private static List<ThreadObject> threadsWaiting = new List<ThreadObject>();
+        private static List<ThreadObject> threadsWorking = new List<ThreadObject>();
+
         public class ThreadObject 
         {
             public int Index { get; set; } = 0;
             public int Count { get; set; } = 0;
             public Thread thread { get; set; }
 
-            public ThreadObject() 
-            {
-            }
+            public ThreadObject() {}
         }
+
         public SemaphoreForm()
         {
             InitializeComponent();
-            semaphore = new System.Threading.Semaphore(MAX_INITIAL_COUNT, MAX_COUNT);
+
+            semaphore = new System.Threading.Semaphore(initialCount, maxCount);
         }
 
         private void buttonCreateThread_Click(object sender, EventArgs e)
         {
             ThreadObject newThreadObject = new ThreadObject();
             newThreadObject.thread = new Thread(new ThreadStart(DoWork));
-            newThreadObject.thread.Name = $"Поток №{++THREAD_COUNT}";
+            newThreadObject.thread.Name = $"Thread {++threadCount}";
             
             threadsCreated.Add(newThreadObject);
             listBoxCreated.Items.Add(newThreadObject.thread.Name);
@@ -56,11 +57,17 @@ namespace Semaphore
             listBoxCreated.Items.Clear();
             listBoxWaiting.Items.Clear();
 
-            foreach (ThreadObject t in threadsCreated)
-                listBoxCreated.Items.Add(t.thread.Name);
-            foreach (ThreadObject t in threadsWaiting)
-                listBoxWaiting.Items.Add(t.thread.Name);
+            foreach (ThreadObject thread in threadsCreated)
+			{
+                listBoxCreated.Items.Add(thread.thread.Name);
+			}
+
+            foreach (ThreadObject thread in threadsWaiting)
+            {
+                listBoxWaiting.Items.Add(thread.thread.Name);
+            }
         }
+
         public void DoWork() 
         {
             semaphore.WaitOne();
@@ -68,9 +75,8 @@ namespace Semaphore
             threadsWaiting.RemoveAt(0);
 
             listBoxWaiting.BeginInvoke((MethodInvoker)(() =>
-            listBoxWaiting.Items.RemoveAt(0)
+                listBoxWaiting.Items.RemoveAt(0)
             ));
-            
 
             ThreadObject newObject = new ThreadObject
             {
@@ -80,9 +86,8 @@ namespace Semaphore
 
             threadsWorking.Add(newObject);
 
-
             listBoxWorking.BeginInvoke((MethodInvoker)(() =>
-            listBoxWorking.Items.Add(newObject.thread.Name)
+                listBoxWorking.Items.Add(newObject.thread.Name)
             ));
 
             while (Thread.CurrentThread.IsAlive) 
@@ -90,30 +95,27 @@ namespace Semaphore
                 lock (lockObj)
                 {
                     listBoxWorking.BeginInvoke((MethodInvoker)(() =>
-                    listBoxWorking.Items[newObject.Index] = $"{newObject.thread.Name} - {++newObject.Count}"
+                        listBoxWorking.Items[newObject.Index] = $"{newObject.thread.Name} -> {++newObject.Count}"
                     ));
                 }
+
                 Thread.Sleep(1000);
             }
         }
+
         private void UpdateWorkingThreadsIndexes() 
         {
             lock (lockObj) 
             {
-               for (int i = 0; i < listBoxWorking.Items.Count; i++) 
+                for (int i = 0; i < listBoxWorking.Items.Count; i++) 
                 {
                     threadsWorking[i].Index = i;
                 }
             }
         }
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
-            // Поменять максимальное количество потоков в семафоре
-            // Проверить есть ли желающие в семафор
-        }
+
         private void listBoxCreated_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            // Выбираю из созданных, какой поток должен стартовать как только в семафоре появится место
             if (listBoxCreated.SelectedIndex != -1) 
             {
                 threadsWaiting.Add(threadsCreated[listBoxCreated.SelectedIndex]);
@@ -124,6 +126,7 @@ namespace Semaphore
                 threadsWaiting[threadsWaiting.Count - 1].thread.Start();
             }
         }
+
         private void listBoxWorking_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (listBoxWorking.SelectedIndex != -1)
@@ -134,6 +137,7 @@ namespace Semaphore
                 listBoxWorking.Items.RemoveAt(listBoxWorking.SelectedIndex);
 
                 UpdateWorkingThreadsIndexes();
+
                 semaphore.Release();
             }
         }
