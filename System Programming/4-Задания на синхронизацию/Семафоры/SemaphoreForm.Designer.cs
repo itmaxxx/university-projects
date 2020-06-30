@@ -43,7 +43,7 @@
             // listBoxWorking
             // 
             this.listBoxWorking.FormattingEnabled = true;
-            this.listBoxWorking.Location = new System.Drawing.Point(12, 66);
+            this.listBoxWorking.Location = new System.Drawing.Point(11, 28);
             this.listBoxWorking.Name = "listBoxWorking";
             this.listBoxWorking.Size = new System.Drawing.Size(120, 95);
             this.listBoxWorking.TabIndex = 0;
@@ -52,7 +52,7 @@
             // listBoxWaiting
             // 
             this.listBoxWaiting.FormattingEnabled = true;
-            this.listBoxWaiting.Location = new System.Drawing.Point(222, 66);
+            this.listBoxWaiting.Location = new System.Drawing.Point(137, 28);
             this.listBoxWaiting.Name = "listBoxWaiting";
             this.listBoxWaiting.Size = new System.Drawing.Size(120, 95);
             this.listBoxWaiting.TabIndex = 0;
@@ -60,7 +60,7 @@
             // listBoxCreated
             // 
             this.listBoxCreated.FormattingEnabled = true;
-            this.listBoxCreated.Location = new System.Drawing.Point(440, 66);
+            this.listBoxCreated.Location = new System.Drawing.Point(263, 28);
             this.listBoxCreated.Name = "listBoxCreated";
             this.listBoxCreated.Size = new System.Drawing.Size(120, 95);
             this.listBoxCreated.TabIndex = 0;
@@ -69,7 +69,7 @@
             // labelWorking
             // 
             this.labelWorking.AutoSize = true;
-            this.labelWorking.Location = new System.Drawing.Point(13, 47);
+            this.labelWorking.Location = new System.Drawing.Point(12, 9);
             this.labelWorking.Name = "labelWorking";
             this.labelWorking.Size = new System.Drawing.Size(75, 13);
             this.labelWorking.TabIndex = 1;
@@ -78,7 +78,7 @@
             // labelWaiting
             // 
             this.labelWaiting.AutoSize = true;
-            this.labelWaiting.Location = new System.Drawing.Point(219, 47);
+            this.labelWaiting.Location = new System.Drawing.Point(134, 9);
             this.labelWaiting.Name = "labelWaiting";
             this.labelWaiting.Size = new System.Drawing.Size(73, 13);
             this.labelWaiting.TabIndex = 1;
@@ -87,7 +87,7 @@
             // labelCreated
             // 
             this.labelCreated.AutoSize = true;
-            this.labelCreated.Location = new System.Drawing.Point(437, 47);
+            this.labelCreated.Location = new System.Drawing.Point(260, 9);
             this.labelCreated.Name = "labelCreated";
             this.labelCreated.Size = new System.Drawing.Size(67, 13);
             this.labelCreated.TabIndex = 1;
@@ -95,7 +95,7 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(12, 201);
+            this.numericUpDown1.Location = new System.Drawing.Point(11, 140);
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
             this.numericUpDown1.TabIndex = 2;
@@ -104,7 +104,7 @@
             // labelCount
             // 
             this.labelCount.AutoSize = true;
-            this.labelCount.Location = new System.Drawing.Point(12, 185);
+            this.labelCount.Location = new System.Drawing.Point(11, 124);
             this.labelCount.Name = "labelCount";
             this.labelCount.Size = new System.Drawing.Size(97, 13);
             this.labelCount.TabIndex = 1;
@@ -112,7 +112,7 @@
             // 
             // buttonCreateThread
             // 
-            this.buttonCreateThread.Location = new System.Drawing.Point(222, 198);
+            this.buttonCreateThread.Location = new System.Drawing.Point(263, 137);
             this.buttonCreateThread.Name = "buttonCreateThread";
             this.buttonCreateThread.Size = new System.Drawing.Size(120, 23);
             this.buttonCreateThread.TabIndex = 3;
@@ -124,7 +124,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(572, 233);
+            this.ClientSize = new System.Drawing.Size(394, 170);
             this.Controls.Add(this.buttonCreateThread);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.labelCount);
