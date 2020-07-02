@@ -1,0 +1,81 @@
+Source folder path : C:\Users\dmitr\Desktop\Мой репозиторий\maxdmitriev\System Programming\4-Задания на синхронизацию\Exam\SOURCE
+Destination folder path : C:\Users\dmitr\Desktop\Мой репозиторий\maxdmitriev\System Programming\4-Задания на синхронизацию\Exam\DESTINATION
+Banned words file location : C:\Users\dmitr\Desktop\Мой репозиторий\maxdmitriev\System Programming\4-Задания на синхронизацию\Exam\BANNEDWORDS.txt
+
+Banned words : sasha, max, alex.
+
+C:\Users\dmitr\Desktop\Мой репозиторий\maxdmitriev\System Programming\4-Задания на синхронизацию\Exam\SOURCE\text — копия — копия — копия (10) — копия.txt
+max - 32
+alex - 32
+sasha - 2
+
+
+C:\Users\dmitr\Desktop\Мой репозиторий\maxdmitriev\System Programming\4-Задания на синхронизацию\Exam\SOURCE\text — копия — копия — копия (2).txt
+max - 32
+alex - 32
+sasha - 2
+
+
+C:\Users\dmitr\Desktop\Мой репозиторий\maxdmitriev\System Programming\4-Задания на синхронизацию\Exam\SOURCE\text — копия — копия — копия (11) — копия.txt
+max - 32
+alex - 32
+sasha - 2
+
+
+C:\Users\dmitr\Desktop\Мой репозиторий\maxdmitriev\System Programming\4-Задания на синхронизацию\Exam\SOURCE\text — копия — копия — копия (4) — копия.txt
+max - 32
+alex - 32
+sasha - 2
+
+
+C:\Users\dmitr\Desktop\Мой репозиторий\maxdmitriev\System Programming\4-Задания на синхронизацию\Exam\SOURCE\text — копия — копия — копия (5) — копия.txt
+max - 32
+alex - 32
+sasha - 2
+
+
+C:\Users\dmitr\Desktop\Мой репозиторий\maxdmitriev\System Programming\4-Задания на синхронизацию\Exam\SOURCE\text — копия — копия — копия (6) — копия.txt
+max - 32
+alex - 32
+sasha - 2
+
+
+C:\Users\dmitr\Desktop\Мой репозиторий\maxdmitriev\System Programming\4-Задания на синхронизацию\Exam\SOURCE\text — копия — копия — копия (7) — копия.txt
+max - 32
+alex - 32
+sasha - 2
+
+
+C:\Users\dmitr\Desktop\Мой репозиторий\maxdmitriev\System Programming\4-Задания на синхронизацию\Exam\SOURCE\text — копия — копия — копия (8) — копия.txt
+max - 32
+alex - 32
+sasha - 2
+
+
+C:\Users\dmitr\Desktop\Мой репозиторий\maxdmitriev\System Programming\4-Задания на синхронизацию\Exam\SOURCE\text — копия — копия — копия (9) — копия.txt
+max - 32
+alex - 32
+sasha - 2
+
+
+C:\Users\dmitr\Desktop\Мой репозиторий\maxdmitriev\System Programming\4-Задания на синхронизацию\Exam\SOURCE\text — копия — копия — копия (3) — копия.txt
+max - 32
+alex - 32
+sasha - 2
+
+
+C:\Users\dmitr\Desktop\Мой репозиторий\maxdmitriev\System Programming\4-Задания на синхронизацию\Exam\SOURCE\text — копия — копия — копия (12) — копия.txt
+max - 32
+alex - 32
+sasha - 2
+
+
+C:\Users\dmitr\Desktop\Мой репозиторий\maxdmitriev\System Programming\4-Задания на синхронизацию\Exam\SOURCE\text — копия — копия — копия (2) — копия.txt
+max - 32
+alex - 32
+sasha - 2
+
+Global banned words stats : 
+max - 384
+alex - 384
+sasha - 24
