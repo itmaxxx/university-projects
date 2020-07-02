@@ -13,10 +13,17 @@ namespace Semaphore
 {
     public partial class SemaphoreForm : Form
     {
+<<<<<<< HEAD
         private static int threadCount = 0;
 
         private int initialCount = 1;
         private int maxCount = 5;
+=======
+        private static int THREAD_COUNT = 0;
+
+        private int MAX_INITIAL_COUNT = 3;
+        private int MAX_COUNT = 3;
+>>>>>>> f97af47efb658675df04534720fd0da4c1b0bc42
 
         private static object lockObj = new object();
 
@@ -39,7 +46,13 @@ namespace Semaphore
         {
             InitializeComponent();
 
+<<<<<<< HEAD
             semaphore = new System.Threading.Semaphore(initialCount, maxCount);
+=======
+            semaphore = new System.Threading.Semaphore(MAX_INITIAL_COUNT, MAX_COUNT);
+
+            numericUpDown1.Value = MAX_COUNT;
+>>>>>>> f97af47efb658675df04534720fd0da4c1b0bc42
         }
 
         private void buttonCreateThread_Click(object sender, EventArgs e)
@@ -114,6 +127,17 @@ namespace Semaphore
             }
         }
 
+<<<<<<< HEAD
+=======
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            // Поменять максимальное количество потоков в семафоре
+            // Проверить есть ли желающие в семафор
+            MAX_INITIAL_COUNT = (int)numericUpDown1.Value;
+            MAX_COUNT = (int)numericUpDown1.Value;
+        }
+
+>>>>>>> f97af47efb658675df04534720fd0da4c1b0bc42
         private void listBoxCreated_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (listBoxCreated.SelectedIndex != -1) 
