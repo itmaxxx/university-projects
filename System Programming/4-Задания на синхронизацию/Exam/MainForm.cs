@@ -13,43 +13,84 @@ namespace Exam
 {
     public partial class MainForm : Form
     {
+        private List<string> bannedWords;
+
         public MainForm()
         {
             InitializeComponent();
 
+            bannedWords = GetBannedWords(openFileDialogBannedWords.FileName);
+
             buttonSelectFolder_Click(new object(), new EventArgs());
+
+            foreach (var word in bannedWords)
+            {
+                textBoxBannedWords.Text += $"{word}\r\n";
+            }
+        }
+
+        private List<string> GetBannedWords(string path)
+        {
+            var words = new List<string>();
+
+            using (var sr = new StreamReader(path))
+            {
+                while (!sr.EndOfStream)
+                {
+                    words.Add(sr.ReadLine());
+                }
+            }
+
+            return words;
         }
         
-        private List<string> GetFolderContent(string path, string level = "")
+        private List<string> GetFolderContent(string path)
         {
             List<string> list = new List<string>();
 
             foreach (var item in Directory.GetDirectories(path))
             {
-                list.Add($"{level}D {item}");
-
-                list.AddRange(GetFolderContent(item, level + "  "));
+                list.AddRange(GetFolderContent(item));
             }
 
             foreach (var item in Directory.GetFiles(path))
             {
-                list.Add($"{level} F {item}");
+                list.Add($"{item}");
             }
 
             return list;
         }
 
+        private void CheckFile(string path)
+        {
+            textBoxCurrentFile.Text += $"\r\n{path}\r\n\r\n";
+
+            using (var sr = new StreamReader(path))
+            {
+                while (!sr.EndOfStream)
+                {
+                    textBoxCurrentFile.Text += $"{sr.ReadLine().Contains(bannedWords[0])}";
+                }
+            }
+
+            textBoxCurrentFile.Text += $"\r\n\r\n";
+        }
+
         private void buttonSelectFolder_Click(object sender, EventArgs e)
         {
+            // Uncomment & set SelectedPath on form empty
             //folderSelectSourceFolder.ShowDialog();
 
             labelPathToSourceFolder.Text = folderSelectSourceFolder.SelectedPath;
 
-            var content = GetFolderContent(folderSelectSourceFolder.SelectedPath);
+            var files = GetFolderContent(folderSelectSourceFolder.SelectedPath);
 
-            foreach (var item in content)
+            foreach (var file in files)
             {
-                textBoxFileStructure.Text += $"{item}\r\n";
+                textBoxFileStructure.Text += $"{file}\r\n";
+
+                // Start words finder
+                CheckFile(file);
             }
         }
     }

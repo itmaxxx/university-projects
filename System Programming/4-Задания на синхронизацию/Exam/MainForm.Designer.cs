@@ -32,6 +32,9 @@
             this.labelPathToSourceFolder = new System.Windows.Forms.Label();
             this.folderSelectSourceFolder = new System.Windows.Forms.FolderBrowserDialog();
             this.textBoxFileStructure = new System.Windows.Forms.TextBox();
+            this.textBoxBannedWords = new System.Windows.Forms.TextBox();
+            this.openFileDialogBannedWords = new System.Windows.Forms.OpenFileDialog();
+            this.textBoxCurrentFile = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // buttonSelectSourceFolder
@@ -55,7 +58,8 @@
             // 
             // folderSelectSourceFolder
             // 
-            this.folderSelectSourceFolder.SelectedPath = "C:\\Users\\dmitr\\Desktop\\Семафоры";
+            this.folderSelectSourceFolder.SelectedPath = "C:\\Users\\dmitr\\Desktop\\Мой репозиторий\\master\\System Programming\\4-Задания на син" +
+    "хронизацию\\Exam";
             // 
             // textBoxFileStructure
             // 
@@ -63,14 +67,39 @@
             this.textBoxFileStructure.Multiline = true;
             this.textBoxFileStructure.Name = "textBoxFileStructure";
             this.textBoxFileStructure.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxFileStructure.Size = new System.Drawing.Size(776, 344);
+            this.textBoxFileStructure.Size = new System.Drawing.Size(776, 199);
             this.textBoxFileStructure.TabIndex = 2;
+            // 
+            // textBoxBannedWords
+            // 
+            this.textBoxBannedWords.Location = new System.Drawing.Point(12, 259);
+            this.textBoxBannedWords.Multiline = true;
+            this.textBoxBannedWords.Name = "textBoxBannedWords";
+            this.textBoxBannedWords.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxBannedWords.Size = new System.Drawing.Size(241, 212);
+            this.textBoxBannedWords.TabIndex = 3;
+            // 
+            // openFileDialogBannedWords
+            // 
+            this.openFileDialogBannedWords.FileName = "C:\\Users\\dmitr\\Desktop\\Мой репозиторий\\master\\System Programming\\4-Задания на син" +
+    "хронизацию\\Exam\\bannedwords.txt";
+            // 
+            // textBoxCurrentFile
+            // 
+            this.textBoxCurrentFile.Location = new System.Drawing.Point(259, 259);
+            this.textBoxCurrentFile.Multiline = true;
+            this.textBoxCurrentFile.Name = "textBoxCurrentFile";
+            this.textBoxCurrentFile.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxCurrentFile.Size = new System.Drawing.Size(529, 212);
+            this.textBoxCurrentFile.TabIndex = 4;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 483);
+            this.Controls.Add(this.textBoxCurrentFile);
+            this.Controls.Add(this.textBoxBannedWords);
             this.Controls.Add(this.textBoxFileStructure);
             this.Controls.Add(this.labelPathToSourceFolder);
             this.Controls.Add(this.buttonSelectSourceFolder);
@@ -89,6 +118,9 @@
         private System.Windows.Forms.Label labelPathToSourceFolder;
         private System.Windows.Forms.FolderBrowserDialog folderSelectSourceFolder;
         private System.Windows.Forms.TextBox textBoxFileStructure;
+        private System.Windows.Forms.TextBox textBoxBannedWords;
+        private System.Windows.Forms.OpenFileDialog openFileDialogBannedWords;
+        private System.Windows.Forms.TextBox textBoxCurrentFile;
     }
 }
 
