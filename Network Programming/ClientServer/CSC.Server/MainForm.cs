@@ -68,6 +68,11 @@ namespace CSC.Server
             }
         }
 
+        private bool IsNameTaken(string name)
+		{
+            return clientList.Where(c => c.Name == name).ToArray().Length != 0;
+        }
+
         private void OnReceive(IAsyncResult ar)
         {
             try
@@ -89,13 +94,23 @@ namespace CSC.Server
                 {
                     case Command.Login:
 
+                        var name = msgReceived.Name;
+
+                        if (IsNameTaken(name))
+                        {
+                            msgToSend.Command = Command.NameChanged;
+
+                            name = name + (clientList.Count + 1);
+						}
+
                         clientList.Add(new ClientInfo
                         {
                             Socket = clientSocket,
-                            Name = msgReceived.Name
+                            Name = name
                         });
 
-                        msgToSend.Message = $"<<<{msgReceived.Name} присоединился к чату>>>";
+                        msgToSend.Name = name;
+                        msgToSend.Message = $"{name} присоединился к чату";
                         break;
 
                     case Command.Logout:
@@ -104,12 +119,18 @@ namespace CSC.Server
 
                         clientSocket.Close();
 
-                        msgToSend.Message = $"<<<{msgReceived.Name} покинул чат>>>";
+                        msgToSend.Message = $"{msgReceived.Name} покинул чат";
                         break;
 
                     case Command.Message:
 
                         msgToSend.Message = $"{msgReceived.Name}: {msgReceived.Message}";
+                        break;
+
+                    case Command.PMessage:
+
+                        msgToSend.ToUser = msgReceived.ToUser;
+                        msgToSend.Message = $"ЛС от {msgReceived.Name} -> {msgReceived.ToUser}: {msgReceived.Message}";
                         break;
 
                     case Command.List:
@@ -131,14 +152,39 @@ namespace CSC.Server
 
                 if (msgToSend.Command != Command.List)
                 {
-                    message = msgToSend.ToByte();
+                    bool isNameChanged = (msgToSend.Command == Command.NameChanged ? true : false);
+
+                    if (isNameChanged)
+                        msgToSend.Command = Command.Login;
 
                     foreach (var client in clientList)
                     {
                         if (client.Socket != clientSocket || msgToSend.Command != Command.Login)
                         {
+                            // PM
+                            if (msgToSend.ToUser != null && (client.Name != msgToSend.ToUser || client.Name != msgToSend.Name))
+                                continue;
+
+                            // Unique Names
+                            //if (msgToSend.Name == client.Name && isNameChanged)
+                            //    msgToSend.Command = Command.NameChanged;
+
+                            // Not optimized
+                            message = msgToSend.ToByte();
+
+                            // Unique Names
+       //                     if (msgToSend.Command == Command.NameChanged)
+							//{
+       //                         msgToSend.Command = Command.Login;
+       //                         isNameChanged = false;
+							//}
+
                             client.Socket.BeginSend(message, 0, message.Length, SocketFlags.None,
                                 new AsyncCallback(OnSend), client.Socket);
+
+                            //// PM
+                            //if (msgToSend.ToUser != null)
+                            //    break;
                         }
                     }
 

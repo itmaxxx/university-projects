@@ -48,6 +48,7 @@ namespace CSC.Client
 				{
 					Command = Command.Login,
 					Name = textBoxName.Text.Trim(),
+					ToUser = null,
 					Message = null
 				};
 

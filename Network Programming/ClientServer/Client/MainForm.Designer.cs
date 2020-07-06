@@ -75,7 +75,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1204, 860);
+			this.ClientSize = new System.Drawing.Size(1204, 854);
 			this.Controls.Add(this.listBoxUsers);
 			this.Controls.Add(this.buttonSend);
 			this.Controls.Add(this.textBoxMessage);

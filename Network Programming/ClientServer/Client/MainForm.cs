@@ -32,15 +32,16 @@ namespace Client
             {
                 Command = Command.List,
                 Name = ClientName,
+                ToUser = null,
                 Message = null
             };
 
-            byteData = msgToSend.ToByte();
+			byteData = msgToSend.ToByte();
 
-            ClientSocket.BeginSend(byteData, 0, byteData.Length, SocketFlags.None,
-                new AsyncCallback(OnSend), null);
+			ClientSocket.BeginSend(byteData, 0, byteData.Length, SocketFlags.None,
+				new AsyncCallback(OnSend), null);
 
-            byteData = new byte[1024];
+			byteData = new byte[1024];
 
             ClientSocket.BeginReceive(byteData, 0, byteData.Length, SocketFlags.None,
                 new AsyncCallback(OnReceive), null);
@@ -72,6 +73,13 @@ namespace Client
 
                 switch (msgReceived.Command)
                 {
+                    case Command.NameChanged:
+                        ClientName = msgReceived.Name;
+                        Text = $"TcpChat.Client: {ClientName}";
+                        listBoxUsers.Items.Remove(ClientName);
+                        MessageBox.Show($"Выбраное имя уже занято, вам автоматически был присвоен номер, ваше новое имя: \"{ClientName}\"");
+                        break;
+
                     case Command.Login:
                         listBoxUsers.Items.Add(msgReceived.Name);
                         break;
@@ -84,9 +92,10 @@ namespace Client
                         break;
 
                     case Command.List:
+                        listBoxUsers.Items.Clear();
                         listBoxUsers.Items.AddRange(msgReceived.Message.Split('|'));
                         listBoxUsers.Items.RemoveAt(listBoxUsers.Items.Count - 1);
-                        textBoxChat.Text += $"<<<{ClientName} присоединился к чату>>>\r\n";
+                        textBoxChat.Text += $"{ClientName} присоединился к чату\r\n";
                         break;
                 }
 
@@ -123,6 +132,7 @@ namespace Client
                 {
                     Command = Command.Logout,
                     Name = ClientName,
+                    ToUser = null,
                     Message = null
                 };
 
@@ -151,10 +161,13 @@ namespace Client
 		{
             try
             {
+                bool isPM = listBoxUsers.SelectedIndex != -1;
+
                 var msgToSend = new Data
                 {
-                    Command = Command.Message,
+                    Command = (isPM ? Command.PMessage : Command.Message),
                     Name = ClientName,
+                    ToUser = (isPM ? listBoxUsers.SelectedItem.ToString() : null),
                     Message = textBoxMessage.Text.Trim()
                 };
 
