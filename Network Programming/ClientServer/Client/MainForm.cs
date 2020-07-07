@@ -14,8 +14,8 @@ namespace Client
 {
 	public partial class MainForm : Form
 	{
-		public Socket ClientSocket { get; set; } // Главный клиентский сокет
-		public string ClientName { get; set; }   // Имя, под которым клиент входит в чат
+		public Socket ClientSocket { get; set; }
+		public string ClientName { get; set; }
 
 		private byte[] byteData = new byte[1024];
 
@@ -24,10 +24,8 @@ namespace Client
 			InitializeComponent();
 		}
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            Text = $"TcpChat.Client: {ClientName}";
-
+        private void GetClientsList()
+		{
             var msgToSend = new Data
             {
                 Command = Command.List,
@@ -36,12 +34,19 @@ namespace Client
                 Message = null
             };
 
-			byteData = msgToSend.ToByte();
+            byteData = msgToSend.ToByte();
 
-			ClientSocket.BeginSend(byteData, 0, byteData.Length, SocketFlags.None,
-				new AsyncCallback(OnSend), null);
+            ClientSocket.BeginSend(byteData, 0, byteData.Length, SocketFlags.None,
+                new AsyncCallback(OnSend), null);
+        }
 
-			byteData = new byte[1024];
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            Text = $"Chat: {ClientName}";
+
+            GetClientsList();
+
+            byteData = new byte[1024];
 
             ClientSocket.BeginReceive(byteData, 0, byteData.Length, SocketFlags.None,
                 new AsyncCallback(OnReceive), null);
@@ -75,8 +80,8 @@ namespace Client
                 {
                     case Command.NameChanged:
                         ClientName = msgReceived.Name;
-                        Text = $"TcpChat.Client: {ClientName}";
-                        listBoxUsers.Items.Remove(ClientName);
+                        Text = $"Chat: {ClientName}";
+                        GetClientsList();
                         MessageBox.Show($"Выбраное имя уже занято, вам автоматически был присвоен номер, ваше новое имя: \"{ClientName}\"");
                         break;
 
@@ -93,8 +98,13 @@ namespace Client
 
                     case Command.List:
                         listBoxUsers.Items.Clear();
-                        listBoxUsers.Items.AddRange(msgReceived.Message.Split('|'));
-                        listBoxUsers.Items.RemoveAt(listBoxUsers.Items.Count - 1);
+
+                        if (msgReceived.Message != null)
+						{
+                            listBoxUsers.Items.AddRange(msgReceived.Message.Split('|'));
+                            listBoxUsers.Items.RemoveAt(listBoxUsers.Items.Count - 1);
+                        }
+
                         textBoxChat.Text += $"{ClientName} присоединился к чату\r\n";
                         break;
                 }
@@ -112,14 +122,14 @@ namespace Client
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, $"TcpChat.Client: {ClientName}",
+                MessageBox.Show(ex.Message, Text,
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (MessageBox.Show("Вы уверены, что хотите покинуть чат?", $"TcpChat.Client: {ClientName}",
+            if (MessageBox.Show("Вы уверены, что хотите покинуть чат?", Text,
                 MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
             {
                 e.Cancel = true;
@@ -146,7 +156,7 @@ namespace Client
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, $"TcpChat.Client: {ClientName}",
+                MessageBox.Show(ex.Message, Text,
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -180,7 +190,7 @@ namespace Client
             }
             catch (Exception)
             {
-                MessageBox.Show("Не могу отослать сообщение серверу.", $"TcpChat.Client: {ClientName}",
+                MessageBox.Show("Не могу отослать сообщение серверу", Text,
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -188,6 +198,11 @@ namespace Client
 		private void textBoxMessage_TextChanged(object sender, EventArgs e)
 		{
             buttonSend.Enabled = textBoxMessage.Text.Trim().Length > 0;
+        }
+
+		private void listBoxUsers_MouseDoubleClick(object sender, MouseEventArgs e)
+		{
+            listBoxUsers.SelectedIndex = -1;
         }
 	}
 }

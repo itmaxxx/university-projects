@@ -47,7 +47,7 @@ namespace CSC.Server
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "TcpChat.Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -64,7 +64,7 @@ namespace CSC.Server
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "TcpChat.Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -98,8 +98,6 @@ namespace CSC.Server
 
                         if (IsNameTaken(name))
                         {
-                            msgToSend.Command = Command.NameChanged;
-
                             name = name + (clientList.Count + 1);
 						}
 
@@ -110,6 +108,19 @@ namespace CSC.Server
                         });
 
                         msgToSend.Name = name;
+
+                        if (name != msgReceived.Name)
+						{
+                            msgToSend.Command = Command.NameChanged;
+
+                            message = msgToSend.ToByte();
+
+                            clientSocket.BeginSend(message, 0, message.Length, SocketFlags.None,
+                                new AsyncCallback(OnSend), clientSocket);
+
+                            msgToSend.Command = Command.Login;
+                        }
+
                         msgToSend.Message = $"{name} присоединился к чату";
                         break;
 
@@ -140,7 +151,8 @@ namespace CSC.Server
 
                         foreach (var client in clientList)
                         {
-                            msgToSend.Message += $"{client.Name}|";
+                            if (client.Name != msgReceived.Name)
+                                msgToSend.Message += $"{client.Name}|";
                         }
 
                         message = msgToSend.ToByte();
@@ -150,41 +162,20 @@ namespace CSC.Server
                         break;
                 }
 
-                if (msgToSend.Command != Command.List)
+                if (msgToSend.Command != Command.List && msgToSend.Command != Command.NameChanged)
                 {
-                    bool isNameChanged = (msgToSend.Command == Command.NameChanged ? true : false);
-
-                    if (isNameChanged)
-                        msgToSend.Command = Command.Login;
+                    message = msgToSend.ToByte();
 
                     foreach (var client in clientList)
                     {
                         if (client.Socket != clientSocket || msgToSend.Command != Command.Login)
                         {
                             // PM
-                            if (msgToSend.ToUser != null && (client.Name != msgToSend.ToUser || client.Name != msgToSend.Name))
+                            if (msgToSend.ToUser != null && client.Name != msgToSend.ToUser && client.Name != msgToSend.Name)
                                 continue;
-
-                            // Unique Names
-                            //if (msgToSend.Name == client.Name && isNameChanged)
-                            //    msgToSend.Command = Command.NameChanged;
-
-                            // Not optimized
-                            message = msgToSend.ToByte();
-
-                            // Unique Names
-       //                     if (msgToSend.Command == Command.NameChanged)
-							//{
-       //                         msgToSend.Command = Command.Login;
-       //                         isNameChanged = false;
-							//}
 
                             client.Socket.BeginSend(message, 0, message.Length, SocketFlags.None,
                                 new AsyncCallback(OnSend), client.Socket);
-
-                            //// PM
-                            //if (msgToSend.ToUser != null)
-                            //    break;
                         }
                     }
 
@@ -199,7 +190,7 @@ namespace CSC.Server
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "TcpChat.Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -212,7 +203,7 @@ namespace CSC.Server
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "TcpChat.Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

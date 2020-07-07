@@ -32,6 +32,8 @@
 			this.textBoxMessage = new System.Windows.Forms.TextBox();
 			this.buttonSend = new System.Windows.Forms.Button();
 			this.listBoxUsers = new System.Windows.Forms.ListBox();
+			this.labelUsersList = new System.Windows.Forms.Label();
+			this.label1 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// textBoxChat
@@ -66,16 +68,38 @@
 			// 
 			this.listBoxUsers.FormattingEnabled = true;
 			this.listBoxUsers.ItemHeight = 25;
-			this.listBoxUsers.Location = new System.Drawing.Point(879, 12);
+			this.listBoxUsers.Location = new System.Drawing.Point(879, 43);
 			this.listBoxUsers.Name = "listBoxUsers";
-			this.listBoxUsers.Size = new System.Drawing.Size(301, 804);
+			this.listBoxUsers.Size = new System.Drawing.Size(301, 729);
 			this.listBoxUsers.TabIndex = 3;
+			this.listBoxUsers.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBoxUsers_MouseDoubleClick);
+			// 
+			// labelUsersList
+			// 
+			this.labelUsersList.AutoSize = true;
+			this.labelUsersList.Location = new System.Drawing.Point(879, 15);
+			this.labelUsersList.Name = "labelUsersList";
+			this.labelUsersList.Size = new System.Drawing.Size(232, 25);
+			this.labelUsersList.TabIndex = 4;
+			this.labelUsersList.Text = "Пользователи онлайн";
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(12, 828);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(961, 50);
+			this.label1.TabIndex = 5;
+			this.label1.Text = "Если выбран пользователь онлайн - ему будет отпрвлено личное сообщение\r\nЧтобы сбр" +
+    "осить выбраного пользователя - двойной клик по лист боксу онлайн пользователей";
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1204, 854);
+			this.ClientSize = new System.Drawing.Size(1204, 901);
+			this.Controls.Add(this.label1);
+			this.Controls.Add(this.labelUsersList);
 			this.Controls.Add(this.listBoxUsers);
 			this.Controls.Add(this.buttonSend);
 			this.Controls.Add(this.textBoxMessage);
@@ -96,5 +120,7 @@
 		private System.Windows.Forms.TextBox textBoxMessage;
 		private System.Windows.Forms.Button buttonSend;
 		private System.Windows.Forms.ListBox listBoxUsers;
+		private System.Windows.Forms.Label labelUsersList;
+		private System.Windows.Forms.Label label1;
 	}
 }
