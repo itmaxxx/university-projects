@@ -204,5 +204,10 @@ namespace Client
 		{
             listBoxUsers.SelectedIndex = -1;
         }
+
+		private void listBoxUsers_SelectedIndexChanged(object sender, EventArgs e)
+		{
+            textBoxMessage.Focus();
+		}
 	}
 }

@@ -72,6 +72,7 @@
 			this.listBoxUsers.Name = "listBoxUsers";
 			this.listBoxUsers.Size = new System.Drawing.Size(301, 729);
 			this.listBoxUsers.TabIndex = 3;
+			this.listBoxUsers.SelectedIndexChanged += new System.EventHandler(this.listBoxUsers_SelectedIndexChanged);
 			this.listBoxUsers.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBoxUsers_MouseDoubleClick);
 			// 
 			// labelUsersList
