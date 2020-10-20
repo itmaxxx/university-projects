@@ -106,7 +106,7 @@
             BorderThickness="0" 
             FontWeight="Bold"
             Background="#EEEEEE" 
-            Click="Seven_Click"
+            Click="Number_Click"
             />
         <Button
             x:Name="eightButton"
@@ -117,7 +117,7 @@
             BorderThickness="0"
             FontWeight="Bold"
             Background="#EEEEEE" 
-            Click="Eight_Click"
+            Click="Number_Click"
             />
         <Button
             x:Name="nineButton"
@@ -128,7 +128,7 @@
             BorderThickness="0"
             FontWeight="Bold"
             Background="#EEEEEE" 
-            Click="Nine_Click"
+            Click="Number_Click"
             />
         <Button
             x:Name="multiplyButton"
@@ -152,7 +152,7 @@
             BorderThickness="0"
             FontWeight="Bold"
             Background="#EEEEEE" 
-            Click="Four_Click"
+            Click="Number_Click"
             />
         <Button
             x:Name="fiveButton"
@@ -163,7 +163,7 @@
             BorderThickness="0"
             FontWeight="Bold"
             Background="#EEEEEE" 
-            Click="Five_Click"
+            Click="Number_Click"
             />
         <Button
             x:Name="sixButton"
@@ -174,7 +174,7 @@
             BorderThickness="0"
             FontWeight="Bold"
             Background="#EEEEEE" 
-            Click="Six_Click"
+            Click="Number_Click"
             />
         <Button
             x:Name="minusButton"
@@ -198,7 +198,7 @@
             BorderThickness="0"
             FontWeight="Bold"
             Background="#EEEEEE" 
-            Click="One_Click"
+            Click="Number_Click"
             />
         <Button
             x:Name="twoButton"
@@ -209,7 +209,7 @@
             BorderThickness="0"
             FontWeight="Bold"
             Background="#EEEEEE" 
-            Click="Two_Click"
+            Click="Number_Click"
             />
         <Button
             x:Name="threeButton"
@@ -220,7 +220,7 @@
             BorderThickness="0"
             FontWeight="Bold"
             Background="#EEEEEE" 
-            Click="Three_Click"
+            Click="Number_Click"
             />
         <Button
             x:Name="plusButton"
@@ -254,7 +254,7 @@
             BorderThickness="0"
             FontWeight="Bold"
             Background="#EEEEEE" 
-            Click="Zero_Click"
+            Click="Number_Click"
             />
         <Button
             x:Name="dotButton"

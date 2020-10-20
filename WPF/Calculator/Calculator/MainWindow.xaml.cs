@@ -21,8 +21,8 @@ namespace Calculator
     public partial class MainWindow : Window
     {
         private char choosenOperation;
-        private int result = 0;
-        private int current = 0;
+        private double result = 0;
+        private double current = 0;
 
         public MainWindow()
         {
@@ -31,9 +31,9 @@ namespace Calculator
 
         // Logic
 
-        private void EnterNumber(int number)
+        private void EnterNumber(double number)
         {
-            current = current == 0 ? number : int.Parse(current.ToString() + number.ToString());
+            current = current == 0 ? number : double.Parse(current.ToString() + number.ToString());
 
             currentLabel.Content = current;
         }
@@ -42,41 +42,73 @@ namespace Calculator
 
         private void Ce_Click(object sender, RoutedEventArgs e)
         {
+            result = 0;
+            resultLabel.Content = 0;
+            current = 0;
             currentLabel.Content = 0;
         }
 
         private void C_Click(object sender, RoutedEventArgs e)
         {
-
+            current = 0;
+            currentLabel.Content = 0;
         }
 
         private void Del_Click(object sender, RoutedEventArgs e)
         {
+            current = current.ToString().Length <= 1 ? 0 : double.Parse(current.ToString().Substring(0, current.ToString().Length - 1));
 
+            currentLabel.Content = current;
         }
 
         // Math operations
 
         private void Divide_Click(object sender, RoutedEventArgs e)
         {
+            choosenOperation = '/';
 
+            result = current;
+
+            resultLabel.Content = $"{result} ÷ ";
+
+            current = 0;
+
+            EnterNumber(0);
         }
 
         private void Multiply_Click(object sender, RoutedEventArgs e)
         {
+            choosenOperation = '*';
 
+            result = current;
+
+            resultLabel.Content = $"{result} × ";
+
+            current = 0;
+
+            EnterNumber(0);
         }
 
         private void Minus_Click(object sender, RoutedEventArgs e)
         {
+            choosenOperation = '-';
 
+            result = current;
+
+            resultLabel.Content = $"{result} - ";
+
+            current = 0;
+
+            EnterNumber(0);
         }
 
         private void Plus_Click(object sender, RoutedEventArgs e)
         {
+            choosenOperation = '+';
+            
             result = current;
 
-            choosenOperation = '+';
+            resultLabel.Content = $"{result} + ";
 
             current = 0;
 
@@ -97,68 +129,53 @@ namespace Calculator
         {
             if (choosenOperation == '+')
             {
-                currentLabel.Content = result + current;
+                current = result + current;
 
-                MessageBox.Show($"{result} + {current}");
+                currentLabel.Content = current;
 
                 result = 0;
 
-                resultLabel.Content = result;
+                resultLabel.Content = "";
+            }
+            else if (choosenOperation == '-')
+            {
+                current = result - current;
+
+                currentLabel.Content = current;
+
+                result = 0;
+
+                resultLabel.Content = "";
+            }
+            else if (choosenOperation == '*')
+            {
+                current = result * current;
+
+                currentLabel.Content = current;
+
+                result = 0;
+
+                resultLabel.Content = "";
+            }
+            else if (choosenOperation == '/')
+            {
+                current = result / current;
+
+                currentLabel.Content = current;
+
+                result = 0;
+
+                resultLabel.Content = "";
             }
         }
 
         // Numbers
 
-        private void Zero_Click(object sender, RoutedEventArgs e)
+        private void Number_Click(object sender, RoutedEventArgs e)
         {
-            EnterNumber(0);
+            Button button = (Button)sender;
+
+            EnterNumber(double.Parse(button.Content.ToString()));
         }
-
-        private void One_Click(object sender, RoutedEventArgs e)
-        {
-            EnterNumber(1);
-        }
-
-        private void Two_Click(object sender, RoutedEventArgs e)
-        {
-            EnterNumber(2);
-        }
-
-        private void Three_Click(object sender, RoutedEventArgs e)
-        {
-            EnterNumber(3);
-        }
-
-        private void Four_Click(object sender, RoutedEventArgs e)
-        {
-            EnterNumber(4);
-        }
-
-        private void Five_Click(object sender, RoutedEventArgs e)
-        {
-            EnterNumber(5);
-        }
-
-        private void Six_Click(object sender, RoutedEventArgs e)
-        {
-            EnterNumber(6);
-        }
-
-        private void Seven_Click(object sender, RoutedEventArgs e)
-        {
-            EnterNumber(7);
-        }
-
-        private void Eight_Click(object sender, RoutedEventArgs e)
-        {
-            EnterNumber(8);
-        }
-
-        private void Nine_Click(object sender, RoutedEventArgs e)
-        {
-            EnterNumber(9);
-        }
-
-
     }
 }
