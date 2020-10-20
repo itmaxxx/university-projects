@@ -27,6 +27,8 @@ namespace Calculator
         public MainWindow()
         {
             InitializeComponent();
+
+            resultLabel.Content = String.Empty;
         }
 
         // Logic
@@ -42,14 +44,14 @@ namespace Calculator
 
         private void Ce_Click(object sender, RoutedEventArgs e)
         {
-            result = 0;
-            resultLabel.Content = 0;
             current = 0;
             currentLabel.Content = 0;
         }
 
         private void C_Click(object sender, RoutedEventArgs e)
         {
+            result = 0;
+            resultLabel.Content = 0;
             current = 0;
             currentLabel.Content = 0;
         }
@@ -117,7 +119,9 @@ namespace Calculator
 
         private void Plusminus_Click(object sender, RoutedEventArgs e)
         {
+            current *= -1;
 
+            currentLabel.Content = double.Parse(current.ToString());
         }
 
         private void Dot_Click(object sender, RoutedEventArgs e)
@@ -135,7 +139,7 @@ namespace Calculator
 
                 result = 0;
 
-                resultLabel.Content = "";
+                resultLabel.Content = String.Empty;
             }
             else if (choosenOperation == '-')
             {
@@ -145,7 +149,7 @@ namespace Calculator
 
                 result = 0;
 
-                resultLabel.Content = "";
+                resultLabel.Content = String.Empty;
             }
             else if (choosenOperation == '*')
             {
@@ -155,7 +159,7 @@ namespace Calculator
 
                 result = 0;
 
-                resultLabel.Content = "";
+                resultLabel.Content = String.Empty;
             }
             else if (choosenOperation == '/')
             {
@@ -165,7 +169,7 @@ namespace Calculator
 
                 result = 0;
 
-                resultLabel.Content = "";
+                resultLabel.Content = String.Empty;
             }
         }
 

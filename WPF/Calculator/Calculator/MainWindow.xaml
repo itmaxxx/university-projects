@@ -5,11 +5,109 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calculator"
         mc:Ignorable="d"
-        Title="MainWindow" 
+        Title="Calculator" 
         Height="450" 
-        Width="450"
+        Width="450" Background="Black"
         >
-    <Grid>
+    <Window.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FF929292"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="LightGrayButton" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <SolidColorBrush x:Key="Button.MouseOver.Background2" Color="#FF3E3E3E"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border2" Color="#FF3E3E3E"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background2" Color="#FF4B4B4B"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border2" Color="#FF4B4B4B"/>
+        <Style x:Key="DarkGreyButton" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="Right" Margin="0,12,46.667,12" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background2}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border2}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background2}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border2}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="3">
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
@@ -38,7 +136,7 @@
             Margin="0 0 15 50"
             Foreground="#FFCDCDCD"
             />
-        
+
         <Label 
             x:Name="currentLabel"
             Grid.Column="0"
@@ -49,7 +147,7 @@
             VerticalAlignment="Center"
             FontSize="48"
             FontWeight="Bold"
-            Margin="0 20 10 0"
+            Margin="0 20 10 0" Foreground="White"
             />
 
         <!--First row-->
@@ -58,41 +156,45 @@
             x:Name="ceButton"
             Grid.Column="0"
             Grid.Row="1"
+            Margin="1"
             Content="CE" 
             FontSize="20" 
             BorderThickness="0"
-            Background="#EEEEEE" 
-            Click="Ce_Click"
+            Background="#FF3C3C3C" 
+            Click="Ce_Click" Foreground="White" Style="{DynamicResource LightGrayButton}"
             />
         <Button
             x:Name="cButton"
             Grid.Column="1"
             Grid.Row="1"
+            Margin="1"
             Content="C" 
             FontSize="20" 
             BorderThickness="0"
-            Background="#EEEEEE" 
-            Click="C_Click"
+            Background="#FF3C3C3C" 
+            Click="C_Click" Foreground="White" Style="{DynamicResource LightGrayButton}"
             />
         <Button
             x:Name="delButton"
             Grid.Column="2"
             Grid.Row="1"
+            Margin="1"
             Content="DEL" 
             FontSize="20" 
             BorderThickness="0"
-            Background="#EEEEEE" 
-            Click="Del_Click"
+            Background="#FF3C3C3C" 
+            Click="Del_Click" Foreground="White" Style="{DynamicResource LightGrayButton}"
             />
         <Button
             x:Name="divideButton"
             Grid.Column="4"
             Grid.Row="1"
+            Margin="1"
             Content="÷" 
             FontSize="35" 
             BorderThickness="0"
-            Background="#EEEEEE" 
-            Click="Divide_Click"
+            Background="#FF3C3C3C" 
+            Click="Divide_Click" Foreground="White" Style="{DynamicResource LightGrayButton}"
             />
 
         <!--Second row-->
@@ -105,8 +207,9 @@
             FontSize="25" 
             BorderThickness="0" 
             FontWeight="Bold"
-            Background="#EEEEEE" 
-            Click="Number_Click"
+            Background="#FF222222" 
+            Click="Number_Click" Margin="1" Foreground="White"
+            Style="{DynamicResource DarkGreyButton}"
             />
         <Button
             x:Name="eightButton"
@@ -116,8 +219,9 @@
             FontSize="25" 
             BorderThickness="0"
             FontWeight="Bold"
-            Background="#EEEEEE" 
-            Click="Number_Click"
+            Background="#FF222222" 
+            Click="Number_Click" Margin="1" Foreground="White"
+            Style="{DynamicResource DarkGreyButton}"
             />
         <Button
             x:Name="nineButton"
@@ -127,8 +231,8 @@
             FontSize="25" 
             BorderThickness="0"
             FontWeight="Bold"
-            Background="#EEEEEE" 
-            Click="Number_Click"
+            Background="#FF222222" 
+            Click="Number_Click" Margin="1" Foreground="White" Style="{DynamicResource DarkGreyButton}"
             />
         <Button
             x:Name="multiplyButton"
@@ -137,8 +241,8 @@
             Content="×" 
             FontSize="35" 
             BorderThickness="0"
-            Background="#EEEEEE" 
-            Click="Multiply_Click"
+            Background="#FF3C3C3C" 
+            Click="Multiply_Click" Margin="1" Foreground="White" Style="{DynamicResource LightGrayButton}"
             />
 
         <!--Third row-->
@@ -151,8 +255,9 @@
             FontSize="25" 
             BorderThickness="0"
             FontWeight="Bold"
-            Background="#EEEEEE" 
-            Click="Number_Click"
+            Background="#FF222222" 
+            Click="Number_Click" Margin="1" Foreground="White"
+            Style="{DynamicResource DarkGreyButton}"
             />
         <Button
             x:Name="fiveButton"
@@ -162,8 +267,9 @@
             FontSize="25" 
             BorderThickness="0"
             FontWeight="Bold"
-            Background="#EEEEEE" 
-            Click="Number_Click"
+            Background="#FF222222" 
+            Click="Number_Click" Margin="1" Foreground="White"
+            Style="{DynamicResource DarkGreyButton}"
             />
         <Button
             x:Name="sixButton"
@@ -173,8 +279,9 @@
             FontSize="25" 
             BorderThickness="0"
             FontWeight="Bold"
-            Background="#EEEEEE" 
-            Click="Number_Click"
+            Background="#FF222222" 
+            Click="Number_Click" Margin="1" Foreground="White"
+            Style="{DynamicResource DarkGreyButton}"
             />
         <Button
             x:Name="minusButton"
@@ -183,8 +290,8 @@
             Content="−" 
             FontSize="35" 
             BorderThickness="0"
-            Background="#EEEEEE" 
-            Click="Minus_Click"
+            Background="#FF3C3C3C" 
+            Click="Minus_Click" Margin="1" Foreground="White" Style="{DynamicResource LightGrayButton}"
             />
 
         <!--Forth row-->
@@ -197,8 +304,9 @@
             FontSize="25" 
             BorderThickness="0"
             FontWeight="Bold"
-            Background="#EEEEEE" 
-            Click="Number_Click"
+            Background="#FF222222" 
+            Click="Number_Click" Margin="1" Foreground="White"
+            Style="{DynamicResource DarkGreyButton}"
             />
         <Button
             x:Name="twoButton"
@@ -208,8 +316,9 @@
             FontSize="25" 
             BorderThickness="0"
             FontWeight="Bold"
-            Background="#EEEEEE" 
-            Click="Number_Click"
+            Background="#FF222222" 
+            Click="Number_Click" Margin="1" Foreground="White"
+            Style="{DynamicResource DarkGreyButton}"
             />
         <Button
             x:Name="threeButton"
@@ -219,8 +328,9 @@
             FontSize="25" 
             BorderThickness="0"
             FontWeight="Bold"
-            Background="#EEEEEE" 
-            Click="Number_Click"
+            Background="#FF222222" 
+            Click="Number_Click" Margin="1" Foreground="White"
+            Style="{DynamicResource DarkGreyButton}"
             />
         <Button
             x:Name="plusButton"
@@ -229,8 +339,8 @@
             Content="+" 
             FontSize="35" 
             BorderThickness="0"
-            Background="#EEEEEE" 
-            Click="Plus_Click"
+            Background="#FF3C3C3C" 
+            Click="Plus_Click" Margin="1" Foreground="White" Style="{DynamicResource LightGrayButton}"
             />
 
         <!--Fifth row-->
@@ -240,10 +350,11 @@
             Grid.Column="0"
             Grid.Row="5"
             Content="±" 
-            FontSize="35" 
+            FontSize="25" 
             BorderThickness="0"
-            Background="#EEEEEE" 
-            Click="Plusminus_Click"
+            Background="#FF222222" 
+            Click="Plusminus_Click" Margin="1" Foreground="White"
+            Style="{DynamicResource DarkGreyButton}"
             />
         <Button
             x:Name="zeroButton"
@@ -253,8 +364,9 @@
             FontSize="25" 
             BorderThickness="0"
             FontWeight="Bold"
-            Background="#EEEEEE" 
-            Click="Number_Click"
+            Background="#FF222222" 
+            Click="Number_Click" Margin="1" Foreground="White"
+            Style="{DynamicResource DarkGreyButton}"
             />
         <Button
             x:Name="dotButton"
@@ -264,8 +376,9 @@
             FontSize="25" 
             BorderThickness="0"
             FontWeight="Bold"
-            Background="#EEEEEE" 
-            Click="Dot_Click"
+            Background="#FF222222" 
+            Click="Dot_Click" Margin="1" Foreground="White"
+            Style="{DynamicResource DarkGreyButton}"
             />
         <Button
             x:Name="resultButton"
@@ -274,8 +387,8 @@
             Content="=" 
             FontSize="35" 
             BorderThickness="0"
-            Background="#EEEEEE" 
-            Click="Result_Click"
+            Background="#FF3C3C3C" 
+            Click="Result_Click" Margin="1" Foreground="White" Style="{DynamicResource LightGrayButton}"
             />
     </Grid>
 </Window>
