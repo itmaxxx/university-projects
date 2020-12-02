@@ -1,0 +1,302 @@
+﻿<Window x:Class="ImageTransformation.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ImageTransformation"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        Height="710" 
+        Width="800"
+        Loaded="Window_Loaded">
+    <Window.Resources>
+        <Style x:Key="buttonStyled" TargetType="Button">
+            <Style.Setters>
+                <Setter Property="Control.Background" Value="#EEE" />
+                <Setter Property="Control.Foreground" Value="#000" />
+                <Setter Property="Control.Margin" Value="0 10 0 0" />
+                <Setter Property="Control.Padding" Value="16 8" />
+                <Setter Property="Control.BorderThickness" Value="1" />
+                <Setter Property="Control.BorderBrush" Value="#FFD1D1D1" />
+            </Style.Setters>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="20"
+          x:Name="GridContainer"
+          SizeChanged="GridContainer_SizeChanged">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Expander x:Name="ChooseImage" 
+                  Header="Choose image" 
+                  HorizontalAlignment="Stretch" 
+                  VerticalAlignment="Stretch"
+                  Grid.Column="0" 
+                  Grid.Row="0" 
+                  IsExpanded="True">
+            <ScrollViewer>
+                <StackPanel Margin="25 10 0 10">
+                    <RadioButton GroupName="ChosenImage" 
+                                 Content="Mountains" 
+                                 Margin="0 5" 
+                                 IsChecked="True"
+                                 Checked="RadioButton_Checked"/>
+                    <RadioButton GroupName="ChosenImage" 
+                                 Content="Owls" 
+                                 Margin="0 5"
+                                 Checked="RadioButton_Checked"/>
+                    <RadioButton GroupName="ChosenImage" 
+                                 Content="Coffee" 
+                                 Margin="0 5"
+                                 Checked="RadioButton_Checked"/>
+                    <RadioButton GroupName="ChosenImage" 
+                                 Content="Tea" 
+                                 Margin="0 5"
+                                 Checked="RadioButton_Checked"/>
+                    <RadioButton GroupName="ChosenImage" 
+                                 Content="Pepperoni Pizza" 
+                                 Margin="0 5"
+                                 Checked="RadioButton_Checked"/>
+                </StackPanel>
+            </ScrollViewer>
+        </Expander>
+
+        <Expander x:Name="Transformations" 
+                  Header="Transformations" 
+                  HorizontalAlignment="Stretch" 
+                  VerticalAlignment="Stretch"
+                  Grid.Column="0" 
+                  Grid.Row="1"
+                  IsExpanded="True">
+            <ScrollViewer>
+                <StackPanel Margin="25 10">
+                    <GroupBox Header="Height" >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="4*"></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Content="0" 
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center" 
+                                   Grid.Column="0"/>
+
+                            <Slider x:Name="ImageHeight" 
+                                    Minimum="0" 
+                                    Maximum="100" 
+                                    Value="100"
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center" 
+                                    HorizontalAlignment="Stretch" 
+                                    ValueChanged="ImageHeight_ValueChanged"/>
+
+                            <Label Content="100" 
+                                   x:Name="MaxImageHeight"
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center"
+                                   Grid.Column="2"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Width" >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="4*"></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Content="0" 
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center" 
+                                   Grid.Column="0"/>
+
+                            <Slider x:Name="ImageWidth" 
+                                    Minimum="0" 
+                                    Maximum="100" 
+                                    Value="100"
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center" 
+                                    HorizontalAlignment="Stretch"
+                                    ValueChanged="ImageWidth_ValueChanged"/>
+
+                            <Label Content="100" 
+                                   x:Name="MaxImageWidth"
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center"
+                                   Grid.Column="2"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="TransformX" >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="4*"></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Content="-100" 
+                                   x:Name="MinTransformX"
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center" 
+                                   Grid.Column="0"/>
+
+                            <Slider x:Name="TransformX" 
+                                    Minimum="-100" 
+                                    Maximum="100" 
+                                    Value="0"
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center" 
+                                    HorizontalAlignment="Stretch"
+                                    ValueChanged="RenderTransform_ValueChanged">
+                            </Slider>
+
+                            <Label Content="100" 
+                                   x:Name="MaxTransformX"
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center"
+                                   Grid.Column="2"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="TransformY" >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="4*"></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Content="-100" 
+                                   x:Name="MinTransformY"
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center" 
+                                   Grid.Column="0"/>
+
+                            <Slider x:Name="TransformY" 
+                                    Minimum="-100" 
+                                    Maximum="100" 
+                                    Value="0"
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center" 
+                                    HorizontalAlignment="Stretch"
+                                    ValueChanged="RenderTransform_ValueChanged"/>
+
+                            <Label Content="100" 
+                                   x:Name="MaxTransformY"
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center"
+                                   Grid.Column="2"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="SkewX" >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="4*"></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Content="-100" 
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center" 
+                                   Grid.Column="0"/>
+
+                            <Slider x:Name="SkewX" 
+                                    Minimum="-100" 
+                                    Maximum="100" 
+                                    Value="0"
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center" 
+                                    HorizontalAlignment="Stretch"
+                                    ValueChanged="RenderTransform_ValueChanged"/>
+
+                            <Label Content="100" 
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center"
+                                   Grid.Column="2"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="SkewY" >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="4*"></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Content="-100" 
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center" 
+                                   Grid.Column="0"/>
+
+                            <Slider x:Name="SkewY" 
+                                    Minimum="-100" 
+                                    Maximum="100" 
+                                    Value="0"
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center" 
+                                    HorizontalAlignment="Stretch"
+                                    ValueChanged="RenderTransform_ValueChanged"/>
+
+                            <Label Content="100" 
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center"
+                                   Grid.Column="2"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Rotate" >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="4*"></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Content="-180" 
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center" 
+                                   Grid.Column="0"/>
+
+                            <Slider x:Name="Rotate" 
+                                    Minimum="-180" 
+                                    Maximum="180" 
+                                    Value="0"
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center" 
+                                    HorizontalAlignment="Stretch"
+                                    ValueChanged="RenderTransform_ValueChanged"/>
+
+                            <Label Content="180" 
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center"
+                                   Grid.Column="2"/>
+                        </Grid>
+                    </GroupBox>
+                    <Button Style="{StaticResource buttonStyled}" 
+                            Click="Button_Click">
+                        Reset
+                    </Button>
+                </StackPanel>
+            </ScrollViewer>
+        </Expander>
+
+        <Image Margin="20" 
+               x:Name="CurrentImage" 
+               Grid.Column="1" 
+               Grid.RowSpan="2" 
+               Source="/Resources/Mountains.jpg" 
+               VerticalAlignment="Center" 
+               HorizontalAlignment="Center" 
+               StretchDirection="Both" 
+               Stretch="Fill" 
+               RenderTransformOrigin="0.5,0.5">
+        </Image>
+    </Grid>
+</Window>
