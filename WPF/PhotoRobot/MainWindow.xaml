@@ -1,0 +1,123 @@
+﻿<Window x:Class="PhotoRobot.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PhotoRobot"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="600">
+    <Window.Resources>
+        <Style x:Key="ComboBoxItemImage">
+            <Style.Setters>
+                <Setter Property="ItemsControl.Height" Value="60"/>
+                <Setter Property="ItemsControl.MaxHeight" Value="60"/>
+                <Setter Property="ItemsControl.Width" Value="60"/>
+                <Setter Property="ItemsControl.MaxWidth" Value="60"/>
+            </Style.Setters>
+        </Style>
+        <Style x:Key="ComboBoxItemName">
+            <Style.Setters>
+                <Setter Property="Control.Margin" Value="10 0 0 0"/>
+                <Setter Property="Control.VerticalAlignment" Value="Center"/>
+            </Style.Setters>
+        </Style>
+        <Style x:Key="FacePartSettingsGrid">
+            <Style.Setters>
+                <Setter Property="Control.Margin" Value="6"/>
+            </Style.Setters>
+        </Style>
+        <Style x:Key="FacePartSettingsButton">
+            <Style.Setters>
+                <Setter Property="Control.Padding" Value="16 8"/>
+                <Setter Property="Control.HorizontalAlignment" Value="Center"/>
+            </Style.Setters>
+        </Style>
+    </Window.Resources>
+    
+    <Grid x:Name="mainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0"
+                    Grid.Column="0">
+            <GroupBox Header="Ears">
+                <ComboBox SelectionChanged="ComboBox_SelectionChanged">
+                    <ComboBoxItem IsSelected="True">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Style="{StaticResource ComboBoxItemImage}"
+                                   Source="Resources/Ears/ear1.jpg"/>
+                            <TextBlock Style="{StaticResource ComboBoxItemName}">Ear</TextBlock>
+                        </StackPanel>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Style="{StaticResource ComboBoxItemImage}"
+                                   Source="Resources/Ears/ear2.jpg" />
+                            <TextBlock Style="{StaticResource ComboBoxItemName}">Ear</TextBlock>
+                        </StackPanel>
+                    </ComboBoxItem>
+                </ComboBox>
+            </GroupBox>
+            
+            <Grid HorizontalAlignment="Stretch"
+                  Style="{StaticResource FacePartSettingsGrid}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <Button Grid.Column="0" 
+                        Style="{StaticResource FacePartSettingsButton}">
+                    Left ear settings
+                </Button>
+                <Button Grid.Column="1" 
+                        Style="{StaticResource FacePartSettingsButton}">
+                    Right ear settings
+                </Button>
+            </Grid>
+        </StackPanel>
+
+        <!--<Image x:Name="leftEarImage" 
+               Grid.Row="0"
+               Grid.Column="1" 
+               Width="30"
+               Height="80"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Source="/Resources/Ears/ear1.jpg" 
+               Stretch="Fill" RenderTransformOrigin="0.5,0.5" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-5"/>
+                    <TranslateTransform X="-55"/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+
+        <Image x:Name="rightEarImage" 
+               Grid.Row="0"
+               Grid.Column="1" 
+               Width="30"
+               Height="80"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Source="/Resources/Ears/ear1.jpg" 
+               Stretch="Fill" RenderTransformOrigin="0.5,0.5" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="5"/>
+                    <TranslateTransform X="55"/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>-->
+    </Grid>
+</Window>

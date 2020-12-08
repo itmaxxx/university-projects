@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Ears\ear1.jpg" />
+    <None Remove="Resources\Ears\ear2.jpg" />
+    <None Remove="Resources\Ears\ear3.jpg" />
+    <None Remove="Resources\Ears\ears1.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources\Foreheads\" />
+    <Folder Include="Resources\Eyes\" />
+    <Folder Include="Resources\Mouths\" />
+    <Folder Include="Resources\Noses\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Ears\ear1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Ears\ear2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+</Project>

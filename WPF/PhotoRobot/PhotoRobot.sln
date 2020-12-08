@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoRobot", "PhotoRobot.csproj", "{048CFC4E-D558-4612-9A4F-84D5E5C09407}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{048CFC4E-D558-4612-9A4F-84D5E5C09407}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{048CFC4E-D558-4612-9A4F-84D5E5C09407}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{048CFC4E-D558-4612-9A4F-84D5E5C09407}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{048CFC4E-D558-4612-9A4F-84D5E5C09407}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FCB17A3C-015E-4BBD-9543-0E8FCBC18B30}
+	EndGlobalSection
+EndGlobal
