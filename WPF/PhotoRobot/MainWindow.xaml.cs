@@ -19,118 +19,118 @@ namespace PhotoRobot
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
 
-	class FacePart
-	{
-		public Image Image { get; private set; }
-		public int Width { get; private set; }
-		public int Height { get; private set; }
-		public int TransformX { get; private set; }
-		public int TransformY { get; private set; }
-		public int Angle { get; private set; }
-		public int SkewX { get; private set; }
-		public int SkewY { get; private set; }
-		public int ScaleX { get; private set; }
-		public int ScaleY { get; private set; }
+	//class FacePart
+	//{
+	//	public Image Image { get; private set; }
+	//	public int Width { get; private set; }
+	//	public int Height { get; private set; }
+	//	public int TransformX { get; private set; }
+	//	public int TransformY { get; private set; }
+	//	public int Angle { get; private set; }
+	//	public int SkewX { get; private set; }
+	//	public int SkewY { get; private set; }
+	//	public int ScaleX { get; private set; }
+	//	public int ScaleY { get; private set; }
 
-		public FacePart(string source, int width, int height, int transformX, int transformY, int angle, int skewX, int skewY, int scaleX, int scaleY)
-		{
-			SetImage(source, width, height);
+	//	public FacePart(string source, int width, int height, int transformX, int transformY, int angle, int skewX, int skewY, int scaleX, int scaleY)
+	//	{
+	//		SetImage(source, width, height);
 
-			SetTransform(transformX, transformY, angle, skewX, skewY, scaleX, scaleY);
-		}
+	//		SetTransform(transformX, transformY, angle, skewX, skewY, scaleX, scaleY);
+	//	}
 
-		public void SetTransform(int transformX, int transformY, int angle, int skewX, int skewY, int scaleX, int scaleY)
-		{
-			TransformX = transformX;
-			TransformY = transformY;
-			Angle = angle;
-			SkewX = skewX;
-			SkewY = skewY;
-			ScaleX = scaleX;
-			ScaleY = scaleY;
+	//	public void SetTransform(int transformX, int transformY, int angle, int skewX, int skewY, int scaleX, int scaleY)
+	//	{
+	//		TransformX = transformX;
+	//		TransformY = transformY;
+	//		Angle = angle;
+	//		SkewX = skewX;
+	//		SkewY = skewY;
+	//		ScaleX = scaleX;
+	//		ScaleY = scaleY;
 
-			ApplyTransform();
-		}
+	//		ApplyTransform();
+	//	}
 
-		public void ApplyTransform()
-		{
-			TransformGroup transformGroup = new TransformGroup();
-			transformGroup.Children.Add(new TranslateTransform(TransformX, TransformY));
-			transformGroup.Children.Add(new SkewTransform(SkewX, SkewY));
-			transformGroup.Children.Add(new ScaleTransform(ScaleX, ScaleY));
-			transformGroup.Children.Add(new RotateTransform(Angle));
+	//	public void ApplyTransform()
+	//	{
+	//		TransformGroup transformGroup = new TransformGroup();
+	//		transformGroup.Children.Add(new TranslateTransform(TransformX, TransformY));
+	//		transformGroup.Children.Add(new SkewTransform(SkewX, SkewY));
+	//		transformGroup.Children.Add(new ScaleTransform(ScaleX, ScaleY));
+	//		transformGroup.Children.Add(new RotateTransform(Angle));
 
-			Image.RenderTransform = transformGroup;
-		}
+	//		Image.RenderTransform = transformGroup;
+	//	}
 
-		public void SetImage(string source, int width, int height)
-		{
-			Image = new Image();
-			Image.Width = width;
-			Image.Height = height;
-			Image.Stretch = Stretch.Fill;
-			Image.Source = new BitmapImage(new Uri(source));
-		}
-	}
+	//	public void SetImage(string source, int width, int height)
+	//	{
+	//		Image = new Image();
+	//		Image.Width = width;
+	//		Image.Height = height;
+	//		Image.Stretch = Stretch.Fill;
+	//		Image.Source = new BitmapImage(new Uri(source));
+	//	}
+	//}
 
-	class Face
-	{
-		public FacePart LeftEar { get; private set; }
-		public FacePart RightEar { get; private set; }
+	//class Face
+	//{
+	//	public FacePart LeftEar { get; private set; }
+	//	public FacePart RightEar { get; private set; }
 
-		public Face(string earsImage)
-		{
-			LeftEar = new FacePart(earsImage, 40, 100, -55, 0, -5, 0, 0, 1, 1);
-			RightEar = new FacePart(earsImage, 40, 100, -55, 0, 5, 0, 0, -1, 1);
-		}
+	//	public Face(string earsImage)
+	//	{
+	//		LeftEar = new FacePart(earsImage, 40, 100, -55, 0, -5, 0, 0, 1, 1);
+	//		RightEar = new FacePart(earsImage, 40, 100, -55, 0, 5, 0, 0, -1, 1);
+	//	}
 
-		// To update element in grid, we:
-		// 1. Find old one
-		// 2. Removing old element
-		// 3. Adding new element
-		public void UpdateElementInGrid(Grid grid, int row, int column, UIElement oldEl, UIElement newEl)
-		{
-			foreach (var child in grid.Children)
-			{
-				if (child.Equals(oldEl))
-				{
-					grid.Children.Remove((UIElement)child);
+	//	// To update element in grid, we:
+	//	// 1. Find old one
+	//	// 2. Removing old element
+	//	// 3. Adding new element
+	//	public void UpdateElementInGrid(Grid grid, int row, int column, UIElement oldEl, UIElement newEl)
+	//	{
+	//		foreach (var child in grid.Children)
+	//		{
+	//			if (child.Equals(oldEl))
+	//			{
+	//				grid.Children.Remove((UIElement)child);
 
-					grid.Children.Add(newEl);
-					Grid.SetRow(newEl, row);
-					Grid.SetColumn(newEl, column);
+	//				grid.Children.Add(newEl);
+	//				Grid.SetRow(newEl, row);
+	//				Grid.SetColumn(newEl, column);
 
-					break;
-				}
-			}
-		}
+	//				break;
+	//			}
+	//		}
+	//	}
 
-		// Add face elements to grid (initialize them)
-		public void AddToGrid(Grid grid, int row, int column)
-		{
-			// Left ear
-			grid.Children.Add(LeftEar.Image);
-			Grid.SetRow(LeftEar.Image, row);
-			Grid.SetColumn(LeftEar.Image, column);
+	//	// Add face elements to grid (initialize them)
+	//	public void AddToGrid(Grid grid, int row, int column)
+	//	{
+	//		// Left ear
+	//		grid.Children.Add(LeftEar.Image);
+	//		Grid.SetRow(LeftEar.Image, row);
+	//		Grid.SetColumn(LeftEar.Image, column);
 
-			// Right ear
-			grid.Children.Add(RightEar.Image);
-			Grid.SetRow(RightEar.Image, row);
-			Grid.SetColumn(RightEar.Image, column);
-		}
-	}
+	//		// Right ear
+	//		grid.Children.Add(RightEar.Image);
+	//		Grid.SetRow(RightEar.Image, row);
+	//		Grid.SetColumn(RightEar.Image, column);
+	//	}
+	//}
 
 	public partial class MainWindow : Window
 	{
-		Face face;
+		//Face face;
 
 		public MainWindow()
 		{
 			InitializeComponent();
 
-			face = new Face("pack://application:,,,/PhotoRobot;component/Resources/Ears/ear1.jpg");
+			//face = new Face("pack://application:,,,/PhotoRobot;component/Resources/Ears/ear1.jpg");
 
-			face.AddToGrid(mainGrid, 0, 1);
+			//face.AddToGrid(mainGrid, 0, 1);
 		}
 
 		// Change ears
@@ -148,16 +148,10 @@ namespace PhotoRobot
 			var selectedImage = (Image)stackPanel.Children[0];
 
 			// Update left ear image
-			var oldLeftEar = face.LeftEar.Image;
-			face.LeftEar.SetImage(selectedImage.Source.ToString(), 40, 100);
-			face.LeftEar.ApplyTransform();
-			face.UpdateElementInGrid(mainGrid, 0, 1, oldLeftEar, face.LeftEar.Image);
+			LeftEar.Source = new BitmapImage(new Uri(selectedImage.Source.ToString()));
 
 			// Update right ear image
-			var oldRightEar = face.RightEar.Image;
-			face.RightEar.SetImage(selectedImage.Source.ToString(), 40, 100);
-			face.RightEar.ApplyTransform();
-			face.UpdateElementInGrid(mainGrid, 0, 1, oldRightEar, face.RightEar.Image);
+
 
 			// Display selected image source
 			// MessageBox.Show(selectedImage.Source.ToString());

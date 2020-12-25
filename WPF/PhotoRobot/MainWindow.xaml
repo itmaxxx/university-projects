@@ -28,7 +28,7 @@
         </Style>
     </Window.Resources>
     
-    <Grid x:Name="mainGrid">
+    <Grid x:Name="MainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -44,7 +44,7 @@
                     <ComboBoxItem IsSelected="True">
                         <StackPanel Orientation="Horizontal">
                             <Image Style="{StaticResource ComboBoxItemImage}"
-                                   Source="Resources/Ears/ear1.jpg"/>
+                                   Source="Resources/Ears/ear1.png"/>
                             <TextBlock Style="{StaticResource ComboBoxItemName}">Ear</TextBlock>
                         </StackPanel>
                     </ComboBoxItem>
@@ -66,26 +66,26 @@
                   VerticalAlignment="Stretch"
                   IsExpanded="True">
                     <StackPanel>
-                        <GroupBox Header="Transform X">
-                            <Slider x:Name="LeftEarTransformX" Minimum="0" Maximum="100" Value="50" />
-                        </GroupBox>
+                        <GroupBox Header="{Binding ElementName=MainGrid, Path=ActualWidth}">
+                            <Slider x:Name="LeftEarTransformX" Minimum="-100" Maximum="100" Value="-40" />
+                        </GroupBox>  
                         <GroupBox Header="Transform Y">
-                            <Slider x:Name="LeftEarTransformY" Minimum="0" Maximum="100" Value="50" />
+                            <Slider x:Name="LeftEarTransformY" Minimum="-100" Maximum="100" Value="0" />
                         </GroupBox>
                         <GroupBox Header="Angle">
-                            <Slider x:Name="LeftEarAngle" Minimum="0" Maximum="100" Value="50" />
+                            <Slider x:Name="LeftEarAngle" Minimum="-360" Maximum="360" Value="-5" />
                         </GroupBox>
                         <GroupBox Header="Skew X">
-                            <Slider x:Name="LeftEarSkewX" Minimum="0" Maximum="100" Value="50" />
+                            <Slider x:Name="LeftEarSkewX" Minimum="-100" Maximum="100" Value="0" />
                         </GroupBox>
                         <GroupBox Header="Skew Y">
-                            <Slider x:Name="LeftEarSkewY" Minimum="0" Maximum="100" Value="50" />
+                            <Slider x:Name="LeftEarSkewY" Minimum="-100" Maximum="100" Value="0" />
                         </GroupBox>
                         <GroupBox Header="Scale X">
-                            <Slider x:Name="LeftEarScaleX" Minimum="0" Maximum="100" Value="50" />
+                            <Slider x:Name="LeftEarScaleX" Minimum="-100" Maximum="100" Value="1" />
                         </GroupBox>
                         <GroupBox Header="Scale Y">
-                            <Slider x:Name="LeftEarScaleY" Minimum="0" Maximum="100" Value="50" />
+                            <Slider x:Name="LeftEarScaleY" Minimum="-100" Maximum="100" Value="1" />
                         </GroupBox>
                     </StackPanel>
                 </Expander>
@@ -99,34 +99,38 @@
             </StackPanel>
         </StackPanel>
 
-        <Image x:Name="leftEarImage" 
+        <Image x:Name="LeftEar" 
                Grid.Row="0"
                Grid.Column="1" 
-               Width="30"
-               Height="80"
+               Width="10"
+               Height="10"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
-               Source="/Resources/Ears/ear1.jpg" 
+               Source="/Resources/Ears/ear1.png" 
                Stretch="Fill" RenderTransformOrigin="0.5,0.5" >
             <Image.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="-5"/>
-                    <TranslateTransform X="{Binding ElementName=LeftEarTransformX, Path=Value}"/>
+                    <ScaleTransform ScaleX="{Binding ElementName=LeftEarScaleX, Path=Value}"
+                                    ScaleY="{Binding ElementName=LeftEarScaleY, Path=Value}"/>
+                    <SkewTransform AngleX="{Binding ElementName=LeftEarSkewX, Path=Value}" 
+                                   AngleY="{Binding ElementName=LeftEarSkewY, Path=Value}"/>
+                    <RotateTransform Angle="{Binding ElementName=LeftEarAngle, Path=Value}"/>
+                    <TranslateTransform X="{Binding ElementName=LeftEarTransformX, Path=Value}" 
+                                        Y="{Binding ElementName=LeftEarTransformY, Path=Value}"/>
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
 
-        <!--<Image x:Name="rightEarImage" 
+        <Image x:Name="RightEar" 
                Grid.Row="0"
                Grid.Column="1" 
-               Width="30"
-               Height="80"
+               Width="10"
+               Height="10"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
-               Source="/Resources/Ears/ear1.jpg" 
-               Stretch="Fill" RenderTransformOrigin="0.5,0.5" >
+               Source="/Resources/Ears/ear1.png" 
+               Stretch="Fill" 
+               RenderTransformOrigin="0.5,0.5" >
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="-1"/>
@@ -135,6 +139,66 @@
                     <TranslateTransform X="55"/>
                 </TransformGroup>
             </Image.RenderTransform>
-        </Image>-->
+        </Image>
+
+        <Image x:Name="Eyes" 
+               Grid.Row="0"
+               Grid.Column="1" 
+               Width="10"
+               Height="10"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Source="/Resources/Eyes/eyes2.png" 
+               Stretch="Fill" 
+               RenderTransformOrigin="0.5,0.5" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="10" ScaleY="4"/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform X="0"/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+
+        <Image x:Name="Nose" 
+               Grid.Row="0"
+               Grid.Column="1" 
+               Width="10"
+               Height="10"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Source="/Resources/Noses/nose1.png" 
+               Stretch="Fill" 
+               RenderTransformOrigin="0.5,0.5" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="4" ScaleY="4"/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform X="0" Y="30"/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+
+        <Image x:Name="Mouth" 
+               Grid.Row="0"
+               Grid.Column="1" 
+               Width="10"
+               Height="10"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Source="/Resources/Mouths/mouth1.png" 
+               Stretch="Fill" 
+               RenderTransformOrigin="0.5,0.5" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="6" ScaleY="3"/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform X="0" Y="60"/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
     </Grid>
 </Window>

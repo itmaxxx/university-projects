@@ -8,23 +8,41 @@
 
   <ItemGroup>
     <None Remove="Resources\Ears\ear1.jpg" />
+    <None Remove="Resources\Ears\ear1.png" />
     <None Remove="Resources\Ears\ear2.jpg" />
     <None Remove="Resources\Ears\ear3.jpg" />
     <None Remove="Resources\Ears\ears1.jpg" />
+    <None Remove="Resources\Eyes\eyes1.jpg" />
+    <None Remove="Resources\Eyes\eyes1.png" />
+    <None Remove="Resources\Eyes\eyes2.jpg" />
+    <None Remove="Resources\Eyes\eyes2.png" />
+    <None Remove="Resources\Mouths\mouth1.jpg" />
+    <None Remove="Resources\Mouths\mouth1.png" />
+    <None Remove="Resources\Noses\nose1.jpg" />
+    <None Remove="Resources\Noses\nose1.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Resources\Foreheads\" />
-    <Folder Include="Resources\Eyes\" />
-    <Folder Include="Resources\Mouths\" />
-    <Folder Include="Resources\Noses\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\Ears\ear1.jpg">
+    <Resource Include="Resources\Ears\ear1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Ears\ear2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Eyes\eyes1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Eyes\eyes2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Mouths\mouth1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Noses\nose1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
