@@ -26,12 +26,6 @@
                 <Setter Property="Control.Margin" Value="6"/>
             </Style.Setters>
         </Style>
-        <Style x:Key="FacePartSettingsButton">
-            <Style.Setters>
-                <Setter Property="Control.Padding" Value="16 8"/>
-                <Setter Property="Control.HorizontalAlignment" Value="Center"/>
-            </Style.Setters>
-        </Style>
     </Window.Resources>
     
     <Grid x:Name="mainGrid">
@@ -46,7 +40,7 @@
         <StackPanel Grid.Row="0"
                     Grid.Column="0">
             <GroupBox Header="Ears">
-                <ComboBox SelectionChanged="ComboBox_SelectionChanged">
+                <ComboBox SelectionChanged="Ears_SelectionChanged">
                     <ComboBoxItem IsSelected="True">
                         <StackPanel Orientation="Horizontal">
                             <Image Style="{StaticResource ComboBoxItemImage}"
@@ -63,26 +57,49 @@
                     </ComboBoxItem>
                 </ComboBox>
             </GroupBox>
-            
-            <Grid HorizontalAlignment="Stretch"
+
+            <StackPanel HorizontalAlignment="Stretch"
                   Style="{StaticResource FacePartSettingsGrid}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                
-                <Button Grid.Column="0" 
-                        Style="{StaticResource FacePartSettingsButton}">
-                    Left ear settings
-                </Button>
-                <Button Grid.Column="1" 
-                        Style="{StaticResource FacePartSettingsButton}">
-                    Right ear settings
-                </Button>
-            </Grid>
+                <Expander x:Name="LeftEarProperties" 
+                  Header="Left ear properties" 
+                  HorizontalAlignment="Stretch" 
+                  VerticalAlignment="Stretch"
+                  IsExpanded="True">
+                    <StackPanel>
+                        <GroupBox Header="Transform X">
+                            <Slider x:Name="LeftEarTransformX" Minimum="0" Maximum="100" Value="50" />
+                        </GroupBox>
+                        <GroupBox Header="Transform Y">
+                            <Slider x:Name="LeftEarTransformY" Minimum="0" Maximum="100" Value="50" />
+                        </GroupBox>
+                        <GroupBox Header="Angle">
+                            <Slider x:Name="LeftEarAngle" Minimum="0" Maximum="100" Value="50" />
+                        </GroupBox>
+                        <GroupBox Header="Skew X">
+                            <Slider x:Name="LeftEarSkewX" Minimum="0" Maximum="100" Value="50" />
+                        </GroupBox>
+                        <GroupBox Header="Skew Y">
+                            <Slider x:Name="LeftEarSkewY" Minimum="0" Maximum="100" Value="50" />
+                        </GroupBox>
+                        <GroupBox Header="Scale X">
+                            <Slider x:Name="LeftEarScaleX" Minimum="0" Maximum="100" Value="50" />
+                        </GroupBox>
+                        <GroupBox Header="Scale Y">
+                            <Slider x:Name="LeftEarScaleY" Minimum="0" Maximum="100" Value="50" />
+                        </GroupBox>
+                    </StackPanel>
+                </Expander>
+                <Expander x:Name="RightEarProperties" 
+                  Header="Right ear properties" 
+                  HorizontalAlignment="Stretch" 
+                  VerticalAlignment="Stretch"
+                  IsExpanded="True">
+
+                </Expander>
+            </StackPanel>
         </StackPanel>
 
-        <!--<Image x:Name="leftEarImage" 
+        <Image x:Name="leftEarImage" 
                Grid.Row="0"
                Grid.Column="1" 
                Width="30"
@@ -96,12 +113,12 @@
                     <ScaleTransform/>
                     <SkewTransform/>
                     <RotateTransform Angle="-5"/>
-                    <TranslateTransform X="-55"/>
+                    <TranslateTransform X="{Binding ElementName=LeftEarTransformX, Path=Value}"/>
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
 
-        <Image x:Name="rightEarImage" 
+        <!--<Image x:Name="rightEarImage" 
                Grid.Row="0"
                Grid.Column="1" 
                Width="30"

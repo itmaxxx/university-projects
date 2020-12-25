@@ -22,8 +22,8 @@ namespace PhotoRobot
 	class FacePart
 	{
 		public Image Image { get; private set; }
-		public int Height { get; private set; }
 		public int Width { get; private set; }
+		public int Height { get; private set; }
 		public int TransformX { get; private set; }
 		public int TransformY { get; private set; }
 		public int Angle { get; private set; }
@@ -32,13 +32,9 @@ namespace PhotoRobot
 		public int ScaleX { get; private set; }
 		public int ScaleY { get; private set; }
 
-		public FacePart(string source, int height, int width, int transformX, int transformY, int angle, int skewX, int skewY, int scaleX, int scaleY)
+		public FacePart(string source, int width, int height, int transformX, int transformY, int angle, int skewX, int skewY, int scaleX, int scaleY)
 		{
-			Image = new Image();
-			Image.Height = height;
-			Image.Width = width;
-			Image.Stretch = Stretch.Fill;
-			Image.Source = new BitmapImage(new Uri(source));
+			SetImage(source, width, height);
 
 			SetTransform(transformX, transformY, angle, skewX, skewY, scaleX, scaleY);
 		}
@@ -66,6 +62,15 @@ namespace PhotoRobot
 
 			Image.RenderTransform = transformGroup;
 		}
+
+		public void SetImage(string source, int width, int height)
+		{
+			Image = new Image();
+			Image.Width = width;
+			Image.Height = height;
+			Image.Stretch = Stretch.Fill;
+			Image.Source = new BitmapImage(new Uri(source));
+		}
 	}
 
 	class Face
@@ -75,17 +80,40 @@ namespace PhotoRobot
 
 		public Face(string earsImage)
 		{
-			LeftEar = new FacePart(earsImage, 100, 40, -55, 0, -5, 0, 0, 1, 1);
-			RightEar = new FacePart(earsImage, 100, 40, -55, 0, 5, 0, 0, -1, 1);
+			LeftEar = new FacePart(earsImage, 40, 100, -55, 0, -5, 0, 0, 1, 1);
+			RightEar = new FacePart(earsImage, 40, 100, -55, 0, 5, 0, 0, -1, 1);
 		}
 
-		// grid -> stack panel?
+		// To update element in grid, we:
+		// 1. Find old one
+		// 2. Removing old element
+		// 3. Adding new element
+		public void UpdateElementInGrid(Grid grid, int row, int column, UIElement oldEl, UIElement newEl)
+		{
+			foreach (var child in grid.Children)
+			{
+				if (child.Equals(oldEl))
+				{
+					grid.Children.Remove((UIElement)child);
+
+					grid.Children.Add(newEl);
+					Grid.SetRow(newEl, row);
+					Grid.SetColumn(newEl, column);
+
+					break;
+				}
+			}
+		}
+
+		// Add face elements to grid (initialize them)
 		public void AddToGrid(Grid grid, int row, int column)
 		{
+			// Left ear
 			grid.Children.Add(LeftEar.Image);
 			Grid.SetRow(LeftEar.Image, row);
 			Grid.SetColumn(LeftEar.Image, column);
 
+			// Right ear
 			grid.Children.Add(RightEar.Image);
 			Grid.SetRow(RightEar.Image, row);
 			Grid.SetColumn(RightEar.Image, column);
@@ -105,7 +133,8 @@ namespace PhotoRobot
 			face.AddToGrid(mainGrid, 0, 1);
 		}
 
-		private void ComboBox_SelectionChanged(object sender, RoutedEventArgs e)
+		// Change ears
+		private void Ears_SelectionChanged(object sender, RoutedEventArgs e)
 		{
 			var comboBox = (ComboBox)sender;
 
@@ -118,7 +147,20 @@ namespace PhotoRobot
 
 			var selectedImage = (Image)stackPanel.Children[0];
 
-			MessageBox.Show(selectedImage.Source.ToString());
+			// Update left ear image
+			var oldLeftEar = face.LeftEar.Image;
+			face.LeftEar.SetImage(selectedImage.Source.ToString(), 40, 100);
+			face.LeftEar.ApplyTransform();
+			face.UpdateElementInGrid(mainGrid, 0, 1, oldLeftEar, face.LeftEar.Image);
+
+			// Update right ear image
+			var oldRightEar = face.RightEar.Image;
+			face.RightEar.SetImage(selectedImage.Source.ToString(), 40, 100);
+			face.RightEar.ApplyTransform();
+			face.UpdateElementInGrid(mainGrid, 0, 1, oldRightEar, face.RightEar.Image);
+
+			// Display selected image source
+			// MessageBox.Show(selectedImage.Source.ToString());
 		}
 	}
 }
