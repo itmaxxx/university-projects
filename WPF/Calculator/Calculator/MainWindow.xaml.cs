@@ -44,100 +44,8 @@ namespace Calculator
             currentLabel.Content = current;
         }
 
-        // Cleaners
-
-        private void Ce_Click(object sender, RoutedEventArgs e)
-        {
-            current = 0;
-            currentLabel.Content = 0;
-        }
-
-        private void C_Click(object sender, RoutedEventArgs e)
-        {
-            result = 0;
-            resultLabel.Content = 0;
-            current = 0;
-            currentLabel.Content = 0;
-        }
-
-        private void Del_Click(object sender, RoutedEventArgs e)
-        {
-            current = current.ToString().Length <= 1 ? 0 : double.Parse(current.ToString().Substring(0, current.ToString().Length - 1));
-
-            currentLabel.Content = current;
-        }
-
-        // Math operations
-
-        private void Divide_Click(object sender, RoutedEventArgs e)
-        {
-            choosenOperation = '/';
-
-            result = current;
-
-            resultLabel.Content = $"{result} ÷ ";
-
-            current = 0;
-
-            EnterNumber(0);
-        }
-
-        private void Multiply_Click(object sender, RoutedEventArgs e)
-        {
-            choosenOperation = '*';
-
-            result = current;
-
-            resultLabel.Content = $"{result} × ";
-
-            current = 0;
-
-            EnterNumber(0);
-        }
-
-        private void Minus_Click(object sender, RoutedEventArgs e)
-        {
-            choosenOperation = '-';
-
-            result = current;
-
-            resultLabel.Content = $"{result} - ";
-
-            current = 0;
-
-            EnterNumber(0);
-        }
-
-        private void Plus_Click(object sender, RoutedEventArgs e)
-        {
-            choosenOperation = '+';
-            
-            result = current;
-
-            resultLabel.Content = $"{result} + ";
-
-            current = 0;
-
-            EnterNumber(0);
-        }
-
-        private void Plusminus_Click(object sender, RoutedEventArgs e)
-        {
-            current *= -1;
-
-            currentLabel.Content = double.Parse(current.ToString());
-        }
-
-        private void Dot_Click(object sender, RoutedEventArgs e)
-        {
-            if (!currentLabel.Content.ToString().Contains('.'))
-            {
-                currentLabel.Content = current.ToString() + ".";
-            }
-        }
-
-        private void Result_Click(object sender, RoutedEventArgs e)
-        {
+        private void Sum()
+		{
             if (choosenOperation == '+')
             {
                 current = result + current;
@@ -178,6 +86,111 @@ namespace Calculator
 
                 resultLabel.Content = String.Empty;
             }
+        }
+
+        // Cleaners
+
+        private void Ce_Click(object sender, RoutedEventArgs e)
+        {
+            current = 0;
+            currentLabel.Content = 0;
+        }
+
+        private void C_Click(object sender, RoutedEventArgs e)
+        {
+            result = 0;
+            resultLabel.Content = 0;
+            current = 0;
+            currentLabel.Content = 0;
+        }
+
+        private void Del_Click(object sender, RoutedEventArgs e)
+        {
+            current = current.ToString().Length <= 1 ? 0 : double.Parse(current.ToString().Substring(0, current.ToString().Length - 1));
+
+            currentLabel.Content = current;
+        }
+
+        // Math operations
+
+        private void Divide_Click(object sender, RoutedEventArgs e)
+        {
+            Sum();
+
+            choosenOperation = '/';
+
+            result = current;
+
+            resultLabel.Content = $"{result} ÷ ";
+
+            current = 0;
+
+            EnterNumber(0);
+        }
+
+        private void Multiply_Click(object sender, RoutedEventArgs e)
+        {
+            Sum();
+
+            choosenOperation = '*';
+
+            result = current;
+
+            resultLabel.Content = $"{result} × ";
+
+            current = 0;
+
+            EnterNumber(0);
+        }
+
+        private void Minus_Click(object sender, RoutedEventArgs e)
+        {
+            Sum();
+
+            choosenOperation = '-';
+
+            result = current;
+
+            resultLabel.Content = $"{result} - ";
+
+            current = 0;
+
+            EnterNumber(0);
+        }
+
+        private void Plus_Click(object sender, RoutedEventArgs e)
+        {
+            Sum();
+
+            choosenOperation = '+';
+            
+            result = current;
+
+            resultLabel.Content = $"{result} + ";
+
+            current = 0;
+
+            EnterNumber(0);
+        }
+
+        private void Plusminus_Click(object sender, RoutedEventArgs e)
+        {
+            current *= -1;
+
+            currentLabel.Content = double.Parse(current.ToString());
+        }
+
+        private void Dot_Click(object sender, RoutedEventArgs e)
+        {
+            if (!currentLabel.Content.ToString().Contains('.'))
+            {
+                currentLabel.Content = current.ToString() + ".";
+            }
+        }
+
+        private void Result_Click(object sender, RoutedEventArgs e)
+        {
+            Sum();
         }
 
         // Numbers
