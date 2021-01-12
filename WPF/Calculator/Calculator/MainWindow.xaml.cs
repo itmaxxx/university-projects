@@ -33,9 +33,13 @@ namespace Calculator
 
         // Logic
 
-        private void EnterNumber(double number)
+        private void EnterNumber(int number)
         {
-            current = current == 0 ? number : double.Parse(current.ToString() + number.ToString());
+            current = current == 0 ?
+                      number :
+                      currentLabel.Content.ToString()[currentLabel.Content.ToString().Length - 1] == '.' ?
+                      double.Parse(currentLabel.Content.ToString() + number.ToString()) :
+                      double.Parse(current.ToString() + number.ToString());
 
             currentLabel.Content = current;
         }
@@ -126,7 +130,10 @@ namespace Calculator
 
         private void Dot_Click(object sender, RoutedEventArgs e)
         {
-
+            if (!currentLabel.Content.ToString().Contains('.'))
+            {
+                currentLabel.Content = current.ToString() + ".";
+            }
         }
 
         private void Result_Click(object sender, RoutedEventArgs e)
@@ -179,7 +186,7 @@ namespace Calculator
         {
             Button button = (Button)sender;
 
-            EnterNumber(double.Parse(button.Content.ToString()));
+            EnterNumber(int.Parse(button.Content.ToString()));
         }
     }
 }

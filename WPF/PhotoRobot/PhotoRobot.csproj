@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Resources\Foreheads\**" />
+    <EmbeddedResource Remove="Resources\Foreheads\**" />
+    <None Remove="Resources\Foreheads\**" />
+    <Page Remove="Resources\Foreheads\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Resources\Ears\ear1.jpg" />
     <None Remove="Resources\Ears\ear1.png" />
     <None Remove="Resources\Ears\ear2.jpg" />
@@ -16,14 +23,11 @@
     <None Remove="Resources\Eyes\eyes1.png" />
     <None Remove="Resources\Eyes\eyes2.jpg" />
     <None Remove="Resources\Eyes\eyes2.png" />
+    <None Remove="Resources\Hairs\hair1.png" />
     <None Remove="Resources\Mouths\mouth1.jpg" />
     <None Remove="Resources\Mouths\mouth1.png" />
     <None Remove="Resources\Noses\nose1.jpg" />
     <None Remove="Resources\Noses\nose1.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Resources\Foreheads\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,6 +41,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Eyes\eyes2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Hairs\hair1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Mouths\mouth1.png">
