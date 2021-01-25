@@ -94,11 +94,13 @@
 
 			<ListView x:Name="listViewCurrentMonth">
 				<ListView.View>
-					<GridView>
+					<GridView x:Name="gridViewCurrentMonth">
 						<GridViewColumn Header="M">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
-									<Button Content="{Binding Monday}" />
+									<Button Content="{Binding Monday}"
+											Background="{Binding MondaySelectionBg}"
+											Foreground="{Binding MondaySelectionFg}"/>
 								</DataTemplate>
 							</GridViewColumn.CellTemplate>
 						</GridViewColumn>
@@ -106,7 +108,9 @@
 						<GridViewColumn Header="T">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
-									<Button Content="{Binding Tuesday}" />
+									<Button Content="{Binding Tuesday}"
+											Background="{Binding TuesdaySelectionBg}"
+											Foreground="{Binding TuesdaySelectionFg}" />
 								</DataTemplate>
 							</GridViewColumn.CellTemplate>
 						</GridViewColumn>
@@ -114,7 +118,9 @@
 						<GridViewColumn Header="W">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
-									<Button Content="{Binding Wednesday}" />
+									<Button Content="{Binding Wednesday}"
+											Background="{Binding WednesdaySelectionBg}"
+											Foreground="{Binding WednesdaySelectionFg}" />
 								</DataTemplate>
 							</GridViewColumn.CellTemplate>
 						</GridViewColumn>
@@ -122,7 +128,9 @@
 						<GridViewColumn Header="T">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
-									<Button Content="{Binding Thursday}" />
+									<Button Content="{Binding Thursday}"
+											Background="{Binding ThursdaySelectionBg}"
+											Foreground="{Binding ThursdaySelectionFg}" />
 								</DataTemplate>
 							</GridViewColumn.CellTemplate>
 						</GridViewColumn>
@@ -130,7 +138,9 @@
 						<GridViewColumn Header="F">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
-									<Button Content="{Binding Friday}" />
+									<Button Content="{Binding Friday}"
+											Background="{Binding FridaySelectionBg}"
+											Foreground="{Binding FridaySelectionFg}" />
 								</DataTemplate>
 							</GridViewColumn.CellTemplate>
 						</GridViewColumn>
@@ -138,7 +148,9 @@
 						<GridViewColumn Header="S">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
-									<Button Content="{Binding Saturday}" />
+									<Button Content="{Binding Saturday}"
+											Background="{Binding SaturdaySelectionBg}"
+											Foreground="{Binding SaturdaySelectionFg}" />
 								</DataTemplate>
 							</GridViewColumn.CellTemplate>
 						</GridViewColumn>
@@ -147,7 +159,8 @@
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
 									<Button Content="{Binding Sunday}"
-											Foreground="Red"
+											Background="{Binding SundaySelectionBg}"
+											Foreground="{Binding SundaySelectionFg}"
 											FontWeight="Bold" />
 								</DataTemplate>
 							</GridViewColumn.CellTemplate>

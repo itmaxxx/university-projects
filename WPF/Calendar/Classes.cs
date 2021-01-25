@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace Calendar
 {
@@ -32,6 +33,25 @@ namespace Calendar
         November,
         December
     };
+
+    public class SelectedDay
+	{
+        public string MonthName { get; set; }
+        public int Number { get; set; }
+        public int Priority { get; set; }
+
+        public SelectedDay()
+		{
+            Priority = -1;
+		}
+
+        public SelectedDay(int number, string monthName, int priority)
+		{
+            Number = number;
+            MonthName = monthName;
+            Priority = priority;
+        }
+	}
 
     public class Day
     {
@@ -74,12 +94,26 @@ namespace Calendar
     public class Week
     {
         public string Monday { get; set; } = string.Empty;
+        public SolidColorBrush MondaySelectionBg { get; set; }
+        public SolidColorBrush MondaySelectionFg { get; set; }
         public string Tuesday { get; set; } = string.Empty;
+        public SolidColorBrush TuesdaySelectionBg { get; set; }
+        public SolidColorBrush TuesdaySelectionFg { get; set; }
         public string Wednesday { get; set; } = string.Empty;
+        public SolidColorBrush WednesdaySelectionBg { get; set; }
+        public SolidColorBrush WednesdaySelectionFg { get; set; }
         public string Thursday { get; set; } = string.Empty;
+        public SolidColorBrush ThursdaySelectionBg { get; set; }
+        public SolidColorBrush ThursdaySelectionFg { get; set; }
         public string Friday { get; set; } = string.Empty;
+        public SolidColorBrush FridaySelectionBg { get; set; }
+        public SolidColorBrush FridaySelectionFg { get; set; }
         public string Saturday { get; set; } = string.Empty;
+        public SolidColorBrush SaturdaySelectionBg { get; set; }
+        public SolidColorBrush SaturdaySelectionFg { get; set; }
         public string Sunday { get; set; } = string.Empty;
+        public SolidColorBrush SundaySelectionBg { get; set; }
+        public SolidColorBrush SundaySelectionFg { get; set; }
     }
 
     public class Month

@@ -128,14 +128,12 @@ namespace PhotoRobot
 			Hair.Source = new BitmapImage(new Uri(selectedImage.Source.ToString()));
 		}
 
-		private void listBoxSaves_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		private void ListBoxSaves_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			var listbox = (ListBox)sender;
 
-			// Cannot add reference to System.Windows.Forms
-			//var result = MessageBox.Show($"Вы точно хотите загрузить {listbox.SelectedItem.ToString()}?", "Вы уверены?",
-			//					 MessageBoxButtons.YesNo,
-			//					 MessageBoxIcon.Question);
+			//Cannot add reference to System.Windows.Forms
+			//var result = MessageBox.Show($"Вы точно хотите загрузить {listbox.SelectedItem.ToString()}?", "Вы уверены?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
 			//if (result == DialogResult.No)
 			//{
@@ -208,7 +206,7 @@ namespace PhotoRobot
 			tr.Close();
 		}
 
-		private void saveCurrentRobot()
+		private void SaveCurrentRobot()
 		{
 			TextWriter tw = new StreamWriter(textBoxName.Text + ".txt");
 
@@ -284,16 +282,16 @@ namespace PhotoRobot
 			}
 		}
 
-		private void buttonSave_Click(object sender, RoutedEventArgs e)
+		private void ButtonSave_Click(object sender, RoutedEventArgs e)
 		{
-			saveCurrentRobot();
+			SaveCurrentRobot();
 		}
 
-		private void textBoxName_KeyDown(object sender, KeyEventArgs e)
+		private void TextBoxName_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Key == Key.Enter)
 			{
-				saveCurrentRobot();
+				SaveCurrentRobot();
 			}
 		}
 	}
