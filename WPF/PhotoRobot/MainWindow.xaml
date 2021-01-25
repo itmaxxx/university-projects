@@ -1,566 +1,714 @@
 ﻿<Window x:Class="PhotoRobot.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PhotoRobot"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="600">
-    <Window.Resources>
-        <Style x:Key="ComboBoxItemImage">
-            <Style.Setters>
-                <Setter Property="ItemsControl.Height" Value="60"/>
-                <Setter Property="ItemsControl.MaxHeight" Value="60"/>
-                <Setter Property="ItemsControl.Width" Value="60"/>
-                <Setter Property="ItemsControl.MaxWidth" Value="60"/>
-            </Style.Setters>
-        </Style>
-        <Style x:Key="ComboBoxItemName">
-            <Style.Setters>
-                <Setter Property="Control.Margin" Value="10 0 0 0"/>
-                <Setter Property="Control.VerticalAlignment" Value="Center"/>
-            </Style.Setters>
-        </Style>
-        <Style x:Key="FacePartSettingsGrid">
-            <Style.Setters>
-                <Setter Property="Control.Margin" Value="6"/>
-            </Style.Setters>
-        </Style>
-    </Window.Resources>
-    
-    <Grid x:Name="MainGrid">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:local="clr-namespace:PhotoRobot"
+		mc:Ignorable="d"
+		Title="MainWindow"
+		Height="800"
+		Width="1100"
+		Loaded="Window_Loaded"
+		FontSize="14">
+	<Window.Resources>
+		<Style x:Key="ComboBoxItemImage">
+			<Style.Setters>
+				<Setter Property="ItemsControl.Height"
+						Value="60" />
+				<Setter Property="ItemsControl.MaxHeight"
+						Value="60" />
+				<Setter Property="ItemsControl.Width"
+						Value="60" />
+				<Setter Property="ItemsControl.MaxWidth"
+						Value="60" />
+			</Style.Setters>
+		</Style>
+		<Style x:Key="ComboBoxItemName">
+			<Style.Setters>
+				<Setter Property="Control.Margin"
+						Value="10 0 0 0" />
+				<Setter Property="Control.VerticalAlignment"
+						Value="Center" />
+			</Style.Setters>
+		</Style>
+		<Style x:Key="FacePartSettingsGrid">
+			<Style.Setters>
+				<Setter Property="Control.Margin"
+						Value="6" />
+			</Style.Setters>
+		</Style>
+	</Window.Resources>
 
-        <TextBlock x:Name="GridActualWidthNegativeValue" 
-                   Visibility="Hidden" 
-                   Height="0" 
-                   Text="{Binding ElementName=MainGrid, Path=ActualWidth, StringFormat={}-{0}}"/>
-        <TextBlock x:Name="GridActualHeightNegativeValue" 
-                   Visibility="Hidden" 
-                   Height="0" 
-                   Text="{Binding ElementName=MainGrid, Path=ActualHeight, StringFormat={}-{0}}"/>
+	<Grid x:Name="MainGrid">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="2*" />
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
 
-        <ScrollViewer>
-            <StackPanel Grid.Row="0"
-                        Grid.Column="0">
-                <!-- Ears Selector -->
-                <GroupBox Header="Ears">
-                    <ComboBox SelectionChanged="Ears_SelectionChanged">
-                        <ComboBoxItem IsSelected="True">
-                            <StackPanel Orientation="Horizontal">
-                                <Image Style="{StaticResource ComboBoxItemImage}"
-                                       Source="Resources/Ears/ear1.png"/>
-                                <TextBlock Style="{StaticResource ComboBoxItemName}">Ear</TextBlock>
-                            </StackPanel>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <StackPanel Orientation="Horizontal">
-                                <Image Style="{StaticResource ComboBoxItemImage}"
-                                       Source="Resources/Ears/ear2.jpg" />
-                                <TextBlock Style="{StaticResource ComboBoxItemName}">Ear</TextBlock>
-                            </StackPanel>
-                        </ComboBoxItem>
-                    </ComboBox>
-                </GroupBox>
+		<TextBlock x:Name="GridActualWidthNegativeValue"
+				   Visibility="Collapsed"
+				   Text="{Binding ElementName=MainGrid, Path=ActualWidth, StringFormat={}-{0}}" />
+		<TextBlock x:Name="GridActualHeightNegativeValue"
+				   Visibility="Collapsed"
+				   Text="{Binding ElementName=MainGrid, Path=ActualHeight, StringFormat={}-{0}}" />
 
-                <!-- Ears properties -->
-                <StackPanel HorizontalAlignment="Stretch"
-                            Style="{StaticResource FacePartSettingsGrid}">
-                    <!-- Left Ear Properties -->
-                    <Expander x:Name="LeftEarProperties" 
-                              Header="Left ear properties" 
-                              HorizontalAlignment="Stretch" 
-                              VerticalAlignment="Stretch"
-                              IsExpanded="False">
-                        <StackPanel>
-                            <GroupBox Header="{Binding ElementName=LeftEarTransformX, Path=Value}"
-                                        HeaderStringFormat="Tranform X {0:N0}">
-                                <Slider x:Name="LeftEarTransformX" 
-                                        Minimum="{Binding ElementName=GridActualWidthNegativeValue, Path=Text}" 
-                                        Maximum="{Binding ElementName=MainGrid, Path=ActualWidth}" 
-                                        Value="-100" />
-                            </GroupBox>
-                            <GroupBox Header="{Binding ElementName=LeftEarTransformY, Path=Value}"
-                                      HeaderStringFormat="Tranform Y {0:N0}">
-                                <Slider x:Name="LeftEarTransformY" 
-                                        Minimum="{Binding ElementName=GridActualHeightNegativeValue, Path=Text}" 
-                                        Maximum="{Binding ElementName=MainGrid, Path=ActualHeight}" 
-                                        Value="-30" />
-                            </GroupBox>
-                            <GroupBox Header="{Binding ElementName=LeftEarAngle, Path=Value}"
-                                      HeaderStringFormat="Angle {0:N0}">
-                                <Slider x:Name="LeftEarAngle" 
-                                        Minimum="-360" 
-                                        Maximum="360" 
-                                        Value="-5" />
-                            </GroupBox>
-                            <GroupBox Header="{Binding ElementName=LeftEarSkewX, Path=Value}"
-                                      HeaderStringFormat="Skew X {0:N0}">
-                                <Slider x:Name="LeftEarSkewX" 
-                                        Minimum="-100" 
-                                        Maximum="100" 
-                                        Value="0" />
-                            </GroupBox>
-                            <GroupBox Header="{Binding ElementName=LeftEarSkewY, Path=Value}"
-                                      HeaderStringFormat="Skew Y {0:N0}">
-                                <Slider x:Name="LeftEarSkewY" 
-                                        Minimum="-100" 
-                                        Maximum="100" Value="0" />
-                            </GroupBox>
-                            <GroupBox Header="{Binding ElementName=LeftEarScaleX, Path=Value}"
-                                      HeaderStringFormat="Scale X {0:N0}">
-                                <Slider x:Name="LeftEarScaleX" 
-                                        Minimum="-100" 
-                                        Maximum="100" 
-                                        Value="5" />
-                            </GroupBox>
-                            <GroupBox Header="{Binding ElementName=LeftEarScaleY, Path=Value}"
-                                      HeaderStringFormat="Scale Y{0:N0}">
-                                <Slider x:Name="LeftEarScaleY" 
-                                        Minimum="-100" 
-                                        Maximum="100" 
-                                        Value="10" />
-                            </GroupBox>
-                        </StackPanel>
-                    </Expander>
-                    
-                    <!-- Right Ear Properties -->
-                    <Expander x:Name="RightEarProperties" 
-                              Header="Right ear properties" 
-                              HorizontalAlignment="Stretch" 
-                              VerticalAlignment="Stretch"
-                              IsExpanded="False">
-                        <StackPanel>
-                            <GroupBox Header="{Binding ElementName=RightEarTransformX, Path=Value}"
-                                      HeaderStringFormat="Tranform X {0:N0}">
-                                <Slider x:Name="RightEarTransformX" 
-                                        Minimum="{Binding ElementName=GridActualWidthNegativeValue, Path=Text}" 
-                                        Maximum="{Binding ElementName=MainGrid, Path=ActualWidth}" 
-                                        Value="100" />
-                            </GroupBox>
-                            <GroupBox Header="{Binding ElementName=RightEarTransformY, Path=Value}"
-                                      HeaderStringFormat="Tranform Y {0:N0}">
-                                <Slider x:Name="RightEarTransformY" 
-                                        Minimum="{Binding ElementName=GridActualHeightNegativeValue, Path=Text}" 
-                                        Maximum="{Binding ElementName=MainGrid, Path=ActualHeight}" 
-                                        Value="-30" />
-                            </GroupBox>
-                            <GroupBox Header="{Binding ElementName=RightEarAngle, Path=Value}"
-                                      HeaderStringFormat="Angle {0:N0}">
-                                <Slider x:Name="RightEarAngle" 
-                                        Minimum="-360" 
-                                        Maximum="360" 
-                                        Value="5" />
-                            </GroupBox>
-                            <GroupBox Header="{Binding ElementName=RightEarSkewX, Path=Value}"
-                                      HeaderStringFormat="Skew X {0:N0}">
-                                <Slider x:Name="RightEarSkewX" 
-                                        Minimum="-100" 
-                                        Maximum="100" 
-                                        Value="0" />
-                            </GroupBox>
-                            <GroupBox Header="{Binding ElementName=RightEarSkewY, Path=Value}"
-                                      HeaderStringFormat="Skew Y {0:N0}">
-                                <Slider x:Name="RightEarSkewY" 
-                                        Minimum="-100" 
-                                        Maximum="100" Value="0" />
-                            </GroupBox>
-                            <GroupBox Header="{Binding ElementName=RightEarScaleX, Path=Value}"
-                                      HeaderStringFormat="Scale X {0:N0}">
-                                <Slider x:Name="RightEarScaleX" 
-                                        Minimum="-100" 
-                                        Maximum="100" 
-                                        Value="-5" />
-                            </GroupBox>
-                            <GroupBox Header="{Binding ElementName=RightEarScaleY, Path=Value}"
-                                      HeaderStringFormat="Scale Y {0:N0}">
-                                <Slider x:Name="RightEarScaleY" 
-                                        Minimum="-100" 
-                                        Maximum="100" 
-                                        Value="10" />
-                            </GroupBox>
-                        </StackPanel>
-                    </Expander>
-                </StackPanel>
+		<ScrollViewer Grid.Row="0"
+					  Grid.RowSpan="2"
+					  Grid.Column="0">
+			<StackPanel>
+				<!-- Ears Selector -->
+				<GroupBox Header="Ears">
+					<ComboBox SelectionChanged="Ears_SelectionChanged"
+							  x:Name="comboBoxEars">
+						<ComboBoxItem IsSelected="True">
+							<StackPanel Orientation="Horizontal">
+								<Image Style="{StaticResource ComboBoxItemImage}"
+									   Source="Resources/Ears/ear1.png" />
+								<TextBlock Style="{StaticResource ComboBoxItemName}">Ear</TextBlock>
+							</StackPanel>
+						</ComboBoxItem>
+						<ComboBoxItem>
+							<StackPanel Orientation="Horizontal">
+								<Image Style="{StaticResource ComboBoxItemImage}"
+									   Source="Resources/Ears/ear2.jpg" />
+								<TextBlock Style="{StaticResource ComboBoxItemName}">Ear</TextBlock>
+							</StackPanel>
+						</ComboBoxItem>
+					</ComboBox>
+				</GroupBox>
 
-                <!-- Eyes Selector -->
-                <GroupBox Header="Eyes">
-                    <ComboBox SelectionChanged="Eyes_SelectionChanged">
-                        <ComboBoxItem IsSelected="True">
-                            <StackPanel Orientation="Horizontal">
-                                <Image Style="{StaticResource ComboBoxItemImage}"
-                                       Source="Resources/Eyes/eyes1.png"/>
-                                <TextBlock Style="{StaticResource ComboBoxItemName}">Eyes</TextBlock>
-                            </StackPanel>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <StackPanel Orientation="Horizontal">
-                                <Image Style="{StaticResource ComboBoxItemImage}"
-                                       Source="Resources/Eyes/eyes2.png" />
-                                <TextBlock Style="{StaticResource ComboBoxItemName}">Eyes</TextBlock>
-                            </StackPanel>
-                        </ComboBoxItem>
-                    </ComboBox>
-                </GroupBox>
+				<!-- Ears properties -->
+				<StackPanel HorizontalAlignment="Stretch"
+							Style="{StaticResource FacePartSettingsGrid}">
+					<!-- Left Ear Properties -->
+					<Expander x:Name="LeftEarProperties"
+							  Header="Left ear properties"
+							  HorizontalAlignment="Stretch"
+							  VerticalAlignment="Stretch"
+							  IsExpanded="False">
+						<StackPanel>
+							<GroupBox Header="{Binding ElementName=LeftEarTransformX, Path=Value}"
+									  HeaderStringFormat="Tranform X {0:N0}">
+								<Slider x:Name="LeftEarTransformX"
+										Minimum="{Binding ElementName=GridActualWidthNegativeValue, Path=Text}"
+										Maximum="{Binding ElementName=MainGrid, Path=ActualWidth}"
+										Value="-100" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=LeftEarTransformY, Path=Value}"
+									  HeaderStringFormat="Tranform Y {0:N0}">
+								<Slider x:Name="LeftEarTransformY"
+										Minimum="{Binding ElementName=GridActualHeightNegativeValue, Path=Text}"
+										Maximum="{Binding ElementName=MainGrid, Path=ActualHeight}"
+										Value="-30" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=LeftEarAngle, Path=Value}"
+									  HeaderStringFormat="Angle {0:N0}">
+								<Slider x:Name="LeftEarAngle"
+										Minimum="-360"
+										Maximum="360"
+										Value="-5" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=LeftEarSkewX, Path=Value}"
+									  HeaderStringFormat="Skew X {0:N0}">
+								<Slider x:Name="LeftEarSkewX"
+										Minimum="-100"
+										Maximum="100"
+										Value="0" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=LeftEarSkewY, Path=Value}"
+									  HeaderStringFormat="Skew Y {0:N0}">
+								<Slider x:Name="LeftEarSkewY"
+										Minimum="-100"
+										Maximum="100"
+										Value="0" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=LeftEarScaleX, Path=Value}"
+									  HeaderStringFormat="Scale X {0:N0}">
+								<Slider x:Name="LeftEarScaleX"
+										Minimum="-100"
+										Maximum="100"
+										Value="5" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=LeftEarScaleY, Path=Value}"
+									  HeaderStringFormat="Scale Y{0:N0}">
+								<Slider x:Name="LeftEarScaleY"
+										Minimum="-100"
+										Maximum="100"
+										Value="10" />
+							</GroupBox>
+						</StackPanel>
+					</Expander>
 
-                <!-- Eyes Properties -->
-                <StackPanel HorizontalAlignment="Stretch"
-                            Style="{StaticResource FacePartSettingsGrid}">
-                    <Expander x:Name="EyesProperties" 
-                              Header="Eyes properties" 
-                              HorizontalAlignment="Stretch" 
-                              VerticalAlignment="Stretch"
-                              IsExpanded="False">
-                        <StackPanel>
-                            <GroupBox Header="{Binding ElementName=EyesTransformX, Path=Value}"
-                                        HeaderStringFormat="Tranform X {0:N0}">
-                                <Slider x:Name="EyesTransformX" 
-                                        Minimum="{Binding ElementName=GridActualWidthNegativeValue, Path=Text}" 
-                                        Maximum="{Binding ElementName=MainGrid, Path=ActualWidth}" 
-                                        Value="0" />
-                            </GroupBox>
-                            <GroupBox Header="{Binding ElementName=EyesTransformY, Path=Value}"
-                                      HeaderStringFormat="Tranform Y {0:N0}">
-                                <Slider x:Name="EyesTransformY" 
-                                        Minimum="{Binding ElementName=GridActualHeightNegativeValue, Path=Text}" 
-                                        Maximum="{Binding ElementName=MainGrid, Path=ActualHeight}" 
-                                        Value="-50" />
-                            </GroupBox>
-                            <GroupBox Header="{Binding ElementName=EyesAngle, Path=Value}"
-                                      HeaderStringFormat="Angle {0:N0}">
-                                <Slider x:Name="EyesAngle" 
-                                        Minimum="-360" 
-                                        Maximum="360" 
-                                        Value="0" />
-                            </GroupBox>
-                            <GroupBox Header="{Binding ElementName=EyesSkewX, Path=Value}"
-                                      HeaderStringFormat="Skew X {0:N0}">
-                                <Slider x:Name="EyesSkewX" 
-                                        Minimum="-100" 
-                                        Maximum="100" 
-                                        Value="0" />
-                            </GroupBox>
-                            <GroupBox Header="{Binding ElementName=EyesSkewY, Path=Value}"
-                                      HeaderStringFormat="Skew Y {0:N0}">
-                                <Slider x:Name="EyesSkewY" 
-                                        Minimum="-100" 
-                                        Maximum="100" Value="0" />
-                            </GroupBox>
-                            <GroupBox Header="{Binding ElementName=EyesScaleX, Path=Value}"
-                                      HeaderStringFormat="Scale X {0:N0}">
-                                <Slider x:Name="EyesScaleX" 
-                                        Minimum="-100" 
-                                        Maximum="100" 
-                                        Value="20" />
-                            </GroupBox>
-                            <GroupBox Header="{Binding ElementName=EyesScaleY, Path=Value}"
-                                      HeaderStringFormat="Scale Y {0:N0}">
-                                <Slider x:Name="EyesScaleY" 
-                                        Minimum="-100" 
-                                        Maximum="100" 
-                                        Value="8" />
-                            </GroupBox>
-                        </StackPanel>
-                    </Expander>
-                </StackPanel>
+					<!-- Right Ear Properties -->
+					<Expander x:Name="RightEarProperties"
+							  Header="Right ear properties"
+							  HorizontalAlignment="Stretch"
+							  VerticalAlignment="Stretch"
+							  IsExpanded="False">
+						<StackPanel>
+							<GroupBox Header="{Binding ElementName=RightEarTransformX, Path=Value}"
+									  HeaderStringFormat="Tranform X {0:N0}">
+								<Slider x:Name="RightEarTransformX"
+										Minimum="{Binding ElementName=GridActualWidthNegativeValue, Path=Text}"
+										Maximum="{Binding ElementName=MainGrid, Path=ActualWidth}"
+										Value="100" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=RightEarTransformY, Path=Value}"
+									  HeaderStringFormat="Tranform Y {0:N0}">
+								<Slider x:Name="RightEarTransformY"
+										Minimum="{Binding ElementName=GridActualHeightNegativeValue, Path=Text}"
+										Maximum="{Binding ElementName=MainGrid, Path=ActualHeight}"
+										Value="-30" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=RightEarAngle, Path=Value}"
+									  HeaderStringFormat="Angle {0:N0}">
+								<Slider x:Name="RightEarAngle"
+										Minimum="-360"
+										Maximum="360"
+										Value="5" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=RightEarSkewX, Path=Value}"
+									  HeaderStringFormat="Skew X {0:N0}">
+								<Slider x:Name="RightEarSkewX"
+										Minimum="-100"
+										Maximum="100"
+										Value="0" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=RightEarSkewY, Path=Value}"
+									  HeaderStringFormat="Skew Y {0:N0}">
+								<Slider x:Name="RightEarSkewY"
+										Minimum="-100"
+										Maximum="100"
+										Value="0" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=RightEarScaleX, Path=Value}"
+									  HeaderStringFormat="Scale X {0:N0}">
+								<Slider x:Name="RightEarScaleX"
+										Minimum="-100"
+										Maximum="100"
+										Value="-5" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=RightEarScaleY, Path=Value}"
+									  HeaderStringFormat="Scale Y {0:N0}">
+								<Slider x:Name="RightEarScaleY"
+										Minimum="-100"
+										Maximum="100"
+										Value="10" />
+							</GroupBox>
+						</StackPanel>
+					</Expander>
+				</StackPanel>
 
-                <!-- Nose Selector -->
-                <GroupBox Header="Nose">
-                    <ComboBox SelectionChanged="Nose_SelectionChanged">
-                        <ComboBoxItem IsSelected="True">
-                            <StackPanel Orientation="Horizontal">
-                                <Image Style="{StaticResource ComboBoxItemImage}"
-                                       Source="Resources/Noses/nose1.png"/>
-                                <TextBlock Style="{StaticResource ComboBoxItemName}">Nose</TextBlock>
-                            </StackPanel>
-                        </ComboBoxItem>
-                    </ComboBox>
-                </GroupBox>
+				<!-- Eyes Selector -->
+				<GroupBox Header="Eyes">
+					<ComboBox SelectionChanged="Eyes_SelectionChanged">
+						<ComboBoxItem IsSelected="True">
+							<StackPanel Orientation="Horizontal">
+								<Image Style="{StaticResource ComboBoxItemImage}"
+									   Source="Resources/Eyes/eyes1.png" />
+								<TextBlock Style="{StaticResource ComboBoxItemName}">Eyes</TextBlock>
+							</StackPanel>
+						</ComboBoxItem>
+						<ComboBoxItem>
+							<StackPanel Orientation="Horizontal">
+								<Image Style="{StaticResource ComboBoxItemImage}"
+									   Source="Resources/Eyes/eyes2.png" />
+								<TextBlock Style="{StaticResource ComboBoxItemName}">Eyes</TextBlock>
+							</StackPanel>
+						</ComboBoxItem>
+					</ComboBox>
+				</GroupBox>
 
-                <!-- Nose Properties -->
-                <StackPanel HorizontalAlignment="Stretch"
-                            Style="{StaticResource FacePartSettingsGrid}">
-                    <Expander x:Name="NoseProperties" 
-                              Header="Nose properties" 
-                              HorizontalAlignment="Stretch" 
-                              VerticalAlignment="Stretch"
-                              IsExpanded="False">
-                        <StackPanel>
-                            <GroupBox Header="{Binding ElementName=NoseTransformX, Path=Value}"
-                                        HeaderStringFormat="Tranform X {0:N0}">
-                                <Slider x:Name="NoseTransformX" 
-                                        Minimum="{Binding ElementName=GridActualWidthNegativeValue, Path=Text}" 
-                                        Maximum="{Binding ElementName=MainGrid, Path=ActualWidth}" 
-                                        Value="0" />
-                            </GroupBox>
-                            <GroupBox Header="{Binding ElementName=NoseTransformY, Path=Value}"
-                                      HeaderStringFormat="Tranform Y {0:N0}">
-                                <Slider x:Name="NoseTransformY" 
-                                        Minimum="{Binding ElementName=GridActualHeightNegativeValue, Path=Text}" 
-                                        Maximum="{Binding ElementName=MainGrid, Path=ActualHeight}" 
-                                        Value="-10" />
-                            </GroupBox>
-                            <GroupBox Header="{Binding ElementName=NoseAngle, Path=Value}"
-                                      HeaderStringFormat="Angle {0:N0}">
-                                <Slider x:Name="NoseAngle" 
-                                        Minimum="-360" 
-                                        Maximum="360" 
-                                        Value="0" />
-                            </GroupBox>
-                            <GroupBox Header="{Binding ElementName=NoseSkewX, Path=Value}"
-                                      HeaderStringFormat="Skew X {0:N0}">
-                                <Slider x:Name="NoseSkewX" 
-                                        Minimum="-100" 
-                                        Maximum="100" 
-                                        Value="0" />
-                            </GroupBox>
-                            <GroupBox Header="{Binding ElementName=NoseSkewY, Path=Value}"
-                                      HeaderStringFormat="Skew Y {0:N0}">
-                                <Slider x:Name="NoseSkewY" 
-                                        Minimum="-100" 
-                                        Maximum="100" Value="0" />
-                            </GroupBox>
-                            <GroupBox Header="{Binding ElementName=NoseScaleX, Path=Value}"
-                                      HeaderStringFormat="Scale X {0:N0}">
-                                <Slider x:Name="NoseScaleX" 
-                                        Minimum="-100" 
-                                        Maximum="100" 
-                                        Value="8" />
-                            </GroupBox>
-                            <GroupBox Header="{Binding ElementName=NoseScaleY, Path=Value}"
-                                      HeaderStringFormat="Scale Y {0:N0}">
-                                <Slider x:Name="NoseScaleY" 
-                                        Minimum="-100" 
-                                        Maximum="100" 
-                                        Value="8" />
-                            </GroupBox>
-                        </StackPanel>
-                    </Expander>
-                </StackPanel>
+				<!-- Eyes Properties -->
+				<StackPanel HorizontalAlignment="Stretch"
+							Style="{StaticResource FacePartSettingsGrid}">
+					<Expander x:Name="EyesProperties"
+							  Header="Eyes properties"
+							  HorizontalAlignment="Stretch"
+							  VerticalAlignment="Stretch"
+							  IsExpanded="False">
+						<StackPanel>
+							<GroupBox Header="{Binding ElementName=EyesTransformX, Path=Value}"
+									  HeaderStringFormat="Tranform X {0:N0}">
+								<Slider x:Name="EyesTransformX"
+										Minimum="{Binding ElementName=GridActualWidthNegativeValue, Path=Text}"
+										Maximum="{Binding ElementName=MainGrid, Path=ActualWidth}"
+										Value="0" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=EyesTransformY, Path=Value}"
+									  HeaderStringFormat="Tranform Y {0:N0}">
+								<Slider x:Name="EyesTransformY"
+										Minimum="{Binding ElementName=GridActualHeightNegativeValue, Path=Text}"
+										Maximum="{Binding ElementName=MainGrid, Path=ActualHeight}"
+										Value="-50" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=EyesAngle, Path=Value}"
+									  HeaderStringFormat="Angle {0:N0}">
+								<Slider x:Name="EyesAngle"
+										Minimum="-360"
+										Maximum="360"
+										Value="0" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=EyesSkewX, Path=Value}"
+									  HeaderStringFormat="Skew X {0:N0}">
+								<Slider x:Name="EyesSkewX"
+										Minimum="-100"
+										Maximum="100"
+										Value="0" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=EyesSkewY, Path=Value}"
+									  HeaderStringFormat="Skew Y {0:N0}">
+								<Slider x:Name="EyesSkewY"
+										Minimum="-100"
+										Maximum="100"
+										Value="0" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=EyesScaleX, Path=Value}"
+									  HeaderStringFormat="Scale X {0:N0}">
+								<Slider x:Name="EyesScaleX"
+										Minimum="-100"
+										Maximum="100"
+										Value="20" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=EyesScaleY, Path=Value}"
+									  HeaderStringFormat="Scale Y {0:N0}">
+								<Slider x:Name="EyesScaleY"
+										Minimum="-100"
+										Maximum="100"
+										Value="8" />
+							</GroupBox>
+						</StackPanel>
+					</Expander>
+				</StackPanel>
 
-                <!-- Mouth Selector -->
-                <GroupBox Header="Nose">
-                    <ComboBox SelectionChanged="Mouth_SelectionChanged">
-                        <ComboBoxItem IsSelected="True">
-                            <StackPanel Orientation="Horizontal">
-                                <Image Style="{StaticResource ComboBoxItemImage}"
-                                       Source="Resources/Mouths/mouth1.png"/>
-                                <TextBlock Style="{StaticResource ComboBoxItemName}">Mouth</TextBlock>
-                            </StackPanel>
-                        </ComboBoxItem>
-                    </ComboBox>
-                </GroupBox>
+				<!-- Nose Selector -->
+				<GroupBox Header="Nose">
+					<ComboBox SelectionChanged="Nose_SelectionChanged">
+						<ComboBoxItem IsSelected="True">
+							<StackPanel Orientation="Horizontal">
+								<Image Style="{StaticResource ComboBoxItemImage}"
+									   Source="Resources/Noses/nose1.png" />
+								<TextBlock Style="{StaticResource ComboBoxItemName}">Nose</TextBlock>
+							</StackPanel>
+						</ComboBoxItem>
+						<ComboBoxItem IsSelected="False">
+							<StackPanel Orientation="Horizontal">
+								<Image Style="{StaticResource ComboBoxItemImage}"
+									   Source="Resources/Noses/nose2.png" />
+								<TextBlock Style="{StaticResource ComboBoxItemName}">Nose</TextBlock>
+							</StackPanel>
+						</ComboBoxItem>
+					</ComboBox>
+				</GroupBox>
 
-                <!-- Mouth Properties -->
-                <StackPanel HorizontalAlignment="Stretch"
-                            Style="{StaticResource FacePartSettingsGrid}">
-                    <Expander x:Name="MouthProperties" 
-                              Header="Mouth properties" 
-                              HorizontalAlignment="Stretch" 
-                              VerticalAlignment="Stretch"
-                              IsExpanded="False">
-                        <StackPanel>
-                            <GroupBox Header="{Binding ElementName=MouthTransformX, Path=Value}"
-                                        HeaderStringFormat="Tranform X {0:N0}">
-                                <Slider x:Name="MouthTransformX" 
-                                        Minimum="{Binding ElementName=GridActualWidthNegativeValue, Path=Text}" 
-                                        Maximum="{Binding ElementName=MainGrid, Path=ActualWidth}" 
-                                        Value="0" />
-                            </GroupBox>
-                            <GroupBox Header="{Binding ElementName=MouthTransformY, Path=Value}"
-                                      HeaderStringFormat="Tranform Y {0:N0}">
-                                <Slider x:Name="MouthTransformY" 
-                                        Minimum="{Binding ElementName=GridActualHeightNegativeValue, Path=Text}" 
-                                        Maximum="{Binding ElementName=MainGrid, Path=ActualHeight}" 
-                                        Value="60" />
-                            </GroupBox>
-                            <GroupBox Header="{Binding ElementName=MouthAngle, Path=Value}"
-                                      HeaderStringFormat="Angle {0:N0}">
-                                <Slider x:Name="MouthAngle" 
-                                        Minimum="-360" 
-                                        Maximum="360" 
-                                        Value="0" />
-                            </GroupBox>
-                            <GroupBox Header="{Binding ElementName=MouthSkewX, Path=Value}"
-                                      HeaderStringFormat="Skew X {0:N0}">
-                                <Slider x:Name="MouthSkewX" 
-                                        Minimum="-100" 
-                                        Maximum="100" 
-                                        Value="0" />
-                            </GroupBox>
-                            <GroupBox Header="{Binding ElementName=MouthSkewY, Path=Value}"
-                                      HeaderStringFormat="Skew Y {0:N0}">
-                                <Slider x:Name="MouthSkewY" 
-                                        Minimum="-100" 
-                                        Maximum="100" Value="0" />
-                            </GroupBox>
-                            <GroupBox Header="{Binding ElementName=MouthScaleX, Path=Value}"
-                                      HeaderStringFormat="Scale X {0:N0}">
-                                <Slider x:Name="MouthScaleX" 
-                                        Minimum="-100" 
-                                        Maximum="100" 
-                                        Value="8" />
-                            </GroupBox>
-                            <GroupBox Header="{Binding ElementName=MouthScaleY, Path=Value}"
-                                      HeaderStringFormat="Scale Y {0:N0}">
-                                <Slider x:Name="MouthScaleY" 
-                                        Minimum="-100" 
-                                        Maximum="100" 
-                                        Value="5" />
-                            </GroupBox>
-                        </StackPanel>
-                    </Expander>
-                </StackPanel>
-            </StackPanel>
-        </ScrollViewer>
+				<!-- Nose Properties -->
+				<StackPanel HorizontalAlignment="Stretch"
+							Style="{StaticResource FacePartSettingsGrid}">
+					<Expander x:Name="NoseProperties"
+							  Header="Nose properties"
+							  HorizontalAlignment="Stretch"
+							  VerticalAlignment="Stretch"
+							  IsExpanded="False">
+						<StackPanel>
+							<GroupBox Header="{Binding ElementName=NoseTransformX, Path=Value}"
+									  HeaderStringFormat="Tranform X {0:N0}">
+								<Slider x:Name="NoseTransformX"
+										Minimum="{Binding ElementName=GridActualWidthNegativeValue, Path=Text}"
+										Maximum="{Binding ElementName=MainGrid, Path=ActualWidth}"
+										Value="0" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=NoseTransformY, Path=Value}"
+									  HeaderStringFormat="Tranform Y {0:N0}">
+								<Slider x:Name="NoseTransformY"
+										Minimum="{Binding ElementName=GridActualHeightNegativeValue, Path=Text}"
+										Maximum="{Binding ElementName=MainGrid, Path=ActualHeight}"
+										Value="-10" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=NoseAngle, Path=Value}"
+									  HeaderStringFormat="Angle {0:N0}">
+								<Slider x:Name="NoseAngle"
+										Minimum="-360"
+										Maximum="360"
+										Value="0" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=NoseSkewX, Path=Value}"
+									  HeaderStringFormat="Skew X {0:N0}">
+								<Slider x:Name="NoseSkewX"
+										Minimum="-100"
+										Maximum="100"
+										Value="0" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=NoseSkewY, Path=Value}"
+									  HeaderStringFormat="Skew Y {0:N0}">
+								<Slider x:Name="NoseSkewY"
+										Minimum="-100"
+										Maximum="100"
+										Value="0" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=NoseScaleX, Path=Value}"
+									  HeaderStringFormat="Scale X {0:N0}">
+								<Slider x:Name="NoseScaleX"
+										Minimum="-100"
+										Maximum="100"
+										Value="8" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=NoseScaleY, Path=Value}"
+									  HeaderStringFormat="Scale Y {0:N0}">
+								<Slider x:Name="NoseScaleY"
+										Minimum="-100"
+										Maximum="100"
+										Value="8" />
+							</GroupBox>
+						</StackPanel>
+					</Expander>
+				</StackPanel>
 
-        <!-- Left Ear -->
-        <Image x:Name="LeftEar" 
-               Grid.Row="0"
-               Grid.Column="1" 
-               Width="10"
-               Height="10"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center"
-               Source="/Resources/Ears/ear1.png" 
-               Stretch="Fill" RenderTransformOrigin="0.5,0.5" >
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform ScaleX="{Binding ElementName=LeftEarScaleX, Path=Value}"
-                                    ScaleY="{Binding ElementName=LeftEarScaleY, Path=Value}"/>
-                    <SkewTransform AngleX="{Binding ElementName=LeftEarSkewX, Path=Value}" 
-                                   AngleY="{Binding ElementName=LeftEarSkewY, Path=Value}"/>
-                    <RotateTransform Angle="{Binding ElementName=LeftEarAngle, Path=Value}"/>
-                    <TranslateTransform X="{Binding ElementName=LeftEarTransformX, Path=Value}" 
-                                        Y="{Binding ElementName=LeftEarTransformY, Path=Value}"/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
+				<!-- Mouth Selector -->
+				<GroupBox Header="Mouth">
+					<ComboBox SelectionChanged="Mouth_SelectionChanged">
+						<ComboBoxItem IsSelected="True">
+							<StackPanel Orientation="Horizontal">
+								<Image Style="{StaticResource ComboBoxItemImage}"
+									   Source="Resources/Mouths/mouth1.png" />
+								<TextBlock Style="{StaticResource ComboBoxItemName}">Mouth</TextBlock>
+							</StackPanel>
+						</ComboBoxItem>
+						<ComboBoxItem IsSelected="False">
+							<StackPanel Orientation="Horizontal">
+								<Image Style="{StaticResource ComboBoxItemImage}"
+									   Source="Resources/Mouths/mouth2.png" />
+								<TextBlock Style="{StaticResource ComboBoxItemName}">Mouth</TextBlock>
+							</StackPanel>
+						</ComboBoxItem>
+					</ComboBox>
+				</GroupBox>
 
-        <!-- Right Ear -->
-        <Image x:Name="RightEar" 
-               Grid.Row="0"
-               Grid.Column="1" 
-               Width="10"
-               Height="10"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center"
-               Source="/Resources/Ears/ear1.png" 
-               Stretch="Fill" 
-               RenderTransformOrigin="0.5,0.5" >
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform ScaleX="{Binding ElementName=RightEarScaleX, Path=Value}"
-                                    ScaleY="{Binding ElementName=RightEarScaleY, Path=Value}"/>
-                    <SkewTransform AngleX="{Binding ElementName=RightEarSkewX, Path=Value}" 
-                                   AngleY="{Binding ElementName=RightEarSkewY, Path=Value}"/>
-                    <RotateTransform Angle="{Binding ElementName=RightEarAngle, Path=Value}"/>
-                    <TranslateTransform X="{Binding ElementName=RightEarTransformX, Path=Value}" 
-                                        Y="{Binding ElementName=RightEarTransformY, Path=Value}"/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
+				<!-- Mouth Properties -->
+				<StackPanel HorizontalAlignment="Stretch"
+							Style="{StaticResource FacePartSettingsGrid}">
+					<Expander x:Name="MouthProperties"
+							  Header="Mouth properties"
+							  HorizontalAlignment="Stretch"
+							  VerticalAlignment="Stretch"
+							  IsExpanded="False">
+						<StackPanel>
+							<GroupBox Header="{Binding ElementName=MouthTransformX, Path=Value}"
+									  HeaderStringFormat="Tranform X {0:N0}">
+								<Slider x:Name="MouthTransformX"
+										Minimum="{Binding ElementName=GridActualWidthNegativeValue, Path=Text}"
+										Maximum="{Binding ElementName=MainGrid, Path=ActualWidth}"
+										Value="0" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=MouthTransformY, Path=Value}"
+									  HeaderStringFormat="Tranform Y {0:N0}">
+								<Slider x:Name="MouthTransformY"
+										Minimum="{Binding ElementName=GridActualHeightNegativeValue, Path=Text}"
+										Maximum="{Binding ElementName=MainGrid, Path=ActualHeight}"
+										Value="60" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=MouthAngle, Path=Value}"
+									  HeaderStringFormat="Angle {0:N0}">
+								<Slider x:Name="MouthAngle"
+										Minimum="-360"
+										Maximum="360"
+										Value="0" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=MouthSkewX, Path=Value}"
+									  HeaderStringFormat="Skew X {0:N0}">
+								<Slider x:Name="MouthSkewX"
+										Minimum="-100"
+										Maximum="100"
+										Value="0" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=MouthSkewY, Path=Value}"
+									  HeaderStringFormat="Skew Y {0:N0}">
+								<Slider x:Name="MouthSkewY"
+										Minimum="-100"
+										Maximum="100"
+										Value="0" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=MouthScaleX, Path=Value}"
+									  HeaderStringFormat="Scale X {0:N0}">
+								<Slider x:Name="MouthScaleX"
+										Minimum="-100"
+										Maximum="100"
+										Value="8" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=MouthScaleY, Path=Value}"
+									  HeaderStringFormat="Scale Y {0:N0}">
+								<Slider x:Name="MouthScaleY"
+										Minimum="-100"
+										Maximum="100"
+										Value="5" />
+							</GroupBox>
+						</StackPanel>
+					</Expander>
+				</StackPanel>
 
-        <!-- Eyes -->
-        <Image x:Name="Eyes" 
-               Grid.Row="0"
-               Grid.Column="1" 
-               Width="10"
-               Height="10"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center"
-               Source="/Resources/Eyes/eyes1.png" 
-               Stretch="Fill" 
-               RenderTransformOrigin="0.5,0.5" >
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform ScaleX="{Binding ElementName=EyesScaleX, Path=Value}"
-                                    ScaleY="{Binding ElementName=EyesScaleY, Path=Value}"/>
-                    <SkewTransform AngleX="{Binding ElementName=EyesSkewX, Path=Value}" 
-                                   AngleY="{Binding ElementName=EyesSkewY, Path=Value}"/>
-                    <RotateTransform Angle="{Binding ElementName=EyesAngle, Path=Value}"/>
-                    <TranslateTransform X="{Binding ElementName=EyesTransformX, Path=Value}" 
-                                        Y="{Binding ElementName=EyesTransformY, Path=Value}"/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
+				<!-- Hair selector -->
+				<GroupBox Header="Hair">
+					<ComboBox SelectionChanged="Hair_SelectionChanged">
+						<ComboBoxItem IsSelected="True">
+							<StackPanel Orientation="Horizontal">
+								<Image Style="{StaticResource ComboBoxItemImage}"
+									   Source="Resources/Hairs/hair1.png" />
+								<TextBlock Style="{StaticResource ComboBoxItemName}">Hair</TextBlock>
+							</StackPanel>
+						</ComboBoxItem>
+						<ComboBoxItem IsSelected="False">
+							<StackPanel Orientation="Horizontal">
+								<Image Style="{StaticResource ComboBoxItemImage}"
+									   Source="Resources/Hairs/hair2.png" />
+								<TextBlock Style="{StaticResource ComboBoxItemName}">Hair</TextBlock>
+							</StackPanel>
+						</ComboBoxItem>
+					</ComboBox>
+				</GroupBox>
 
-        <!-- Nose -->
-        <Image x:Name="Nose" 
-               Grid.Row="0"
-               Grid.Column="1" 
-               Width="10"
-               Height="10"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center"
-               Source="/Resources/Noses/nose1.png" 
-               Stretch="Fill" 
-               RenderTransformOrigin="0.5,0.5" >
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform ScaleX="{Binding ElementName=NoseScaleX, Path=Value}"
-                                    ScaleY="{Binding ElementName=NoseScaleY, Path=Value}"/>
-                    <SkewTransform AngleX="{Binding ElementName=NoseSkewX, Path=Value}" 
-                                   AngleY="{Binding ElementName=NoseSkewY, Path=Value}"/>
-                    <RotateTransform Angle="{Binding ElementName=NoseAngle, Path=Value}"/>
-                    <TranslateTransform X="{Binding ElementName=NoseTransformX, Path=Value}" 
-                                        Y="{Binding ElementName=NoseTransformY, Path=Value}"/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
+				<!-- Hair Properties -->
+				<StackPanel HorizontalAlignment="Stretch"
+							Style="{StaticResource FacePartSettingsGrid}">
+					<Expander x:Name="HairProperties"
+							  Header="Hair properties"
+							  HorizontalAlignment="Stretch"
+							  VerticalAlignment="Stretch"
+							  IsExpanded="False">
+						<StackPanel>
+							<GroupBox Header="{Binding ElementName=HairTransformX, Path=Value}"
+									  HeaderStringFormat="Tranform X {0:N0}">
+								<Slider x:Name="HairTransformX"
+										Minimum="{Binding ElementName=GridActualWidthNegativeValue, Path=Text}"
+										Maximum="{Binding ElementName=MainGrid, Path=ActualWidth}"
+										Value="-2" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=HairTransformY, Path=Value}"
+									  HeaderStringFormat="Tranform Y {0:N0}">
+								<Slider x:Name="HairTransformY"
+										Minimum="{Binding ElementName=GridActualHeightNegativeValue, Path=Text}"
+										Maximum="{Binding ElementName=MainGrid, Path=ActualHeight}"
+										Value="-42" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=HairAngle, Path=Value}"
+									  HeaderStringFormat="Angle {0:N0}">
+								<Slider x:Name="HairAngle"
+										Minimum="-360"
+										Maximum="360"
+										Value="0" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=HairSkewX, Path=Value}"
+									  HeaderStringFormat="Skew X {0:N0}">
+								<Slider x:Name="HairSkewX"
+										Minimum="-100"
+										Maximum="100"
+										Value="0" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=HairSkewY, Path=Value}"
+									  HeaderStringFormat="Skew Y {0:N0}">
+								<Slider x:Name="HairSkewY"
+										Minimum="-100"
+										Maximum="100"
+										Value="0" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=HairScaleX, Path=Value}"
+									  HeaderStringFormat="Scale X {0:N0}">
+								<Slider x:Name="HairScaleX"
+										Minimum="-100"
+										Maximum="100"
+										Value="30" />
+							</GroupBox>
+							<GroupBox Header="{Binding ElementName=HairScaleY, Path=Value}"
+									  HeaderStringFormat="Scale Y {0:N0}">
+								<Slider x:Name="HairScaleY"
+										Minimum="-100"
+										Maximum="100"
+										Value="31" />
+							</GroupBox>
+						</StackPanel>
+					</Expander>
+				</StackPanel>
+			</StackPanel>
+		</ScrollViewer>
 
-        <!-- Mouth -->
-        <Image x:Name="Mouth" 
-               Grid.Row="0"
-               Grid.Column="1" 
-               Width="10"
-               Height="10"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center"
-               Source="/Resources/Mouths/mouth1.png" 
-               Stretch="Fill" 
-               RenderTransformOrigin="0.5,0.5" >
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform ScaleX="{Binding ElementName=MouthScaleX, Path=Value}"
-                                    ScaleY="{Binding ElementName=MouthScaleY, Path=Value}"/>
-                    <SkewTransform AngleX="{Binding ElementName=MouthSkewX, Path=Value}" 
-                                   AngleY="{Binding ElementName=MouthSkewY, Path=Value}"/>
-                    <RotateTransform Angle="{Binding ElementName=MouthAngle, Path=Value}"/>
-                    <TranslateTransform X="{Binding ElementName=MouthTransformX, Path=Value}" 
-                                        Y="{Binding ElementName=MouthTransformY, Path=Value}"/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
+		<!-- Left Ear -->
+		<Image x:Name="LeftEar"
+			   Grid.Row="0"
+			   Grid.Column="1"
+			   Width="10"
+			   Height="10"
+			   HorizontalAlignment="Center"
+			   VerticalAlignment="Center"
+			   Source="/Resources/Ears/ear1.png"
+			   Stretch="Fill"
+			   RenderTransformOrigin="0.5,0.5">
+			<Image.RenderTransform>
+				<TransformGroup>
+					<ScaleTransform ScaleX="{Binding ElementName=LeftEarScaleX, Path=Value}"
+									ScaleY="{Binding ElementName=LeftEarScaleY, Path=Value}" />
+					<SkewTransform AngleX="{Binding ElementName=LeftEarSkewX, Path=Value}"
+								   AngleY="{Binding ElementName=LeftEarSkewY, Path=Value}" />
+					<RotateTransform Angle="{Binding ElementName=LeftEarAngle, Path=Value}" />
+					<TranslateTransform X="{Binding ElementName=LeftEarTransformX, Path=Value}"
+										Y="{Binding ElementName=LeftEarTransformY, Path=Value}" />
+				</TransformGroup>
+			</Image.RenderTransform>
+		</Image>
 
-        <!-- Hair -->
-        <Image x:Name="Hair" 
-               Grid.Row="0"
-               Grid.Column="1" 
-               Width="10"
-               Height="10"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center"
-               Source="/Resources/Hairs/hair1.png" 
-               Stretch="Fill" 
-               RenderTransformOrigin="0.5,0.5" >
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform ScaleX="50"
-                                    ScaleY="60"/>
-                    <SkewTransform AngleX="{Binding ElementName=MouthSkewX, Path=Value}" 
-                                   AngleY="{Binding ElementName=MouthSkewY, Path=Value}"/>
-                    <RotateTransform Angle="{Binding ElementName=MouthAngle, Path=Value}"/>
-                    <TranslateTransform X="-10" 
-                                        Y="35"/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
-    </Grid>
+		<!-- Right Ear -->
+		<Image x:Name="RightEar"
+			   Grid.Row="0"
+			   Grid.Column="1"
+			   Width="10"
+			   Height="10"
+			   HorizontalAlignment="Center"
+			   VerticalAlignment="Center"
+			   Source="/Resources/Ears/ear1.png"
+			   Stretch="Fill"
+			   RenderTransformOrigin="0.5,0.5">
+			<Image.RenderTransform>
+				<TransformGroup>
+					<ScaleTransform ScaleX="{Binding ElementName=RightEarScaleX, Path=Value}"
+									ScaleY="{Binding ElementName=RightEarScaleY, Path=Value}" />
+					<SkewTransform AngleX="{Binding ElementName=RightEarSkewX, Path=Value}"
+								   AngleY="{Binding ElementName=RightEarSkewY, Path=Value}" />
+					<RotateTransform Angle="{Binding ElementName=RightEarAngle, Path=Value}" />
+					<TranslateTransform X="{Binding ElementName=RightEarTransformX, Path=Value}"
+										Y="{Binding ElementName=RightEarTransformY, Path=Value}" />
+				</TransformGroup>
+			</Image.RenderTransform>
+		</Image>
+
+		<!-- Eyes -->
+		<Image x:Name="Eyes"
+			   Grid.Row="0"
+			   Grid.Column="1"
+			   Width="10"
+			   Height="10"
+			   HorizontalAlignment="Center"
+			   VerticalAlignment="Center"
+			   Source="/Resources/Eyes/eyes1.png"
+			   Stretch="Fill"
+			   RenderTransformOrigin="0.5,0.5">
+			<Image.RenderTransform>
+				<TransformGroup>
+					<ScaleTransform ScaleX="{Binding ElementName=EyesScaleX, Path=Value}"
+									ScaleY="{Binding ElementName=EyesScaleY, Path=Value}" />
+					<SkewTransform AngleX="{Binding ElementName=EyesSkewX, Path=Value}"
+								   AngleY="{Binding ElementName=EyesSkewY, Path=Value}" />
+					<RotateTransform Angle="{Binding ElementName=EyesAngle, Path=Value}" />
+					<TranslateTransform X="{Binding ElementName=EyesTransformX, Path=Value}"
+										Y="{Binding ElementName=EyesTransformY, Path=Value}" />
+				</TransformGroup>
+			</Image.RenderTransform>
+		</Image>
+
+		<!-- Nose -->
+		<Image x:Name="Nose"
+			   Grid.Row="0"
+			   Grid.Column="1"
+			   Width="10"
+			   Height="10"
+			   HorizontalAlignment="Center"
+			   VerticalAlignment="Center"
+			   Source="/Resources/Noses/nose1.png"
+			   Stretch="Fill"
+			   RenderTransformOrigin="0.5,0.5">
+			<Image.RenderTransform>
+				<TransformGroup>
+					<ScaleTransform ScaleX="{Binding ElementName=NoseScaleX, Path=Value}"
+									ScaleY="{Binding ElementName=NoseScaleY, Path=Value}" />
+					<SkewTransform AngleX="{Binding ElementName=NoseSkewX, Path=Value}"
+								   AngleY="{Binding ElementName=NoseSkewY, Path=Value}" />
+					<RotateTransform Angle="{Binding ElementName=NoseAngle, Path=Value}" />
+					<TranslateTransform X="{Binding ElementName=NoseTransformX, Path=Value}"
+										Y="{Binding ElementName=NoseTransformY, Path=Value}" />
+				</TransformGroup>
+			</Image.RenderTransform>
+		</Image>
+
+		<!-- Mouth -->
+		<Image x:Name="Mouth"
+			   Grid.Row="0"
+			   Grid.Column="1"
+			   Width="10"
+			   Height="10"
+			   HorizontalAlignment="Center"
+			   VerticalAlignment="Center"
+			   Source="/Resources/Mouths/mouth1.png"
+			   Stretch="Fill"
+			   RenderTransformOrigin="0.5,0.5">
+			<Image.RenderTransform>
+				<TransformGroup>
+					<ScaleTransform ScaleX="{Binding ElementName=MouthScaleX, Path=Value}"
+									ScaleY="{Binding ElementName=MouthScaleY, Path=Value}" />
+					<SkewTransform AngleX="{Binding ElementName=MouthSkewX, Path=Value}"
+								   AngleY="{Binding ElementName=MouthSkewY, Path=Value}" />
+					<RotateTransform Angle="{Binding ElementName=MouthAngle, Path=Value}" />
+					<TranslateTransform X="{Binding ElementName=MouthTransformX, Path=Value}"
+										Y="{Binding ElementName=MouthTransformY, Path=Value}" />
+				</TransformGroup>
+			</Image.RenderTransform>
+		</Image>
+
+		<!-- Hair -->
+		<Image x:Name="Hair"
+			   Grid.Row="0"
+			   Grid.Column="1"
+			   Width="10"
+			   Height="10"
+			   HorizontalAlignment="Center"
+			   VerticalAlignment="Center"
+			   Source="/Resources/Hairs/hair1.png"
+			   Stretch="Fill"
+			   RenderTransformOrigin="0.5,0.5">
+			<Image.RenderTransform>
+				<TransformGroup>
+					<ScaleTransform ScaleX="{Binding ElementName=HairScaleX, Path=Value}"
+									ScaleY="{Binding ElementName=HairScaleY, Path=Value}" />
+					<SkewTransform AngleX="{Binding ElementName=HairSkewX, Path=Value}"
+								   AngleY="{Binding ElementName=HairSkewY, Path=Value}" />
+					<RotateTransform Angle="{Binding ElementName=HairAngle, Path=Value}" />
+					<TranslateTransform X="{Binding ElementName=HairTransformX, Path=Value}"
+										Y="{Binding ElementName=HairTransformY, Path=Value}" />
+				</TransformGroup>
+			</Image.RenderTransform>
+		</Image>
+
+		<Grid Grid.Row="1"
+			  Grid.Column="1">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition></ColumnDefinition>
+				<ColumnDefinition></ColumnDefinition>
+			</Grid.ColumnDefinitions>
+			
+			<StackPanel Grid.Column="0"
+						Margin="5"
+						VerticalAlignment="Center">
+				<Label>
+					Сохраненные фотороботы
+				</Label>
+
+				<ListBox SelectionChanged="listBoxSaves_SelectionChanged"
+						 x:Name="listBoxSaves">
+				</ListBox>
+			</StackPanel>
+
+			<StackPanel Grid.Column="1"
+						Margin="5"
+						VerticalAlignment="Center">
+				<Label>Введите имя фоторобота</Label>
+				<TextBox x:Name="textBoxName"
+						 KeyDown="textBoxName_KeyDown"
+						 Margin="5, 0, 5, 5"/>
+				<Button x:Name="buttonSave"
+						Margin="5, 0, 5, 0"
+						Click="buttonSave_Click">
+					Сохранить
+				</Button>
+			</StackPanel>
+		</Grid>
+	</Grid>
 </Window>
