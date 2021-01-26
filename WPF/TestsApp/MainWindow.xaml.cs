@@ -60,10 +60,12 @@ namespace TestsApp
 		{
 			foreach (var test in Tests)
 			{
-				RadioButton button = new RadioButton();
-				button.Content = test.Title;
-				button.Tag = test;
-				button.Padding = new Thickness(8);
+				RadioButton button = new RadioButton
+				{
+					Content = test.Title,
+					Tag = test,
+					Padding = new Thickness(8)
+				};
 
 				button.Click += RadioButtonClick;
 
@@ -92,7 +94,7 @@ namespace TestsApp
 				{
 					IsEnabled = false,
 					Header = $"Question #{i + 1}",
-					Content = GetTabItemContent(question)
+					Content = GetTabContent(question)
 				};
 
 				if (i == 0)
@@ -104,9 +106,23 @@ namespace TestsApp
 				tabControlCurrentQuestion.Items.Add(tabItem);
 			}
 
+			tabControlCurrentQuestion.Items.Add(new TabItem
+			{
+				IsEnabled = false,
+				Header = "Results"
+			});
 		}
 
-		private StackPanel GetTabItemContent(Question question)
+		private void SelectAnswer_Click(object sender, RoutedEventArgs e)
+		{
+			var radioButton = (RadioButton)sender;
+
+			var answer = (Answer)radioButton.Tag;
+
+			//MessageBox.Show(answer.IsRight.ToString());
+		}
+
+		private StackPanel GetTabContent(Question question)
 		{
 			StackPanel stackPanel = new StackPanel()
 			{
@@ -123,7 +139,7 @@ namespace TestsApp
 			stackPanel.Children.Add(new TextBlock()
 			{
 				Text = $"Question #{CurrentQuestionNum + 1}: {question.Text}",
-				Margin = new Thickness(0, 10, 0, 5)
+				Margin = new Thickness(0, 8, 0, 5)
 			});
 
 			int answerNum = 0;
@@ -135,9 +151,11 @@ namespace TestsApp
 				RadioButton radioButton = new RadioButton()
 				{
 					Content = $"Answer #{answerNum}: {answer.Text}",
-					Tag = new object[] { typeof(RadioButton), answer },
-					Margin = new Thickness(0, 10, 0, 0)
+					Tag = answer,
+					Margin = new Thickness(0, 8, 0, 0),
 				};
+
+				radioButton.Checked += SelectAnswer_Click;
 
 				stackPanel.Children.Add(radioButton);
 			}
@@ -149,11 +167,18 @@ namespace TestsApp
 				Tag = answerNum
 			};
 
+			button.Click += Button_Click;
+
 			stackPanel.Children.Add(button);
 
 			//tabItem.Content = stackPanel;
 
 			return stackPanel;
+		}
+
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			
 		}
 	}
 }
