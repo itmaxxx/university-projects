@@ -37,7 +37,7 @@ namespace Calculator
         {
             current = current == 0 ?
                       number :
-                      currentLabel.Content.ToString()[currentLabel.Content.ToString().Length - 1] == '.' ?
+                      currentLabel.Content.ToString()[currentLabel.Content.ToString().Length - 1] == ',' ?
                       double.Parse(currentLabel.Content.ToString() + number.ToString()) :
                       double.Parse(current.ToString() + number.ToString());
 
@@ -182,9 +182,9 @@ namespace Calculator
 
         private void Dot_Click(object sender, RoutedEventArgs e)
         {
-            if (!currentLabel.Content.ToString().Contains('.'))
+            if (!currentLabel.Content.ToString().Contains('.') && !currentLabel.Content.ToString().Contains(','))
             {
-                currentLabel.Content = current.ToString() + ".";
+                currentLabel.Content = current.ToString() + ",";
             }
         }
 

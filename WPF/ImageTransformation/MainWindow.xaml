@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ImageTransformation"
         mc:Ignorable="d"
-        Title="MainWindow" 
+        Title="Image Transformation" 
         Height="710" 
         Width="800"
         Loaded="Window_Loaded">
