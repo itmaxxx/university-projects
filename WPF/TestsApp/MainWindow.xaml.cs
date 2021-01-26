@@ -97,6 +97,7 @@ namespace TestsApp
 
 				if (i == 0)
 				{
+					tabItem.IsEnabled = true;
 					tabItem.IsSelected = true;
 				}
 
@@ -109,7 +110,7 @@ namespace TestsApp
 		{
 			StackPanel stackPanel = new StackPanel()
 			{
-				Margin = new Thickness(10, 5, 0, 0)
+				Margin = new Thickness(10, 5, 10, 0)
 			};
 
 			//bool isCheckBox = false;
@@ -144,7 +145,7 @@ namespace TestsApp
 			Button button = new Button()
 			{
 				Content = "Next question",
-				Margin = new Thickness(0, 10, 0, 0),
+				Margin = new Thickness(0, 16, 0, 8),
 				Tag = answerNum
 			};
 
