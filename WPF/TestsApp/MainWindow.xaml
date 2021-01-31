@@ -8,6 +8,8 @@
 		Title="Tests"
 		Height="450"
 		Width="800"
+		MinHeight="450"
+		MinWidth="800"
 		Loaded="Window_Loaded">
 	<Grid>
 		<Grid.RowDefinitions>
@@ -24,8 +26,9 @@
 			  Margin="8, 16, 8, 0">
 			<StackPanel>
 				<TextBlock x:Name="textBlockTestTitle"
-						   FontSize="18"
+						   FontSize="22"
 						   FontWeight="SemiBold"
+						   Text="Select test to start"
 						   Margin="4, 0, 0, 8"/>
 
 				<TabControl x:Name="tabControlCurrentQuestion"/>
