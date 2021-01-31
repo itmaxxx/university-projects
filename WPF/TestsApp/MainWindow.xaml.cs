@@ -311,7 +311,7 @@ namespace TestsApp
 
 				stackPanel.Children.Add(new TextBlock()
 				{
-					Text = $"in {CurrentQuestionNum} from {CurrentTest.Questions.Count} question(s)",
+					Text = $"in {CurrentQuestionNum} question(s)",
 					FontSize = 18,
 					Foreground = Brushes.Black,
 					TextAlignment = TextAlignment.Center
