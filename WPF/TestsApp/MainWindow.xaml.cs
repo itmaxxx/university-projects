@@ -22,11 +22,11 @@ namespace TestsApp
 
 	public partial class MainWindow : Window
 	{
-		public List<Test> Tests { get; set; }
-		public Test CurrentTest { get; set; }
-		public int CurrentQuestionNum { get; set; }
-		public int RightAnswers { get; set; }
-		public List<Answer> SelectedAnswers { get; set; }
+		private List<Test> Tests { get; set; }
+		private Test CurrentTest { get; set; }
+		private int CurrentQuestionNum { get; set; }
+		private int RightAnswers { get; set; }
+		private List<Answer> SelectedAnswers { get; set; }
 
 		public MainWindow()
 		{
