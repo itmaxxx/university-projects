@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let confirmed = false;
+    let userData;
+
+    do {
+      userData = {};
+
+      let fio = prompt('Введите ФИО');
+      userData.fio = fio;
+      console.log(userData);
+
+      let sex = prompt('Выберите ваш пол (0 - женский, 1 - мужской)');
+      userData.sex = parseInt(sex) >= 1 ? 1 : 0;
+      console.log(userData);
+
+      let age = prompt('Введите ваш возраст');
+      userData.age = parseInt(age);
+      console.log(userData);
+
+      let email = prompt('Введите ваш Email');
+      userData.email = email;
+      console.log(userData);
+
+      let userDataString = `ФИО: ${userData.fio}\nПол: ${userData.sex === 1 ? 'мужской' : 'женский'}\nВозраст: ${userData.age} лет\nEmail: ${userData.email}`;
+
+      confirmed = confirm(userDataString + '\n\nВсе верно?');
+      console.log(confirmed);
+
+      if (confirmed) {
+        alert('Спасибо за предоставленные данные!');
+      }
+    } while (!confirmed)
+  </script>
+</body>
+</html>

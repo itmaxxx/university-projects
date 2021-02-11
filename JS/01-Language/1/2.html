@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function ticketCheck() {
+      let ticket = prompt('Введите номер билета');
+
+      console.log(ticket);
+
+      if (parseInt(ticket) !== NaN && ticket.toString().length !== 6) {
+        alert ('Неправильный формат билета');
+
+        return;
+      }
+
+      ticket = ticket.toString();
+
+      let firstPart = ticket.substr(0, 3),
+          secondPart = ticket.substr(3, 3);
+      console.log(firstPart, secondPart);
+
+      let firstPartSum = 0,
+          secondPartSum = 0;
+
+      firstPart.split('').forEach(n => firstPartSum += parseInt(n));
+      secondPart.split('').forEach(n => secondPartSum += parseInt(n));
+
+      console.log(firstPartSum, secondPartSum);
+
+      if (firstPartSum === secondPartSum) {
+        alert('Вы обладатель счастливого билета');
+      } else {
+        alert('К сожалению ваш билет не является "счастливым"');
+      }
+    }
+
+    ticketCheck();
+  </script>
+</body>
+</html>
