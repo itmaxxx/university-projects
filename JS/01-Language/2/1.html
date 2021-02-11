@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let questions = [
+      {
+        question: 'Земля круглая?'
+      },
+      {
+        question: 'Шаг находится на Садовой?'
+      },
+      {
+        question: 'JS - круто?'
+      },
+      {
+        question: 'Небо зеленое?'
+      }
+    ];
+
+    function takeTest(questions) {
+      let testResults = 'Результаты теста:';
+
+      for (let i = 0; i < questions.length; i++) {
+        const question = questions[i];
+        
+        questions[i].answer = confirm(question.question);
+        
+        testResults += `\n${question.question} - ${questions[i].answer ? 'Да' : 'Нет'}`;
+      }
+
+      alert(testResults);
+    }
+
+    takeTest(questions);
+  </script>
+</body>
+</html>

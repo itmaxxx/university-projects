@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function splitUrl(url) {
+      let pattern = /(http[s]?:)\/\/([^:\/\s]+)\/?([\/\w+]*\/)?([\w\-\.]+[^#?\s]+)?\??(.*)?/;
+      let res = url.match(pattern);
+
+      console.log(res);
+
+      for (let i = res.length - 1; i >= 0; i--) {
+        if (res[i] === undefined) {
+          res.splice(i, 1);
+        }        
+      }
+
+      let result = `${res[1] && `Протокол: ${res[1]}`}
+                    ${res[2] && `\nХост: ${res[2]}`}
+                    ${res[3] && `\nПуть: ${res[3]}`}
+                    ${res[4] && `\nИмя файла: ${res[4]}`}
+                    ${res[5] && `\nСтрока запроса: ${res[5]}`}`;
+
+      console.log(result);
+    }
+
+    splitUrl('http://www.ufa.com.ua/utilites/hdd/out.php?sort=2&asd=2');
+    splitUrl('https://regex101.com/dashboard/index.php?sort=1');
+    splitUrl('http://www.ufa.com.ua/utilites/hdd/out.php');
+  </script>
+</body>
+</html>
