@@ -67,7 +67,6 @@
     <Compile Include="Classes\Answer.cs" />
     <Compile Include="Classes\Question.cs" />
     <Compile Include="Classes\Test.cs" />
-    <Compile Include="Classes\TestResults.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
