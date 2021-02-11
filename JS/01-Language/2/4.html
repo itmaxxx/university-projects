@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="chess-field" style="display: flex; flex-direction: row; border: solid 1px #000; width: fit-content;"></div>
+
+  <script>
+    let chessField = document.getElementById('chess-field');
+
+    let isBlack = true;
+
+    for (let x = 0; x < 8; x++) {
+      let chessColumn = document.createElement('div');
+          chessColumn.setAttribute('style', 'display: flex; flex-direction: column;');
+          
+      isBlack = !isBlack;
+
+      for (let y = 0; y < 8; y++) {
+        let chessItem = document.createElement('div');
+            chessItem.className = 'chess-row';
+            chessItem.setAttribute('style', `background-color: ${isBlack ? '#000' : '#eee'}; color: ${isBlack ? '#fff' : '#000'}; font-size: 18px; width: 100px; height: 100px;`);
+
+        if (x === 0) {
+          chessItem.innerHTML = `<span>${(y - 7) * -1 + 1}</span>`;
+        }
+        if (y === 7) {
+          chessItem.innerHTML = `<span>${x === 0 ? '1' : ''}${String.fromCharCode(97 + x)}</span>`;
+        }
+
+        isBlack = !isBlack;
+
+        chessColumn.appendChild(chessItem);
+      }
+
+      chessField.appendChild(chessColumn);
+    }
+  </script>
+</body>
+</html>
