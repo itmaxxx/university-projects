@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="canvas">
+
+  </div>
+
+  <script>
+    class Marker {
+      color;
+      fuel;
+
+      constructor(color) {
+        this.color = color;
+        this.fuel = 100;
+      }
+
+      draw(text, canvas) {
+        Array.from(text).forEach(letter => {
+          if (this.fuel >= 0.5) {
+            canvas.innerHTML += `<span style="color: ${this.color}">${letter}</span>`;
+
+            if (letter !== ' ') {
+              this.fuel -= 0.5;
+            }
+          } else {
+            return;
+          }
+        });
+      }
+    }
+
+    let marker1 = new Marker('rgba(255, 0, 0)');
+    marker1.draw('Hello', document.getElementById('canvas'));
+
+    let marker2 = new Marker('rgba(0, 255, 0)');
+    marker2.draw(' world!', document.getElementById('canvas'));
+  </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <p>Print date: <span id="printDate"></span></p>
+    <p>Is future: <span id="isFutureDate"></span></p>
+    <p>Is leap year?: <span id="isLeapDate"></span></p>
+  </div>
+
+  <script>
+    class ExtendedDate extends Date {
+      year;
+      month;
+      day;
+      hour;
+      minute;
+      second;
+      millisecond;
+
+      constructor(year = null, month = null, day = null, hour = null, minute = null, second = null, millisecond = null) {
+        super(year, month, day, hour, minute, second, millisecond);
+
+        this.year = year;
+        this.month = month;
+        this.day = day;
+        this.hour = hour;
+        this.minute = minute;
+        this.second = second;
+        this.millisecond = millisecond;
+      }
+
+      print() {
+        return `${this.day}/${this.month}/${this.year}`;
+      }
+
+      isFuture() {
+        return this.getTime() >= ExtendedDate.now();
+      }
+
+      isLeapYear() {
+        return ((this.year % 4 == 0) && (this.year % 100 != 0)) || (this.year % 400 == 0);
+      }
+    }
+
+    let extendedDate = new ExtendedDate(2020, 12, 7);
+
+    console.log(extendedDate.print());
+    printDate.innerText = extendedDate.print();
+    console.log(extendedDate.isFuture());
+    isFutureDate.innerText = extendedDate.isFuture();
+    console.log(extendedDate.isLeapYear());
+    isLeapDate.innerText = extendedDate.isLeapYear();
+  </script>
+</body>
+</html>
