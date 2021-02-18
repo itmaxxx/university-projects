@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="folders">
+
+  </div>
+
+  <script>
+    let folders = [{
+      name: 'This PC',
+      folders: [{
+          name: 'Local Disk (C:)',
+          folders: [{
+              name: 'Program Files'
+            },
+            {
+              name: 'Users'
+            },
+            {
+              name: 'Windows'
+            },
+          ]
+        },
+        {
+          name: 'Local Disk (D:)',
+          folders: [{
+              name: 'Program Files'
+            },
+            {
+              name: 'Users'
+            },
+            {
+              name: 'Windows'
+            },
+          ]
+        },
+        {
+          name: 'Local Disk (E:)'
+        }
+      ]
+    }];
+
+    const createFolderElements = (folder) => {
+      let folderElement = document.createElement('li');
+      folderElement.innerHTML = `<span>${folder.name}</span>`;
+
+      let innerFolders = document.createElement('ul');
+
+      if (folder.folders) {
+        folder.folders.forEach(innerFolder => {
+          let innerFolderElement = document.createElement('li');
+          innerFolderElement.innerHTML = `<span>${innerFolder.name}</span>`;
+
+          innerFolders.appendChild(innerFolderElement);
+        })
+      }
+
+      folderElement.appendChild(innerFolders);
+
+      return folderElement;
+    }
+
+    function loadFoldersStructure(el, folders) {
+      let foldersElement = document.createElement('ul');
+
+      folders.forEach(folder => {
+        let folderElement = createFolderElements(folder);
+
+        console.log(folderElement)
+
+        if (folder.folders) {
+          folder.folders.forEach(innerFolder => {
+            folderElement.appendChild(createFolderElements(innerFolder));
+          });
+        }
+
+        foldersElement.appendChild(folderElement);
+      });
+
+      // folders.forEach(folder => {
+      //   let folderElement = document.createElement('li');
+      //   folderElement.innerHTML = `<span>${folder.name}</span>`;
+
+      //   let innerFolders = document.createElement('ul');
+
+      //   folder.folders.forEach(innerFolder => {
+      //     let innerFolderElement = document.createElement('li');
+      //     innerFolderElement.innerHTML = `<span>${innerFolder.name}</span>`;
+
+      //     innerFolders.appendChild(innerFolderElement);
+      //   })
+
+      //   folderElement.appendChild(innerFolders);
+
+      //   foldersElement.appendChild(folderElement);
+      // });
+
+      el.appendChild(foldersElement);
+    }
+
+    loadFoldersStructure(document.getElementById('folders'), folders);
+  </script>
+</body>
+
+</html>
