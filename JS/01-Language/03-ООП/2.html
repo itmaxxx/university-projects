@@ -36,11 +36,28 @@
       }
     }
 
+    class RechargableMarker extends Marker {
+      constructor(color) {
+        super(color);
+      }
+
+      refill() {
+        this.fuel = 100;
+      }
+    }
+
     let marker1 = new Marker('rgba(255, 0, 0)');
     marker1.draw('Hello', document.getElementById('canvas'));
 
     let marker2 = new Marker('rgba(0, 255, 0)');
     marker2.draw(' world!', document.getElementById('canvas'));
+
+    let marker3 = new RechargableMarker('rgba(0, 0, 255)');
+    marker3.draw(' My name is Max', document.getElementById('canvas'));
+
+    console.log({ "Marker 3 fuel before refill()": marker3.fuel });
+    marker3.refill();
+    console.log({ "Marker 3 fuel after refill()": marker3.fuel });
   </script>
 </body>
 </html>

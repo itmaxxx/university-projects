@@ -10,7 +10,8 @@
   <div>
     <p>Print date: <span id="printDate"></span></p>
     <p>Is future: <span id="isFutureDate"></span></p>
-    <p>Is leap year?: <span id="isLeapDate"></span></p>
+    <p>Is leap year: <span id="isLeapDate"></span></p>
+    <p>Next day: <span id="nextDay"></span></p>
   </div>
 
   <script>
@@ -46,6 +47,10 @@
       isLeapYear() {
         return ((this.year % 4 == 0) && (this.year % 100 != 0)) || (this.year % 400 == 0);
       }
+
+      nextDay() {
+        this.day++;
+      }
     }
 
     let extendedDate = new ExtendedDate(2020, 12, 7);
@@ -56,6 +61,8 @@
     isFutureDate.innerText = extendedDate.isFuture();
     console.log(extendedDate.isLeapYear());
     isLeapDate.innerText = extendedDate.isLeapYear();
+    extendedDate.nextDay();
+    nextDay.innerText = extendedDate.print();
   </script>
 </body>
 </html>
