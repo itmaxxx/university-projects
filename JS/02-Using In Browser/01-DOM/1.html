@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div style="display: flex; flex-direction: column;">
+    <div>
+      <input type="radio" name="action" id="createNewElementAtTheEnd" value="1">	
+      <label for="createNewElementAtTheEnd">Добавить элемент в конец списка</label>
+      <input type="text" id="createNewElementAtTheEndText" value="Child element">
+    </div>
+    <div>
+      <input type="radio" name="action" id="insertElement" value="2" checked>
+      <label for="insertElement">Вставить элемент списка</label>
+      <input type="text" id="insertElementText" value="New element after element">
+    </div>
+
+    <button id="createNewList">Добавить новый список</button>
+  </div>
+  <div id="workspace">
+    
+  </div>
+
+  <script>
+    let selectedAction = 2;
+
+    function handleSetAction(e) {
+      console.log(e);
+
+      selectedAction = e.target.value;
+    }
+
+    function hangHandlers() {
+      let radios = document.getElementsByName('action');
+
+      radios.forEach(radio => radio.addEventListener('click', handleSetAction, false));
+    }
+
+    hangHandlers();
+
+    function handleChildElementClick(e) {
+      console.log('child');
+
+      e.stopPropagation();
+    }
+
+    function handleParentElementClick(e) {
+      console.log('parent');
+
+      e.stopPropagation();
+
+      if (selectedAction === 1) {
+        let element = document.createElement('li');
+        element.addEventListener('click', handleChildElementClick, false);
+        element.innerText = createNewElementAtTheEndText.value;
+
+        if (e.target.children[0]) {
+          e.target.children[0].appendChild(element);
+        } else {
+          let newList = document.createElement('ul');
+          newList.addEventListener('click', handleParentElementClick, false);
+          newList.appendChild(element);
+          
+          e.target.appendChild(newList);
+        }
+      }
+    }
+
+    function handleCreateNewList() {
+      let newList = document.createElement('ul');
+      newList.addEventListener('click', handleParentElementClick, false);
+      let child = document.createElement('li');
+      child.addEventListener('click', handleChildElementClick, false);
+      child.innerText = 'Новый список';
+      newList.appendChild(child);
+
+      workspace.appendChild(newList);
+    }
+    createNewList.addEventListener('click', handleCreateNewList, false);
+  </script>
+</body>
+</html>
