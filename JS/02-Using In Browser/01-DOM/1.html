@@ -9,14 +9,27 @@
 <body>
   <div style="display: flex; flex-direction: column;">
     <div>
-      <input type="radio" name="action" id="createNewElementAtTheEnd" value="1">	
+      <input type="radio" name="action" id="createNewElementAtTheEnd" value="1" checked>	
       <label for="createNewElementAtTheEnd">Добавить элемент в конец списка</label>
-      <input type="text" id="createNewElementAtTheEndText" value="Child element">
+      <input type="text" id="createNewElementAtTheEndText" value="Элемент списка в конце">
     </div>
     <div>
-      <input type="radio" name="action" id="insertElement" value="2" checked>
+      <input type="radio" name="action" id="insertElement" value="2">
       <label for="insertElement">Вставить элемент списка</label>
-      <input type="text" id="insertElementText" value="New element after element">
+      <input type="text" id="insertElementText" value="Вставленный элемент списка">
+    </div>
+    <div>
+      <input type="radio" name="action" id="editElement" value="3">
+      <label for="editElement">Изменить текст элемента списка</label>
+      <input type="text" id="editElementText" value="Новый текст элемента">
+    </div>
+    <div>
+      <input type="radio" name="action" id="addInnerElement" value="4">
+      <label for="addInnerElement">Добавить вложенный список</label>
+    </div>
+    <div>
+      <input type="radio" name="action" id="removeElement" value="5">
+      <label for="removeElement">Удалить элемент списка</label>
     </div>
 
     <button id="createNewList">Добавить новый список</button>
@@ -26,12 +39,12 @@
   </div>
 
   <script>
-    let selectedAction = 2;
+    let selectedAction = 1;
 
     function handleSetAction(e) {
-      console.log(e);
+      selectedAction = parseInt(e.target.value);
 
-      selectedAction = e.target.value;
+      console.log(selectedAction);
     }
 
     function hangHandlers() {
@@ -42,39 +55,47 @@
 
     hangHandlers();
 
-    function handleChildElementClick(e) {
-      console.log('child');
-
-      e.stopPropagation();
-    }
-
-    function handleParentElementClick(e) {
-      console.log('parent');
+    function handleElementClick(e) {
+      console.log('click');
 
       e.stopPropagation();
 
       if (selectedAction === 1) {
         let element = document.createElement('li');
-        element.addEventListener('click', handleChildElementClick, false);
+        element.addEventListener('click', handleElementClick, false);
         element.innerText = createNewElementAtTheEndText.value;
 
-        if (e.target.children[0]) {
-          e.target.children[0].appendChild(element);
+        e.target.parentNode.appendChild(element);
+      } else if (selectedAction === 2) {
+        let element = document.createElement('li');
+        element.addEventListener('click', handleElementClick, false);
+        element.innerText = insertElementText.value;
+
+        e.target.after(element);
+      } else if (selectedAction === 3) {
+        if (e.target?.firstChild?.nodeValue) {
+          e.target.firstChild.nodeValue = editElementText.value;
         } else {
-          let newList = document.createElement('ul');
-          newList.addEventListener('click', handleParentElementClick, false);
-          newList.appendChild(element);
-          
-          e.target.appendChild(newList);
+          e.target.innerText = editElementText.value;
         }
+      } else if (selectedAction === 4) {
+        let newList = document.createElement('ul');
+        let child = document.createElement('li');
+        child.addEventListener('click', handleElementClick, false);
+        child.innerText = 'Новый вложенный список';
+        newList.appendChild(child);
+
+        e.target.appendChild(newList);
+      } else if (selectedAction === 5) {
+        e.target.outerHTML = null;
       }
     }
 
     function handleCreateNewList() {
       let newList = document.createElement('ul');
-      newList.addEventListener('click', handleParentElementClick, false);
+      // newList.addEventListener('click', handleParentElementClick, false);
       let child = document.createElement('li');
-      child.addEventListener('click', handleChildElementClick, false);
+      child.addEventListener('click', handleElementClick, false);
       child.innerText = 'Новый список';
       newList.appendChild(child);
 
