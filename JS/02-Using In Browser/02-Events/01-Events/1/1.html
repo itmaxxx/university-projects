@@ -6,107 +6,80 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    li {
+      transition: all 0.3s;
+    }
+  </style>
 </head>
 
 <body>
-  <div id="folders">
-
-  </div>
+  <ul>
+    <li><span>Новый список</span></li>
+    <li><span>Новый текст элемента</span>
+      <ul>
+        <li><span>Новый вложенный список</span>
+        <li><span>Вставленный элемент списка</span>
+          <ul>
+            <li><span>Новый вложенный список</span></li>
+            <li><span>Элемент списка в конце</span></li>
+          </ul>
+        </li>
+        <li><span>Элемент списка в конце</span></li>
+      </ul>
+    </li>
+    <li><span>Вставленный элемент списка</span>
+      <ul>
+        <li><span>Новый вложенный список</span></li>
+        <li><span>Элемент списка в конце</span></li>
+      </ul>
+    </li>
+    <li><span>Элемент списка в конце</span></li>
+  </ul>
 
   <script>
-    let folders = [{
-      name: 'This PC',
-      folders: [{
-          name: 'Local Disk (C:)',
-          folders: [{
-              name: 'Program Files'
-            },
-            {
-              name: 'Users'
-            },
-            {
-              name: 'Windows'
-            },
-          ]
-        },
-        {
-          name: 'Local Disk (D:)',
-          folders: [{
-              name: 'Program Files'
-            },
-            {
-              name: 'Users'
-            },
-            {
-              name: 'Windows'
-            },
-          ]
-        },
-        {
-          name: 'Local Disk (E:)'
+    function handleToggle(e) {
+      e.stopPropagation();
+
+      let children = e.target.parentNode.children[1];
+
+      if (children) {
+        if (children.style.display !== 'none') {
+          children.style.display = 'none';
+        } else {
+          children.style.display = 'block';
         }
-      ]
-    }];
-
-    const createFolderElements = (folder) => {
-      let folderElement = document.createElement('li');
-      folderElement.innerHTML = `<span>${folder.name}</span>`;
-
-      let innerFolders = document.createElement('ul');
-
-      if (folder.folders) {
-        folder.folders.forEach(innerFolder => {
-          let innerFolderElement = document.createElement('li');
-          innerFolderElement.innerHTML = `<span>${innerFolder.name}</span>`;
-
-          innerFolders.appendChild(innerFolderElement);
-        })
       }
-
-      folderElement.appendChild(innerFolders);
-
-      return folderElement;
     }
 
-    function loadFoldersStructure(el, folders) {
-      let foldersElement = document.createElement('ul');
+    function hangClickHandlers() {
+      let elements = document.getElementsByTagName('li');
 
-      folders.forEach(folder => {
-        let folderElement = createFolderElements(folder);
+      Array.from(elements).forEach(element => {
+        element.addEventListener('click', handleToggle);
+      })
+    }
 
-        console.log(folderElement)
+    hangClickHandlers();
 
-        if (folder.folders) {
-          folder.folders.forEach(innerFolder => {
-            folderElement.appendChild(createFolderElements(innerFolder));
-          });
-        }
+    function handleOver(e) {
+      e.target.style.fontWeight = 600;
+    }
 
-        foldersElement.appendChild(folderElement);
+    function handleOut(e) {
+      e.target.style.fontWeight = 300;
+    }
+
+    function hangHoverHandlers() {
+      let elements = document.getElementsByTagName('span');
+
+      Array.from(elements).forEach(element => {
+        element.addEventListener('mouseover', handleOver);
+        element.addEventListener('mouseout', handleOut);
       });
-
-      // folders.forEach(folder => {
-      //   let folderElement = document.createElement('li');
-      //   folderElement.innerHTML = `<span>${folder.name}</span>`;
-
-      //   let innerFolders = document.createElement('ul');
-
-      //   folder.folders.forEach(innerFolder => {
-      //     let innerFolderElement = document.createElement('li');
-      //     innerFolderElement.innerHTML = `<span>${innerFolder.name}</span>`;
-
-      //     innerFolders.appendChild(innerFolderElement);
-      //   })
-
-      //   folderElement.appendChild(innerFolders);
-
-      //   foldersElement.appendChild(folderElement);
-      // });
-
-      el.appendChild(foldersElement);
     }
 
-    loadFoldersStructure(document.getElementById('folders'), folders);
+    hangHoverHandlers();
   </script>
 </body>
 

@@ -92,15 +92,9 @@
     ];
 
     const toggleButton = (btn) => {
-      console.log(btn, btn.getAttribute('class'), btn.getAttribute('class') !== null, btn.getAttribute('class') !== 'books-list__selected-book');
-
       if (btn.getAttribute('class') === null && btn.getAttribute('class') !== 'books-list__selected-book') {
-        console.log('on');
-
         btn.setAttribute('class', 'books-list__selected-book');
       } else {
-        console.log('off');
-
         btn.removeAttribute('class');
       }
     }
@@ -110,15 +104,22 @@
 
       if (allBooksBtns.length > 0) {
         Array.from(allBooksBtns).forEach(btn => {
-          // btn.setAttribute('class', '');
-          btn.setAttribute('class', '');
+          btn.removeAttribute('class');
         })
       }
     }
 
     const handleBookClick = (e, list) => {
-      if (!e.ctrlKey) {
+      let isActive = e.target.className.indexOf('books-list__selected-book') !== -1;
+
+      if (!e.ctrlKey && !e.shiftKey) {
         disableAllButtons(list);
+      } else if (e.shiftKey) {
+        console.log('shift');
+      }
+
+      if (isActive) {
+        e.target.setAttribute('class', 'books-list__selected-book');
       }
 
       toggleButton(e.target);
@@ -127,11 +128,12 @@
     const stopPropagation = (e, list) => {
       e.stopPropagation();
 
-      if (!e.ctrlKey) {
-        disableAllButtons(list);
-      }
+      event = {};
+      event.target = e.target.parentNode;
+      event.ctrlKey = e.ctrlKey;
+      event.shiftKey = e.shiftKey;
 
-      toggleButton(e.target.parentNode);
+      handleBookClick(event, list);
     }
 
     function fillBooks(list, books) {
