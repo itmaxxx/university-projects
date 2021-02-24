@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    }
+
+    .collapsable {
+      width: 400px;
+      margin: 20px;
+      background: #F9F9F9;
+      border-radius: 9px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .collapsable__item {
+      border-bottom: solid 1px #C6C6C830;
+    }
+
+    .collapsable__item-header {
+      overflow: hidden;
+    }
+
+    .collapsable__item-header button {
+      padding: 8px 16px;
+      width: 100%;
+      line-height: 22px;
+      font-size: 17px;
+      background: transparent;
+      border: none;
+      text-align: left;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .collapsable__item-header button:hover {
+      color: #007AFF;
+    }
+
+    .collapsable__item-header button:focus {
+      outline: none;
+      border: none;
+    }
+
+    .collapsable__item-content {
+      overflow: hidden;
+      transition: all 0.3s;
+      visibility: collapse;
+      max-height: 0px;
+    }
+
+    .collapsable__item-content-collapsed {
+      visibility: visible;
+      max-height: 400px;
+    }
+
+    .collapsable__item-content-wrap {
+      padding: 0px 16px 8px 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="collapsable">
+    <div class="collapsable__item">
+      <div class="collapsable__item-header">
+        <button>Header title</button>
+      </div>
+      <div class="collapsable__item-content collapsable__item-content-collapsed">
+        <div class="collapsable__item-content-wrap">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam possimus perspiciatis error, numquam similique consequatur placeat nemo corporis dolorum ipsa quam sequi eos odio nostrum cupiditate inventore porro! Eum, molestiae.</p>
+        </div>
+      </div>
+    </div>
+    <div class="collapsable__item">
+      <div class="collapsable__item-header">
+        <button>Header title</button>
+      </div>
+      <div class="collapsable__item-content">
+        <div class="collapsable__item-content-wrap">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam possimus perspiciatis error, numquam similique consequatur placeat nemo corporis dolorum ipsa quam sequi eos odio nostrum cupiditate inventore porro! Eum, molestiae.</p>
+        </div>
+      </div>
+    </div>
+    <div class="collapsable__item">
+      <div class="collapsable__item-header">
+        <button>Header title</button>
+      </div>
+      <div class="collapsable__item-content">
+        <div class="collapsable__item-content-wrap">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam possimus perspiciatis error, numquam similique consequatur placeat nemo corporis dolorum ipsa quam sequi eos odio nostrum cupiditate inventore porro! Eum, molestiae.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function handleCollapse(e) {
+      let contentElement = e.target.parentNode.parentNode.lastElementChild;
+
+      if (contentElement.className.indexOf('collapsable__item-content-collapsed') !== -1) {
+        contentElement.setAttribute('class', contentElement.className.replace(' collapsable__item-content-collapsed', ''));
+      } else {
+        let collapsedElements = document.getElementsByClassName('collapsable__item-content-collapsed');
+
+        Array.from(collapsedElements).forEach(element => {
+          element.setAttribute('class', element.className.replace(' collapsable__item-content-collapsed', ''));
+        })
+
+        contentElement.setAttribute('class', contentElement.className + ' collapsable__item-content-collapsed');
+      }
+    }
+
+    function hangHandlers() {
+      let btns = document.getElementsByTagName('button');
+    
+      Array.from(btns).forEach(btn => {
+        btn.addEventListener('click', handleCollapse);
+      });
+    }
+
+    hangHandlers();
+  </script>
+</body>
+</html>
