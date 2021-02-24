@@ -90,6 +90,7 @@
         title: '"Мастер и Маргарита" М. Булгаков'
       },
     ];
+    let lastBookId = -1;
 
     const toggleButton = (btn) => {
       if (btn.getAttribute('class') === null && btn.getAttribute('class') !== 'books-list__selected-book') {
@@ -110,15 +111,25 @@
     }
 
     const handleBookClick = (e, list) => {
+      let currentBookId = e.target.id;
+      let activeButtons = list.getElementsByClassName('books-list__selected-book');
       let isActive = e.target.className.indexOf('books-list__selected-book') !== -1;
 
       if (!e.ctrlKey && !e.shiftKey) {
         disableAllButtons(list);
       } else if (e.shiftKey) {
-        console.log('shift');
+        if (lastBookId !== -1) {
+          let btnsArray = Array.from(document.getElementsByTagName('button')).filter(book => currentBookId > lastBookId ? (book.id >= lastBookId && book.id < currentBookId) : book.id > currentBookId && book.id <= lastBookId);
+
+          btnsArray.forEach(btn => {
+            btn.setAttribute('class', 'books-list__selected-book');
+          })
+        }
       }
 
-      if (isActive) {
+      lastBookId = currentBookId;
+
+      if (isActive && activeButtons >= 2) {
         e.target.setAttribute('class', 'books-list__selected-book');
       }
 
@@ -137,9 +148,10 @@
     }
 
     function fillBooks(list, books) {
-      books.forEach(book => {
+      books.forEach((book, index) => {
         let bookBtn = document.createElement('button');
         bookBtn.onclick = (e) => handleBookClick(e, list);
+        bookBtn.id = index;
 
         let bookLi = document.createElement('li');
         bookLi.innerText = book.title;
@@ -151,8 +163,7 @@
       })
     }
 
-    let booksListElement = document.getElementById('books-list__books');
-    fillBooks(booksListElement, books);
+    fillBooks(document.getElementById('books-list__books'), books);
   </script>
 </body>
 
