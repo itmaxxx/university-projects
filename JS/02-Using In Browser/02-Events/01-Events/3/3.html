@@ -9,15 +9,81 @@
     * {
       padding: 0;
       margin: 0;
+      outline: none;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    }
+
+    .text-area {
+      margin: 20px;
+      padding: 20px;
+      width: fit-content;
+    }
+
+    .text-area__wrap {
+      position: relative;
+      overflow: hidden;
+      border-radius: 9px;
+    }
+
+    #text-area__field {
+      border-radius: 9px;
+      resize: none;
+      padding: 12px;
+      font-size: 17px;
+      line-height: 22px;
+      margin-bottom: -4px;
+      border: solid 1px #ddd;
+      width: 200px;
+      height: 200px;
+    }
+
+    #text-area__resize {
+      transform: rotateZ(45deg);
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      background: #ddd;
+      cursor: nw-resize;
+      height: 40px;
+      width: 40px;
     }
   </style>
 </head>
 <body>
   <div class="text-area">
     <div class="text-area__wrap">
-      <textarea class="text-area__field" cols="30" rows="10"></textarea>
+      <textarea id="text-area__field">Hello world!</textarea>
+      <div id="text-area__resize"></div>
     </div>
   </div>
+
+  <script>
+    let isMouseDown = false;
+    let textArea = document.getElementById('text-area__field');
+
+    function handleMouseDown(e) {
+      isMouseDown = true;
+    }
+
+    function handleMouseMove(e) {
+      if (isMouseDown) {
+        textArea.style.width = e.clientX - 60 + 'px';
+        textArea.style.height = e.clientY - 60 + 'px';
+      }
+    }
+
+    function handleMouseUp(e) {
+      isMouseDown = false;
+    }
+
+    function hangHandlers() {
+      document.getElementById('text-area__resize').addEventListener('mousedown', handleMouseDown);
+      document.getElementById('text-area__resize').addEventListener('mousemove', handleMouseMove);
+      document.getElementById('text-area__resize').addEventListener('mouseup', handleMouseUp);
+      document.getElementById('text-area__resize').addEventListener('mouseleave', handleMouseUp);
+    }
+
+    hangHandlers();
+  </script>
 </body>
 </html>

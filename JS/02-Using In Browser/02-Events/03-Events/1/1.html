@@ -11,6 +11,51 @@
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     }
+
+    .text-editor {
+      background: #F9F9F9;
+      width: fit-content;
+      height: fit-content;
+      border-radius: 9px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      margin: 20px;
+      overflow: hidden;
+    }
+
+    .text-editor__hints {
+      padding: 20px;
+      border-bottom: solid 1px #C6C6C830;
+    }
+
+    .text-editor__hint {
+      font-size: 17px;
+      line-height: 22px;
+      font-weight: 600;
+    }
+
+    #text-editor__text {
+      width: 400px;
+      height: 300px;
+      font-size: 17px;
+      line-height: 22px;
+      padding: 20px;
+    }
+
+    #text-editor__textarea {
+      width: 400px;
+      height: 300px;
+      resize: none;
+      font-size: 17px;
+      line-height: 22px;
+      border: none;
+      padding: 20px;
+      background: transparent;
+      caret-color: #007AFF;
+    }
+
+    #text-editor__textarea:focus {
+      outline: none;
+    }
   </style>
 </head>
 <body>
@@ -24,12 +69,36 @@
       </div>
     </div>
     <div class="text-editor__wrap">
-      <p id="text-editor__text">Hello world</p>
-      <textarea id="text-editor__textarea">Hello world</textarea>
+      <p id="text-editor__text" style="display: none;"><b>Hello world</b></p>
+      <textarea id="text-editor__textarea"><b>Hello world</b></textarea>
     </div>
   </div>
   <script>
-    
+    function handleKeyDown(e) {
+      if (e.code === "KeyS" && e.ctrlKey) {
+        e.preventDefault();
+
+        document.getElementById('text-editor__textarea').style.display = 'none';
+        document.getElementById('text-editor__text').style.display = 'block';
+      } else if (e.code === "KeyE" && e.ctrlKey) {
+        e.preventDefault();
+        
+        document.getElementById('text-editor__textarea').style.display = 'block';
+        document.getElementById('text-editor__text').style.display = 'none';
+      }
+    }
+
+    function handleTextChange(e) {
+      document.getElementById('text-editor__text').innerHTML = e.target.value;
+    }
+
+    function hangHandlers() {
+      document.getElementsByTagName('body')[0].addEventListener('keydown', handleKeyDown);
+
+      document.getElementById('text-editor__textarea').addEventListener('input', handleTextChange);
+    }
+
+    hangHandlers();
   </script>
 </body>
 </html>
