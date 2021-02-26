@@ -78,9 +78,8 @@
 
     function hangHandlers() {
       document.getElementById('text-area__resize').addEventListener('mousedown', handleMouseDown);
-      document.getElementById('text-area__resize').addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mousemove', handleMouseMove);
       document.getElementById('text-area__resize').addEventListener('mouseup', handleMouseUp);
-      document.getElementById('text-area__resize').addEventListener('mouseleave', handleMouseUp);
     }
 
     hangHandlers();
