@@ -1,8 +1,6 @@
 let rotatableObject;
 
 function handleMouseMove(e) {
-  console.log(e);
-
   rotatableObject.style.top = e.clientY - 20 + 'px';
   rotatableObject.style.left = e.clientX - 20 + 'px';
 }
