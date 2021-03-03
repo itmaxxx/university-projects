@@ -1,0 +1,33 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+.app {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#element {
+  width: 20px;
+  height: 20px;
+  background: #000;
+  position: absolute;
+  transform-origin: 20px 20px;
+  animation-timing-function: linear;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-name: rotate;
+}
+
+@keyframes rotate {
+  from {
+  transform: rotate(0deg);
+  }
+
+  to {
+  transform: rotate(359deg);
+  }
+}
