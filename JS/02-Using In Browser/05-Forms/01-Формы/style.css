@@ -3,3 +3,27 @@
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
+
+.booking__seats {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.seat {
+  cursor: pointer;
+}
+
+.seat:hover img {
+  filter: brightness(0.8);
+  opacity: 1;
+}
+
+.seat__taken {
+  filter: brightness(0.4);
+}
+
+.seat img {
+  height: 42px;
+  transform: rotate(-90deg);
+  transition: all 0.3s;
+}
