@@ -1,0 +1,34 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+.app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: #e8cab0;
+}
+
+.timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: fit-content;
+  width: fit-content;
+}
+
+.timer__wrap {
+  display: flex;
+}
+
+.timer__number {
+
+}
+
+.timer__number img {
+  filter: brightness(0.4);
+  margin: 10px;
+}
