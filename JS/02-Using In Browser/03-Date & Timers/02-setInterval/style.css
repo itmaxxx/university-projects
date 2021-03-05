@@ -24,10 +24,6 @@
   display: flex;
 }
 
-.timer__number {
-
-}
-
 .timer__number img {
   filter: brightness(0.4);
   margin: 10px;
