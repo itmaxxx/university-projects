@@ -1,0 +1,39 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+body {
+  overflow: hidden;
+}
+
+.gallery {
+  background: #e8cab0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery__wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery__image {
+  width: 300px;
+  cursor: pointer;
+  margin: 10px;
+  opacity: 0.8;
+  transition: all 0.3s;
+  box-shadow: 10px 10px rgba(0, 0, 0, 0);
+}
+
+.gallery__image:hover {
+  opacity: 1;
+  box-shadow: 10px 10px #d2b69d;
+}
