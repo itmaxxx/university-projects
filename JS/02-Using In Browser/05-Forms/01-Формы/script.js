@@ -80,6 +80,10 @@ function loadSeats({ seats, spaces }) {
       let img = document.createElement('img');
       img.id = `${x}_${y}`;
       !seats[y][x] ? img.src = 'img/seat.png' : img.src = 'img/seat-busy.png'
+
+      seats[y][x] ? img.style.filter = 'grayscale(1)' : null
+      seats[y][x] ? img.style.opacity = '0.6' : null
+
       seat.appendChild(img);
   
       seatsEl.appendChild(seat);
