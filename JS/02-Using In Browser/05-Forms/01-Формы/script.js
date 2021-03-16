@@ -7,7 +7,7 @@ const directions = [
 const schedule = [
   {
     direction: 0,
-    date: '11.3.2021',
+    date: '14.3.2021',
     seats: [
       [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
       [ 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 ],
@@ -18,20 +18,21 @@ const schedule = [
   },
   {
     direction: 1,
-    date: '11.3.2021',
+    date: '13.3.2021',
     seats: [
-      [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-      [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 ],
-      [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 1 ],
-      [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+      [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+      [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0 ],
+      [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0 ],
+      [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0 ],
+      [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0 ],
+      [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
     ],
-    spaces: [2]
+    spaces: [2, 4]
   }
 ];
 let selectedDirection = 0;
 let selectedDate = null;
 let selectedSeats = [];
-let ticketsList = [];
 
 function handleSeatClick(e) {
   if (e.target.src) {
@@ -79,6 +80,10 @@ function loadSeats({ seats, spaces }) {
       let img = document.createElement('img');
       img.id = `${x}_${y}`;
       !seats[y][x] ? img.src = 'img/seat.png' : img.src = 'img/seat-busy.png'
+
+      seats[y][x] ? img.style.filter = 'grayscale(1)' : null
+      seats[y][x] ? img.style.opacity = '0.6' : null
+
       seat.appendChild(img);
   
       seatsEl.appendChild(seat);
@@ -132,7 +137,7 @@ function getSchedule() {
       seats[y] = [];
       
       for (let x = 0; x < 10; x++) {
-        seats[y].push(0);
+        seats[y].push(Math.floor(Math.random() * Math.floor(2)));
       }
     }
 
@@ -167,12 +172,14 @@ function handleBook() {
         console.log(ss, selectedSchedule.seats);
         selectedSchedule.seats[ss.y][ss.x] = 1;
         
-        // TODO add each ticket to tickets list
-        
-      });
-    }
+        let ticket = document.createElement('div');
+        ticket.innerText = `${directions[selectedDirection]} ${selectedDate} Seat №${ss.x}${ss.y}  `;
 
-    console.log(schedule);
+        tickets.appendChild(ticket);
+      });
+
+      selectedSeats = [];
+    }
   }
 }
 
