@@ -1,7 +1,9 @@
+const SIZE = 400;
+
 let img = new Image();
 img.src = './cface.png';
 
-function clockPainting() {
+function paintClock() {
   let now = new Date();
   let sec = now.getSeconds();
   let min = now.getMinutes();
@@ -9,71 +11,66 @@ function clockPainting() {
 
   let ctx = document.getElementById("clock").getContext("2d");
 
-  ctx.clearRect(0, 0, 300, 300);
+  ctx.restore();
 
-  ctx.drawImage(img, 0, 0, 300, 300);
-  
-  ctx.restore(); // достаем последний сохраненный контекст из стэка
+  ctx.clearRect(0, 0, SIZE, SIZE);
+
+  // Рисуем часы
+  ctx.drawImage(img, 0, 0, SIZE, SIZE);
   ctx.save();
 
-  ctx.translate(150, 150);
-  ctx.scale(0.4, 0.4);
+  ctx.translate(SIZE / 2, SIZE / 2);
   ctx.rotate(-Math.PI / 2);
-
+  
+  // Часовая стрелка
   ctx.strokeStyle = "black";
   ctx.fillStyle = "black";
   ctx.lineWidth = 8;
 
   ctx.save();
-  ctx.restore(); // достаем последний сохраненный контекст из стэка
 
-  ctx.save();
-  // рисуем часовую стрелку, вращая холст
   ctx.rotate((Math.PI / 6) * hr +
       (Math.PI / 360) * min +
-      (Math.PI / 21600) * sec);
+      (Math.PI / (3600 * 6)) * sec);
   ctx.lineWidth = 10;
 
   ctx.beginPath();
-  ctx.moveTo(-20, 0);
+  ctx.moveTo(-10, 0);
 
-  // линия почти до часовых меток
-  ctx.lineTo(150, 0);
+  ctx.lineTo(SIZE * 0.15, 0);
   ctx.stroke();
   ctx.restore();
 
   ctx.save();
 
-  // минутная стрелка
+  // Минутная стрелка
   ctx.rotate((Math.PI / 30 * min) +
       (Math.PI / 1800) * sec);
   ctx.lineWidth = 6;
 
   ctx.beginPath();
-  ctx.moveTo(-28, 0);
-  ctx.lineTo(200, 0);
+  ctx.moveTo(-20, 0);
+  ctx.lineTo(SIZE * 0.25, 0);
   ctx.stroke();
   ctx.restore();
 
   ctx.save();
 
-  // секундная стрелка
+  // Секундная стрелка
   ctx.rotate(sec * Math.PI / 30);
-  ctx.strokeStyle = "#D40000"; // цвет контура
-  ctx.fillStyle = "#D40000";
+  ctx.strokeStyle = "red";
   ctx.lineWidth = 2;
 
   ctx.beginPath();
   ctx.moveTo(-30, 0);
-  ctx.lineTo(240, 0);
+  ctx.lineTo(SIZE * 0.3, 0);
   ctx.stroke();
   ctx.restore();
 
-  ctx.restore();
 }
 
 img.addEventListener("load", function() {
   window.onload = function() {
-    setInterval(clockPainting, 1000);
+    setInterval(paintClock, 1000);
   }
 }, false);
