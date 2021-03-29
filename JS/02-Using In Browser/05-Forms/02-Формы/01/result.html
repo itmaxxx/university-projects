@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Result</title>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+
+    table tr td {
+      border: solid 1px #ddd;
+      padding: 5px 10px;
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <tr>
+      <td>Логин</td>
+      <td id="username"></td>
+    </tr>
+    <tr>
+      <td>Полное имя</td>
+      <td id="fullname"></td>
+    </tr>
+    <tr>
+      <td>Пол</td>
+      <td id="gender"></td>
+    </tr>
+    <tr>
+      <td>Специализация</td>
+      <td id="specializations"></td>
+    </tr>
+    <tr>
+      <td>Должность</td>
+      <td id="position"></td>
+    </tr>
+  </table>
+
+  <script>
+    const user = window.user;
+
+    document.getElementById('username').innerText = user.username;
+    document.getElementById('fullname').innerText = user.fullname;
+    document.getElementById('gender').innerText = user.gender === 'М' ? 'Мужской' : 'Женский';
+    document.getElementById('specializations').innerText = user.specializations;
+    document.getElementById('position').innerText = user.position;
+  </script>
+</body>
+</html>

@@ -1,40 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Forms</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <h1>Регистрация</h1>
-  <form>
-    <label for="username">
-      Логин:
-      <input type="text" id="username">
-    </label>
-    <label for="password">
-      Пароль:
-      <input type="password" id="password">
-    </label>
-    <label for="repeatpassword">
-      Подтверждение:
-      <input type="password" id="repeatpassword">
-    </label>
-    <label for="fullname">
-      Полное имя
-      <input type="text" id="fullname">
-    </label>
-    Выберите пол:
-    <label for="man">
-      М
-      <input type="radio" id="man" name="gender" value="М">
-    </label>
-    <label for="woman">
-      Ж
-      <input type="radio" id="woman" name="gender" value="Ж">
-    </label>
-  </form>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Forms</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <form>
+      <h1>Регистрация</h1>
+      <table>
+        <tr>
+          <td>
+            <label for="username"> Логин: </label>
+          </td>
+          <td>
+            <input type="text" id="username" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="password"> Пароль: </label>
+          </td>
+          <td>
+            <input type="password" id="password" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="repeatpassword"> Подтверждение: </label>
+          </td>
+          <td>
+            <input type="password" id="repeatpassword" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="fullname"> Полное имя </label>
+          </td>
+          <td>
+            <input type="text" id="fullname" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label>Выберите пол:</label>
+          </td>
+          <td>
+            <input
+              type="radio"
+              id="man"
+              name="gender"
+              value="М"
+              checked
+              />
+            <label for="man"> М </label>
+            <input
+              type="radio"
+              id="woman"
+              name="gender"
+              value="Ж"
+              />
+            <label for="woman"> Ж </label>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label>Специализация</label>
+          </td>
+          <td id="specialization">
+            <input
+              type="checkbox"
+              name="specialization"
+              value="Дизайнер"
+              checked>
+            </input>
+            Дизайн <br/>
+            <input
+              type="checkbox"
+              name="specialization"
+              value="Программист">
+            </input>
+            Программирование <br/>
+            <input
+              type="checkbox"
+              name="specialization"
+              value="Администратор"
+            />
+            </input>
+            Администрирование <br/>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="position"> Должность </label>
+          </td>
+          <td>
+            <select id="position" size="1">
+              <option disabled>--- Выберите ----</option>
+              <option value="Директор">Директор</option>
+              <option value="Заместитель директора">Заместитель директора</option>
+              <option value="Руководитель проекта">Руководитель проекта</option>
+              <option value="Начальник отдела">Начальник отдела</option>
+              <option value="Программист">Программист</option>
+              <option value="Дизайнер">Дизайнер</option>
+              <option value="Консультант">Консультант</option>
+              <option value="Служащий">Служащий</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+
+      <button id="register">Регистрация</button>
+      <button id="reset">Сброс</button>
+    </form>
+
+    <script src="./script.js"></script>
+  </body>
 </html>
