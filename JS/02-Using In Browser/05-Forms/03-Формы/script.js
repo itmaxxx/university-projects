@@ -62,7 +62,7 @@ function register() {
   if (list_work?.value) {
     document.cookie = `list_work=${list_work.value}`;
   } else {
-    return alert('Выберите иностранные языки');
+    return alert('Выберите сферу деятельности');
   }
 
   if (e_mail.value.length > 3) {
@@ -117,6 +117,10 @@ function init() {
     if (getCookie(`check_languages_${i + 1}`)) {
       document.querySelector(`input[name=check_languages_${i + 1}]`).checked = true;
     }
+  }
+
+  if (getCookie('list_work')) {
+    document.querySelector('select[name=list_work]').value = getCookie('list_work');
   }
 
   if (getCookie('e_mail')) {
