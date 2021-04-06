@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>String generator</title>
+</head>
+<body>
+  <div class="string_generator">
+    <h1>Random String Generator</h1>
+    <form method="post" id="form">
+        <p>String should be <input id="length" type="text" value="10"></input> characters long</p>
+
+        <p>Which characters are allowed to occur in the strings</p>
+
+        <input type="checkbox" id="numeric" checked>Numeric digits (0-9)<br>
+        <input type="checkbox" id="uppercase">Uppercase letters (A-Z)<br>
+        <input type="checkbox" id="lowercase">Lowercase letters (a-z)<br>
+
+        <br>
+
+        <input type="submit" id="register" value="Generate">
+
+        <hr>
+
+        <p><b>Result: </b><input id="result" type="text"></input></p>
+    </form>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+
