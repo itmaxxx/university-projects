@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="col-12 col-md-6">
+      <div class="col-12">
+        <div class="input-group mb-3 justify-content-end">
+          <div class="input-group-text" style="white-space: pre; background: #fff;">Hello, <span id="email">asd</span>!</div>
+          <button type="button" class="btn btn-danger" id="exit">Exit</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-center mb-3">User info</h5>
+          
+          <form class="row g-3" id="userInfoForm">
+            <div class="col-12 col-md-6">
+              <label for="firstName" class="form-label">First Name</label>
+              <input type="text" class="form-control" id="firstName" required>
+              <div class="invalid-feedback" id="invalidFirstName">
+                Invalid first name
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <label for="lastName" class="form-label">Last Name</label>
+              <input type="text" class="form-control" id="lastName" required>
+              <div class="invalid-feedback" id="invalidLastName">
+                Invalid
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <label for="yearOfBirth" class="form-label">Year of birth</label>
+              <input type="text" class="form-control" id="yearOfBirth" required>
+              <div class="invalid-feedback" id="invalidYearOfBirth">
+                Invalid
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <label for="gender" class="form-label">Gender</label>
+              <select class="form-select" aria-label="Default select example" id="gender">
+                <option value="male" selected>male</option>
+                <option value="female">female</option>
+                <option value="helicopter">helicopter</option>
+              </select>
+            </div>
+            <div class="col-12 col-md-6">
+              <label for="phoneNumber" class="form-label">Phone number</label>
+              <input type="text" class="form-control" id="phoneNumber">
+              <div class="invalid-feedback" id="invalidPhoneNumber">
+                Invalid
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <label for="skype" class="form-label">Skype</label>
+              <input type="text" class="form-control" id="skype">
+              <div class="invalid-feedback" id="invalidSkype">
+                Invalid symbol, only letters, digits, '-' and '.' allowed
+              </div>
+            </div>
+
+            <div class="col-12 mt-4">
+              <button class="btn btn-primary col-12" id="save" type="submit">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="profile.js"></script>
+</body>
+</html>
