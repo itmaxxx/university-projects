@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Calculator";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Calculator</h1>
+    <form action="~/Home/Calc" method="get" style="display: flex; width: 100%; justify-content: center;">
+        <div style="display: flex; width: 450px;">
+            <input class="form-control" type="number" name="n1" placeholder="Первое число" />
+            <div class="btn-group ml-1 mr-1" role="group" aria-label="Операция">
+                <button class="btn btn-dark" type="submit" name="operation" value="plus">+</button>
+                <button class="btn btn-dark" type="submit" name="operation" value="minus">-</button>
+                <button class="btn btn-dark" type="submit" name="operation" value="multiply">*</button>
+                <button class="btn btn-dark" type="submit" name="operation" value="divide">/</button>
+            </div>
+            <input class="form-control" type="number" name="n2" placeholder="Второе число" />
+         </div>
+    </form>
+</div>

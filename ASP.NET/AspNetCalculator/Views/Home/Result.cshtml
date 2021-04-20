@@ -1,0 +1,8 @@
+﻿@{
+    ViewData["Title"] = "Result";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewData["N1"] @ViewData["ActionSymbol"] @ViewData["N2"] = @ViewData["Result"]</h1>
+    <a class="btn btn-primary" asp-area="" asp-controller="Home" asp-action="Index">Calculate one more</a>
+</div>
