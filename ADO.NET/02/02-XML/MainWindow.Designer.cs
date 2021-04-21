@@ -46,6 +46,7 @@ namespace _02_XML
             this.gemsColor.Name = "gemsColor";
             this.gemsColor.Size = new System.Drawing.Size(182, 33);
             this.gemsColor.TabIndex = 0;
+            this.gemsColor.SelectionChangeCommitted += new System.EventHandler(this.gemsColor_SelectionChangeCommitted);
             // 
             // label1
             // 
