@@ -116,7 +116,7 @@ namespace _02_XML
             this.Controls.Add(this.label1);
             this.Controls.Add(this.gemsColor);
             this.Name = "MainWindow";
-            this.Text = "MainWindow";
+            this.Text = "Gems";
             ((System.ComponentModel.ISupportInitialize)(this.gemsView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

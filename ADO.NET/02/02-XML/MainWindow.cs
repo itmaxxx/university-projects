@@ -9,69 +9,45 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 using System.Linq;
+using System.Xml.Linq;
 
 namespace _02_XML
 {
     public partial class MainWindow : Form
     {
-        private XmlDocument xDoc = new XmlDocument();
-        private XmlElement xRoot;
+        private XElement gems;
 
         private void LoadColors()
         {
-            // Load colors
-
             HashSet<string> gemsColors = new HashSet<string>();
 
             gemsColors.Add("");
 
-            XmlElement xRoot = xDoc.DocumentElement;
-            foreach (XmlNode xnode in xRoot)
+            IEnumerable<XElement> allGemsColors = from item in gems.Elements()
+                                                  select item.Element("color");
+
+            foreach (string color in allGemsColors)
             {
-                var gemSpecs = new List<string>();
-
-                foreach (XmlNode childnode in xnode.ChildNodes)
-                {
-                    if (childnode.Name == "color")
-                    {
-                        gemsColors.Add(childnode.InnerText);
-                    }
-
-                    gemSpecs.Add(childnode.InnerText);
-                }
-
-                gemsView.Rows.Add(gemSpecs.ToArray());
+                gemsColors.Add(color);
             }
 
-            gemsColor.DataSource = gemsColors.ToList();
+            gemsColor.DataSource = gemsColors.ToArray();
         }
 
         private void LoadGemsByColor(string color)
         {
             gemsView.Rows.Clear();
 
-            foreach (XmlNode xnode in xRoot)
+            IEnumerable<XElement> gemsByColor = from item in gems.Elements()
+                                                where (string)item.Element("color") == color
+                                                select item;
+
+            foreach (var gem in gemsByColor)
             {
-                bool rightColor = color == "" ? true : false;
-                var gemSpecs = new List<string>();
+                IEnumerable<string> gemSpecs = from item in gem.Elements()
+                                               select item.Value;
 
-                foreach (XmlNode childnode in xnode.ChildNodes)
-                {
-                    if (childnode.Name == "color")
-                    {
-                        if (childnode.InnerText == color)
-                        {
-                            rightColor = true;
-                        }
-                    }
-
-                    gemSpecs.Add(childnode.InnerText);
-                }
-
-                if (rightColor)
-                {
-                    gemsView.Rows.Add(gemSpecs.ToArray());
-                }
+                gemsView.Rows.Add(gemSpecs.ToArray());
             }
         }
 
@@ -81,8 +57,11 @@ namespace _02_XML
 
             // Load XML
 
-            xDoc.Load(Path.Combine(Application.StartupPath.ToString(), "./Gems.xml"));
-            xRoot = xDoc.DocumentElement;
+            var filename = "Gems.xml";
+            var currentDirectory = Directory.GetCurrentDirectory();
+            var gemsFile = Path.Combine(currentDirectory, filename);
+
+            gems = XElement.Load(gemsFile);
 
             // Load colors
 
