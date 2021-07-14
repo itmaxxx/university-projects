@@ -18,7 +18,7 @@ namespace ProductsCatalog.Controllers
             return View(products);
         }
 
-        // GET: Products/Details/5
+        // GET: Products/Details/[id]
         public ActionResult Details(int id)
         {
             Product product = products.ProductsList.Find(p => p.Id == id);
