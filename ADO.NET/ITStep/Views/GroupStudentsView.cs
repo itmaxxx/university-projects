@@ -73,10 +73,16 @@ namespace ITStep.Views
 			textBoxSelectedStudentLastName.Text = student.LastName;
 
 			comboBoxStudentLessons.DataSource = null;
-			comboBoxStudentLessons.SelectedItem = string.Empty;
 			listBoxLessonMarks.DataSource = null;
 
-			presenter.GetStudentLessonsWithMarksPresent(student);
+			if (checkBoxLessonsWithMarks.Checked)
+			{
+				presenter.GetStudentLessonsWithMarksPresent(student);
+			}
+			else
+			{
+				presenter.GetAllLessons();
+			}
 		}
 
 		private Lesson getSelectedLesson()
@@ -93,14 +99,24 @@ namespace ITStep.Views
 
 		private void comboBoxStudentLessons_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			presenter.GetStudentLessonMarks(getSelectedStudent(), getSelectedLesson());
+			var lesson = getSelectedLesson();
+
+			if (lesson != null)
+			{
+				presenter.GetStudentLessonMarks(getSelectedStudent(), lesson);
+			}
 		}
 
 		private void buttonAddMark_Click(object sender, EventArgs e)
 		{
-			presenter.AddStudentMark(getSelectedStudent(), getSelectedLesson(), int.Parse(textBoxMark.Text));
+			var lesson = getSelectedLesson();
 
-			textBoxMark.Text = string.Empty;
+			if (lesson != null)
+			{
+				presenter.AddStudentMark(getSelectedStudent(), getSelectedLesson(), int.Parse(textBoxMark.Text));
+
+				textBoxMark.Text = string.Empty;
+			}
 		}
 
 		private Mark getSelectedMark()
@@ -122,6 +138,21 @@ namespace ITStep.Views
 				{
 					presenter.DeleteStudentMark(getSelectedStudent(), getSelectedLesson(), getSelectedMark());
 				}
+			}
+		}
+
+		private void checkBoxLessonsWithMarks_CheckedChanged(object sender, EventArgs e)
+		{
+			comboBoxStudentLessons.DataSource = null;
+			listBoxLessonMarks.DataSource = null;
+
+			if (checkBoxLessonsWithMarks.Checked)
+			{
+				presenter.GetStudentLessonsWithMarksPresent(getSelectedStudent());
+			}
+			else
+			{
+				presenter.GetAllLessons();
 			}
 		}
 	}

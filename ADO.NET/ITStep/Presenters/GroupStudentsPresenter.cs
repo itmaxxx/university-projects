@@ -38,6 +38,11 @@ namespace ITStep.Presenters
 			view.SetGroupStudentLessons(StudentsService.GetStudentLessonsWithMarksPresent(student));
 		}
 
+		public void GetAllLessons()
+		{
+			view.SetGroupStudentLessons(LessonsService.GetAllLessons());
+		}
+
 		public void GetStudentLessonMarks(Student student, Lesson lesson)
 		{
 			view.SetGroupStudentLessonMarks(StudentsService.GetStudentLessonMarks(student, lesson));

@@ -87,6 +87,7 @@
     <Compile Include="Presenters\GroupsPresenter.cs" />
     <Compile Include="Presenters\GroupStudentsPresenter.cs" />
     <Compile Include="Services\GroupsService.cs" />
+    <Compile Include="Services\LessonsService.cs" />
     <Compile Include="Services\MarksService.cs" />
     <Compile Include="Services\StudentsService.cs" />
     <Compile Include="Models\DatabaseContext.cs" />

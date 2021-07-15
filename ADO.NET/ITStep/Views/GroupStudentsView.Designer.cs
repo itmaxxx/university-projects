@@ -47,6 +47,7 @@ namespace ITStep.Views
 			this.label4 = new System.Windows.Forms.Label();
 			this.textBoxMark = new System.Windows.Forms.TextBox();
 			this.buttonAddMark = new System.Windows.Forms.Button();
+			this.checkBoxLessonsWithMarks = new System.Windows.Forms.CheckBox();
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.groupBoxGroup.SuspendLayout();
@@ -129,6 +130,7 @@ namespace ITStep.Views
 			// 
 			// groupBoxGroup
 			// 
+			this.groupBoxGroup.Controls.Add(this.checkBoxLessonsWithMarks);
 			this.groupBoxGroup.Controls.Add(this.buttonAddMark);
 			this.groupBoxGroup.Controls.Add(this.textBoxMark);
 			this.groupBoxGroup.Controls.Add(this.label4);
@@ -140,7 +142,7 @@ namespace ITStep.Views
 			this.groupBoxGroup.Controls.Add(this.textBoxSelectedStudentFirstName);
 			this.groupBoxGroup.Location = new System.Drawing.Point(327, 12);
 			this.groupBoxGroup.Name = "groupBoxGroup";
-			this.groupBoxGroup.Size = new System.Drawing.Size(264, 286);
+			this.groupBoxGroup.Size = new System.Drawing.Size(264, 277);
 			this.groupBoxGroup.TabIndex = 7;
 			this.groupBoxGroup.TabStop = false;
 			this.groupBoxGroup.Text = "Student";
@@ -183,9 +185,9 @@ namespace ITStep.Views
 			this.label3.AutoSize = true;
 			this.label3.Location = new System.Drawing.Point(6, 101);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(41, 13);
+			this.label3.Size = new System.Drawing.Size(46, 13);
 			this.label3.TabIndex = 4;
-			this.label3.Text = "Lesson";
+			this.label3.Text = "Lessons";
 			// 
 			// listBoxLessonMarks
 			// 
@@ -221,6 +223,19 @@ namespace ITStep.Views
 			this.buttonAddMark.Text = "Add mark";
 			this.buttonAddMark.UseVisualStyleBackColor = true;
 			this.buttonAddMark.Click += new System.EventHandler(this.buttonAddMark_Click);
+			// 
+			// checkBoxLessonsWithMarks
+			// 
+			this.checkBoxLessonsWithMarks.AutoSize = true;
+			this.checkBoxLessonsWithMarks.Checked = true;
+			this.checkBoxLessonsWithMarks.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBoxLessonsWithMarks.Location = new System.Drawing.Point(58, 100);
+			this.checkBoxLessonsWithMarks.Name = "checkBoxLessonsWithMarks";
+			this.checkBoxLessonsWithMarks.Size = new System.Drawing.Size(114, 17);
+			this.checkBoxLessonsWithMarks.TabIndex = 9;
+			this.checkBoxLessonsWithMarks.Text = "lessons with marks";
+			this.checkBoxLessonsWithMarks.UseVisualStyleBackColor = true;
+			this.checkBoxLessonsWithMarks.CheckedChanged += new System.EventHandler(this.checkBoxLessonsWithMarks_CheckedChanged);
 			// 
 			// GroupStudentsView
 			// 
@@ -262,5 +277,6 @@ namespace ITStep.Views
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Button buttonAddMark;
 		private System.Windows.Forms.TextBox textBoxMark;
+		private System.Windows.Forms.CheckBox checkBoxLessonsWithMarks;
 	}
 }
