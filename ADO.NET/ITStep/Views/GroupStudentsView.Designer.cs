@@ -29,6 +29,7 @@ namespace ITStep.Views
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GroupStudentsView));
 			this.buttonAddGroupStudent = new System.Windows.Forms.Button();
 			this.listBoxGroupStudents = new System.Windows.Forms.ListBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -37,7 +38,7 @@ namespace ITStep.Views
 			this.textBoxStudentFirstName = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.groupBoxGroup = new System.Windows.Forms.GroupBox();
+			this.groupBoxStudent = new System.Windows.Forms.GroupBox();
 			this.textBoxSelectedStudentLastName = new System.Windows.Forms.TextBox();
 			this.buttonUpdateStudent = new System.Windows.Forms.Button();
 			this.textBoxSelectedStudentFirstName = new System.Windows.Forms.TextBox();
@@ -50,7 +51,7 @@ namespace ITStep.Views
 			this.checkBoxLessonsWithMarks = new System.Windows.Forms.CheckBox();
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
-			this.groupBoxGroup.SuspendLayout();
+			this.groupBoxStudent.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// buttonAddGroupStudent
@@ -128,24 +129,24 @@ namespace ITStep.Views
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Students";
 			// 
-			// groupBoxGroup
+			// groupBoxStudent
 			// 
-			this.groupBoxGroup.Controls.Add(this.checkBoxLessonsWithMarks);
-			this.groupBoxGroup.Controls.Add(this.buttonAddMark);
-			this.groupBoxGroup.Controls.Add(this.textBoxMark);
-			this.groupBoxGroup.Controls.Add(this.label4);
-			this.groupBoxGroup.Controls.Add(this.listBoxLessonMarks);
-			this.groupBoxGroup.Controls.Add(this.label3);
-			this.groupBoxGroup.Controls.Add(this.comboBoxStudentLessons);
-			this.groupBoxGroup.Controls.Add(this.textBoxSelectedStudentLastName);
-			this.groupBoxGroup.Controls.Add(this.buttonUpdateStudent);
-			this.groupBoxGroup.Controls.Add(this.textBoxSelectedStudentFirstName);
-			this.groupBoxGroup.Location = new System.Drawing.Point(327, 12);
-			this.groupBoxGroup.Name = "groupBoxGroup";
-			this.groupBoxGroup.Size = new System.Drawing.Size(264, 277);
-			this.groupBoxGroup.TabIndex = 7;
-			this.groupBoxGroup.TabStop = false;
-			this.groupBoxGroup.Text = "Student";
+			this.groupBoxStudent.Controls.Add(this.checkBoxLessonsWithMarks);
+			this.groupBoxStudent.Controls.Add(this.buttonAddMark);
+			this.groupBoxStudent.Controls.Add(this.textBoxMark);
+			this.groupBoxStudent.Controls.Add(this.label4);
+			this.groupBoxStudent.Controls.Add(this.listBoxLessonMarks);
+			this.groupBoxStudent.Controls.Add(this.label3);
+			this.groupBoxStudent.Controls.Add(this.comboBoxStudentLessons);
+			this.groupBoxStudent.Controls.Add(this.textBoxSelectedStudentLastName);
+			this.groupBoxStudent.Controls.Add(this.buttonUpdateStudent);
+			this.groupBoxStudent.Controls.Add(this.textBoxSelectedStudentFirstName);
+			this.groupBoxStudent.Location = new System.Drawing.Point(327, 12);
+			this.groupBoxStudent.Name = "groupBoxStudent";
+			this.groupBoxStudent.Size = new System.Drawing.Size(264, 277);
+			this.groupBoxStudent.TabIndex = 7;
+			this.groupBoxStudent.TabStop = false;
+			this.groupBoxStudent.Text = "Student";
 			// 
 			// textBoxSelectedStudentLastName
 			// 
@@ -239,20 +240,24 @@ namespace ITStep.Views
 			// 
 			// GroupStudentsView
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(599, 450);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
-			this.Controls.Add(this.groupBoxGroup);
+			this.Controls.Add(this.groupBoxStudent);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.MaximizeBox = false;
 			this.Name = "GroupStudentsView";
+			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Group students";
 			this.Load += new System.EventHandler(this.GroupStudentsView_Load);
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
 			this.groupBox1.ResumeLayout(false);
-			this.groupBoxGroup.ResumeLayout(false);
-			this.groupBoxGroup.PerformLayout();
+			this.groupBoxStudent.ResumeLayout(false);
+			this.groupBoxStudent.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -265,7 +270,7 @@ namespace ITStep.Views
 		private System.Windows.Forms.TextBox textBoxStudentFirstName;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.GroupBox groupBox1;
-		private System.Windows.Forms.GroupBox groupBoxGroup;
+		private System.Windows.Forms.GroupBox groupBoxStudent;
 		private System.Windows.Forms.Button buttonUpdateStudent;
 		private System.Windows.Forms.TextBox textBoxSelectedStudentFirstName;
 		private System.Windows.Forms.TextBox textBoxStudentLastName;

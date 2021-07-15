@@ -29,6 +29,7 @@ namespace ITStep.Views
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GroupsView));
 			this.buttonAddGroup = new System.Windows.Forms.Button();
 			this.listBoxGroups = new System.Windows.Forms.ListBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -38,6 +39,7 @@ namespace ITStep.Views
 			this.groupBoxGroup = new System.Windows.Forms.GroupBox();
 			this.buttonUpdate = new System.Windows.Forms.Button();
 			this.textBoxSelectedGroupName = new System.Windows.Forms.TextBox();
+			this.buttonGroupDetails = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBoxGroup.SuspendLayout();
@@ -103,11 +105,12 @@ namespace ITStep.Views
 			// 
 			// groupBoxGroup
 			// 
+			this.groupBoxGroup.Controls.Add(this.buttonGroupDetails);
 			this.groupBoxGroup.Controls.Add(this.buttonUpdate);
 			this.groupBoxGroup.Controls.Add(this.textBoxSelectedGroupName);
 			this.groupBoxGroup.Location = new System.Drawing.Point(327, 12);
 			this.groupBoxGroup.Name = "groupBoxGroup";
-			this.groupBoxGroup.Size = new System.Drawing.Size(264, 78);
+			this.groupBoxGroup.Size = new System.Drawing.Size(264, 103);
 			this.groupBoxGroup.TabIndex = 4;
 			this.groupBoxGroup.TabStop = false;
 			this.groupBoxGroup.Text = "Group";
@@ -129,6 +132,16 @@ namespace ITStep.Views
 			this.textBoxSelectedGroupName.Size = new System.Drawing.Size(252, 20);
 			this.textBoxSelectedGroupName.TabIndex = 0;
 			// 
+			// buttonGroupDetails
+			// 
+			this.buttonGroupDetails.Location = new System.Drawing.Point(6, 74);
+			this.buttonGroupDetails.Name = "buttonGroupDetails";
+			this.buttonGroupDetails.Size = new System.Drawing.Size(252, 23);
+			this.buttonGroupDetails.TabIndex = 2;
+			this.buttonGroupDetails.Text = "Group details";
+			this.buttonGroupDetails.UseVisualStyleBackColor = true;
+			this.buttonGroupDetails.Click += new System.EventHandler(this.buttonGroupDetails_Click);
+			// 
 			// GroupsView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -137,7 +150,10 @@ namespace ITStep.Views
 			this.Controls.Add(this.groupBoxGroup);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "GroupsView";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Groups";
 			this.Load += new System.EventHandler(this.GroupsView_Load);
 			this.groupBox1.ResumeLayout(false);
@@ -160,5 +176,6 @@ namespace ITStep.Views
 		private System.Windows.Forms.GroupBox groupBoxGroup;
 		private System.Windows.Forms.TextBox textBoxSelectedGroupName;
 		private System.Windows.Forms.Button buttonUpdate;
+		private System.Windows.Forms.Button buttonGroupDetails;
 	}
 }

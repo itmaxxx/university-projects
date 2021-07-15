@@ -24,6 +24,10 @@ namespace ITStep.Views
 			Group = group;
 
 			presenter = new GroupStudentsPresenter(this);
+
+			this.Text = group.Name;
+
+			groupBoxStudent.Visible = false;
 		}
 
 		public void SetGroupStudents(List<Student> students)

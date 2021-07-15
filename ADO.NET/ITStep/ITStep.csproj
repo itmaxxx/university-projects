@@ -109,6 +109,12 @@
     <Compile Include="Views\GroupsView.Designer.cs">
       <DependentUpon>GroupsView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\HomeView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\HomeView.Designer.cs">
+      <DependentUpon>HomeView.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Migrations\202107151519118_InitialCreate.resx">
       <DependentUpon>202107151519118_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
@@ -138,12 +144,16 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Views\GroupStudentsView.resx">
       <DependentUpon>GroupStudentsView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\GroupsView.resx">
       <DependentUpon>GroupsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\HomeView.resx">
+      <DependentUpon>HomeView.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -159,6 +169,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\step_logo.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

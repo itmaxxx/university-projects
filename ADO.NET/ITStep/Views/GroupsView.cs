@@ -71,5 +71,13 @@ namespace ITStep.Views
 			groupStudentsView.ShowDialog();
 			this.Show();
 		}
+
+		private void buttonGroupDetails_Click(object sender, EventArgs e)
+		{
+			var groupStudentsView = new GroupStudentsView(getSelectedGroup());
+			this.Hide();
+			groupStudentsView.ShowDialog();
+			this.Show();
+		}
 	}
 }
