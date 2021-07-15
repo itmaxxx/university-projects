@@ -9,14 +9,14 @@ namespace ITStep.Services
 {
 	public static class MarksService
 	{
-		public static void AddMark(Student student, Lesson lesson, int score)
+		public static void AddMark(Student student, Subject subject, int score)
 		{
 			using (var db = new DatabaseContext())
 			{
 				var mark = new Mark
 				{
 					StudentFK = student.Id,
-					LessonFK = lesson.Id,
+					SubjectFK = subject.Id,
 					Score = score
 				};
 

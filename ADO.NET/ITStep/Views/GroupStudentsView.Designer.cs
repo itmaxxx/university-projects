@@ -42,13 +42,13 @@ namespace ITStep.Views
 			this.textBoxSelectedStudentLastName = new System.Windows.Forms.TextBox();
 			this.buttonUpdateStudent = new System.Windows.Forms.Button();
 			this.textBoxSelectedStudentFirstName = new System.Windows.Forms.TextBox();
-			this.comboBoxStudentLessons = new System.Windows.Forms.ComboBox();
+			this.comboBoxStudentSubjects = new System.Windows.Forms.ComboBox();
 			this.label3 = new System.Windows.Forms.Label();
-			this.listBoxLessonMarks = new System.Windows.Forms.ListBox();
+			this.listBoxSubjectMarks = new System.Windows.Forms.ListBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.textBoxMark = new System.Windows.Forms.TextBox();
 			this.buttonAddMark = new System.Windows.Forms.Button();
-			this.checkBoxLessonsWithMarks = new System.Windows.Forms.CheckBox();
+			this.checkBoxSubjectsWithMarks = new System.Windows.Forms.CheckBox();
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.groupBoxStudent.SuspendLayout();
@@ -131,13 +131,13 @@ namespace ITStep.Views
 			// 
 			// groupBoxStudent
 			// 
-			this.groupBoxStudent.Controls.Add(this.checkBoxLessonsWithMarks);
+			this.groupBoxStudent.Controls.Add(this.checkBoxSubjectsWithMarks);
 			this.groupBoxStudent.Controls.Add(this.buttonAddMark);
 			this.groupBoxStudent.Controls.Add(this.textBoxMark);
 			this.groupBoxStudent.Controls.Add(this.label4);
-			this.groupBoxStudent.Controls.Add(this.listBoxLessonMarks);
+			this.groupBoxStudent.Controls.Add(this.listBoxSubjectMarks);
 			this.groupBoxStudent.Controls.Add(this.label3);
-			this.groupBoxStudent.Controls.Add(this.comboBoxStudentLessons);
+			this.groupBoxStudent.Controls.Add(this.comboBoxStudentSubjects);
 			this.groupBoxStudent.Controls.Add(this.textBoxSelectedStudentLastName);
 			this.groupBoxStudent.Controls.Add(this.buttonUpdateStudent);
 			this.groupBoxStudent.Controls.Add(this.textBoxSelectedStudentFirstName);
@@ -172,14 +172,14 @@ namespace ITStep.Views
 			this.textBoxSelectedStudentFirstName.Size = new System.Drawing.Size(252, 20);
 			this.textBoxSelectedStudentFirstName.TabIndex = 0;
 			// 
-			// comboBoxStudentLessons
+			// comboBoxStudentSubjects
 			// 
-			this.comboBoxStudentLessons.FormattingEnabled = true;
-			this.comboBoxStudentLessons.Location = new System.Drawing.Point(6, 117);
-			this.comboBoxStudentLessons.Name = "comboBoxStudentLessons";
-			this.comboBoxStudentLessons.Size = new System.Drawing.Size(252, 21);
-			this.comboBoxStudentLessons.TabIndex = 3;
-			this.comboBoxStudentLessons.SelectedIndexChanged += new System.EventHandler(this.comboBoxStudentLessons_SelectedIndexChanged);
+			this.comboBoxStudentSubjects.FormattingEnabled = true;
+			this.comboBoxStudentSubjects.Location = new System.Drawing.Point(6, 117);
+			this.comboBoxStudentSubjects.Name = "comboBoxStudentSubjects";
+			this.comboBoxStudentSubjects.Size = new System.Drawing.Size(252, 21);
+			this.comboBoxStudentSubjects.TabIndex = 3;
+			this.comboBoxStudentSubjects.SelectedIndexChanged += new System.EventHandler(this.comboBoxStudentSubjects_SelectedIndexChanged);
 			// 
 			// label3
 			// 
@@ -188,16 +188,16 @@ namespace ITStep.Views
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(46, 13);
 			this.label3.TabIndex = 4;
-			this.label3.Text = "Lessons";
+			this.label3.Text = "Subjects";
 			// 
-			// listBoxLessonMarks
+			// listBoxSubjectMarks
 			// 
-			this.listBoxLessonMarks.FormattingEnabled = true;
-			this.listBoxLessonMarks.Location = new System.Drawing.Point(6, 161);
-			this.listBoxLessonMarks.Name = "listBoxLessonMarks";
-			this.listBoxLessonMarks.Size = new System.Drawing.Size(252, 82);
-			this.listBoxLessonMarks.TabIndex = 5;
-			this.listBoxLessonMarks.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxLessonMarks_KeyDown);
+			this.listBoxSubjectMarks.FormattingEnabled = true;
+			this.listBoxSubjectMarks.Location = new System.Drawing.Point(6, 161);
+			this.listBoxSubjectMarks.Name = "listBoxSubjectMarks";
+			this.listBoxSubjectMarks.Size = new System.Drawing.Size(252, 82);
+			this.listBoxSubjectMarks.TabIndex = 5;
+			this.listBoxSubjectMarks.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxSubjectMarks_KeyDown);
 			// 
 			// label4
 			// 
@@ -225,18 +225,18 @@ namespace ITStep.Views
 			this.buttonAddMark.UseVisualStyleBackColor = true;
 			this.buttonAddMark.Click += new System.EventHandler(this.buttonAddMark_Click);
 			// 
-			// checkBoxLessonsWithMarks
+			// checkBoxSubjectsWithMarks
 			// 
-			this.checkBoxLessonsWithMarks.AutoSize = true;
-			this.checkBoxLessonsWithMarks.Checked = true;
-			this.checkBoxLessonsWithMarks.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBoxLessonsWithMarks.Location = new System.Drawing.Point(58, 100);
-			this.checkBoxLessonsWithMarks.Name = "checkBoxLessonsWithMarks";
-			this.checkBoxLessonsWithMarks.Size = new System.Drawing.Size(114, 17);
-			this.checkBoxLessonsWithMarks.TabIndex = 9;
-			this.checkBoxLessonsWithMarks.Text = "lessons with marks";
-			this.checkBoxLessonsWithMarks.UseVisualStyleBackColor = true;
-			this.checkBoxLessonsWithMarks.CheckedChanged += new System.EventHandler(this.checkBoxLessonsWithMarks_CheckedChanged);
+			this.checkBoxSubjectsWithMarks.AutoSize = true;
+			this.checkBoxSubjectsWithMarks.Checked = true;
+			this.checkBoxSubjectsWithMarks.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBoxSubjectsWithMarks.Location = new System.Drawing.Point(58, 100);
+			this.checkBoxSubjectsWithMarks.Name = "checkBoxSubjectsWithMarks";
+			this.checkBoxSubjectsWithMarks.Size = new System.Drawing.Size(114, 17);
+			this.checkBoxSubjectsWithMarks.TabIndex = 9;
+			this.checkBoxSubjectsWithMarks.Text = "subjects with marks";
+			this.checkBoxSubjectsWithMarks.UseVisualStyleBackColor = true;
+			this.checkBoxSubjectsWithMarks.CheckedChanged += new System.EventHandler(this.checkBoxSubjectsWithMarks_CheckedChanged);
 			// 
 			// GroupStudentsView
 			// 
@@ -276,12 +276,12 @@ namespace ITStep.Views
 		private System.Windows.Forms.TextBox textBoxStudentLastName;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.TextBox textBoxSelectedStudentLastName;
-		private System.Windows.Forms.ComboBox comboBoxStudentLessons;
+		private System.Windows.Forms.ComboBox comboBoxStudentSubjects;
 		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.ListBox listBoxLessonMarks;
+		private System.Windows.Forms.ListBox listBoxSubjectMarks;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Button buttonAddMark;
 		private System.Windows.Forms.TextBox textBoxMark;
-		private System.Windows.Forms.CheckBox checkBoxLessonsWithMarks;
+		private System.Windows.Forms.CheckBox checkBoxSubjectsWithMarks;
 	}
 }

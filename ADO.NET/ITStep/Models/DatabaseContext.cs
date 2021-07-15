@@ -12,7 +12,7 @@ namespace ITStep.Models
         }
 
         public virtual DbSet<Group> Groups { get; set; }
-        public virtual DbSet<Lesson> Lessons { get; set; }
+        public virtual DbSet<Subject> Subjects { get; set; }
         public virtual DbSet<Mark> Marks { get; set; }
         public virtual DbSet<Student> Students { get; set; }
 

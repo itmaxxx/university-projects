@@ -6,7 +6,7 @@ namespace ITStep.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<ITStep.Models.DatabaseContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<DatabaseContext>
     {
         public Configuration()
         {
@@ -14,7 +14,7 @@ namespace ITStep.Migrations
             ContextKey = "ITStep.Models.DatabaseContext";
         }
 
-        protected override void Seed(ITStep.Models.DatabaseContext db)
+        protected override void Seed(DatabaseContext db)
         {
             Group[] groups = new Group[]
             {
@@ -28,24 +28,24 @@ namespace ITStep.Migrations
                 new Student { Id = 2, FirstName = "Max", LastName = "Gorelik", GroupFK = 2 }
             };
 
-            Lesson[] lessons = new Lesson[]
+            Subject[] subjects = new Subject[]
             {
-                new Lesson { Id = 1, Name = "Math" },
-                new Lesson { Id = 2, Name = "Programming" },
-                new Lesson { Id = 3, Name = "Design" }
+                new Subject { Id = 1, Name = "Math" },
+                new Subject { Id = 2, Name = "Programming" },
+                new Subject { Id = 3, Name = "Design" }
             };
 
             Mark[] marks = new Mark[]
             {
-                new Mark { Id = 1, LessonFK = 1, StudentFK = 1, Score = 6 },
-                new Mark { Id = 2, LessonFK = 2, StudentFK = 1, Score = 11 },
-                new Mark { Id = 3, LessonFK = 1, StudentFK = 2, Score = 5 },
-                new Mark { Id = 4, LessonFK = 3, StudentFK = 2, Score = 12 },
+                new Mark { Id = 1, SubjectFK = 1, StudentFK = 1, Score = 6 },
+                new Mark { Id = 2, SubjectFK = 2, StudentFK = 1, Score = 11 },
+                new Mark { Id = 3, SubjectFK = 1, StudentFK = 2, Score = 5 },
+                new Mark { Id = 4, SubjectFK = 3, StudentFK = 2, Score = 12 },
             };
 
             db.Groups.AddRange(groups);
             db.Students.AddRange(students);
-            db.Lessons.AddRange(lessons);
+            db.Subjects.AddRange(subjects);
             db.Marks.AddRange(marks);
 
             db.SaveChanges();

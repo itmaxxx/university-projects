@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ITStep.Models
 {
-	public class Lesson
+	public class Subject
 	{
         public int Id { get; set; }
         public string Name { get; set; }

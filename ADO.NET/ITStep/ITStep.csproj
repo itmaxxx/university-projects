@@ -55,33 +55,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\202107151519118_InitialCreate.cs" />
-    <Compile Include="Migrations\202107151519118_InitialCreate.Designer.cs">
-      <DependentUpon>202107151519118_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107151550167_FieldsNames.cs" />
-    <Compile Include="Migrations\202107151550167_FieldsNames.Designer.cs">
-      <DependentUpon>202107151550167_FieldsNames.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107151628574_InitialData.cs" />
-    <Compile Include="Migrations\202107151628574_InitialData.Designer.cs">
-      <DependentUpon>202107151628574_InitialData.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107151630480_InitialDataFix.cs" />
-    <Compile Include="Migrations\202107151630480_InitialDataFix.Designer.cs">
-      <DependentUpon>202107151630480_InitialDataFix.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107151704266_InitialDataFix1.cs" />
-    <Compile Include="Migrations\202107151704266_InitialDataFix1.Designer.cs">
-      <DependentUpon>202107151704266_InitialDataFix1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107151713511_FixMark.cs" />
-    <Compile Include="Migrations\202107151713511_FixMark.Designer.cs">
-      <DependentUpon>202107151713511_FixMark.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107151734335_StudentFullname.cs" />
-    <Compile Include="Migrations\202107151734335_StudentFullname.Designer.cs">
-      <DependentUpon>202107151734335_StudentFullname.cs</DependentUpon>
+    <Compile Include="Migrations\202107152217357_Initial.cs" />
+    <Compile Include="Migrations\202107152217357_Initial.Designer.cs">
+      <DependentUpon>202107152217357_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Presenters\GroupsPresenter.cs" />
@@ -92,7 +68,7 @@
     <Compile Include="Services\StudentsService.cs" />
     <Compile Include="Models\DatabaseContext.cs" />
     <Compile Include="Models\Group.cs" />
-    <Compile Include="Models\Lesson.cs" />
+    <Compile Include="Models\Subject.cs" />
     <Compile Include="Models\Mark.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Program.cs" />
@@ -115,26 +91,8 @@
     <Compile Include="Views\HomeView.Designer.cs">
       <DependentUpon>HomeView.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Migrations\202107151519118_InitialCreate.resx">
-      <DependentUpon>202107151519118_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107151550167_FieldsNames.resx">
-      <DependentUpon>202107151550167_FieldsNames.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107151628574_InitialData.resx">
-      <DependentUpon>202107151628574_InitialData.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107151630480_InitialDataFix.resx">
-      <DependentUpon>202107151630480_InitialDataFix.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107151704266_InitialDataFix1.resx">
-      <DependentUpon>202107151704266_InitialDataFix1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107151713511_FixMark.resx">
-      <DependentUpon>202107151713511_FixMark.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107151734335_StudentFullname.resx">
-      <DependentUpon>202107151734335_StudentFullname.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202107152217357_Initial.resx">
+      <DependentUpon>202107152217357_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

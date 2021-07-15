@@ -46,26 +46,26 @@ namespace ITStep.Services
 			}
 		}
 
-		public static List<Lesson> GetStudentLessonsWithMarksPresent(Student student)
+		public static List<Subject> GetStudentSubjectsWithMarksPresent(Student student)
 		{
 			using (var db = new DatabaseContext())
 			{
-				var lessons = new List<Lesson>();
+				var subjects = new List<Subject>();
 
 				foreach (var mark in db.Marks.Where(mark => mark.StudentFK == student.Id))
 				{
-					lessons.Add(db.Lessons.First(lesson => lesson.Id == mark.LessonFK));
+					subjects.Add(db.Subjects.First(subject => subject.Id == mark.SubjectFK));
 				}
 
-				return lessons;
+				return subjects;
 			}
 		}
 
-		public static List<Mark> GetStudentLessonMarks(Student student, Lesson lesson)
+		public static List<Mark> GetStudentSubjectMarks(Student student, Subject subject)
 		{
 			using (var db = new DatabaseContext())
 			{
-				return db.Marks.Where(mark => mark.StudentFK == student.Id && mark.LessonFK == lesson.Id).ToList();
+				return db.Marks.Where(mark => mark.StudentFK == student.Id && mark.SubjectFK == subject.Id).ToList();
 			}
 		}
 	}

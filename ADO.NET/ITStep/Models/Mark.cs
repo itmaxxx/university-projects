@@ -11,7 +11,7 @@ namespace ITStep.Models
 	{
         public int Id { get; set; }
         public int? StudentFK { get; set; }
-        public int? LessonFK { get; set; }
+        public int? SubjectFK { get; set; }
         public int Score { get; set; }
     }
 }

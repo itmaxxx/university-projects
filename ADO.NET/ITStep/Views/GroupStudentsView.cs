@@ -37,11 +37,11 @@ namespace ITStep.Views
 			listBoxGroupStudents.DataSource = students;
 		}
 
-		public void SetGroupStudentLessons(List<Lesson> lessons)
+		public void SetGroupStudentSubjects(List<Subject> subjects)
 		{
-			comboBoxStudentLessons.ValueMember = "Id";
-			comboBoxStudentLessons.DisplayMember = "Name";
-			comboBoxStudentLessons.DataSource = lessons;
+			comboBoxStudentSubjects.ValueMember = "Id";
+			comboBoxStudentSubjects.DisplayMember = "Name";
+			comboBoxStudentSubjects.DataSource = subjects;
 		}
 
 		private void GroupStudentsView_Load(object sender, EventArgs e)
@@ -71,53 +71,55 @@ namespace ITStep.Views
 
 		private void listBoxGroupStudents_SelectedIndexChanged(object sender, EventArgs e)
 		{
+			groupBoxStudent.Visible = true;
+
 			var student = getSelectedStudent();
 
 			textBoxSelectedStudentFirstName.Text = student.FirstName;
 			textBoxSelectedStudentLastName.Text = student.LastName;
 
-			comboBoxStudentLessons.DataSource = null;
-			listBoxLessonMarks.DataSource = null;
+			comboBoxStudentSubjects.DataSource = null;
+			listBoxSubjectMarks.DataSource = null;
 
-			if (checkBoxLessonsWithMarks.Checked)
+			if (checkBoxSubjectsWithMarks.Checked)
 			{
-				presenter.GetStudentLessonsWithMarksPresent(student);
+				presenter.GetStudentSubjectsWithMarksPresent(student);
 			}
 			else
 			{
-				presenter.GetAllLessons();
+				presenter.GetAllSubjects();
 			}
 		}
 
-		private Lesson getSelectedLesson()
+		private Subject getSelectedSubject()
 		{
-			return comboBoxStudentLessons.SelectedItem as Lesson;
+			return comboBoxStudentSubjects.SelectedItem as Subject;
 		}
 
-		public void SetGroupStudentLessonMarks(List<Mark> marks)
+		public void SetGroupStudentSubjectMarks(List<Mark> marks)
 		{
-			listBoxLessonMarks.ValueMember = "Id";
-			listBoxLessonMarks.DisplayMember = "Score";
-			listBoxLessonMarks.DataSource = marks;
+			listBoxSubjectMarks.ValueMember = "Id";
+			listBoxSubjectMarks.DisplayMember = "Score";
+			listBoxSubjectMarks.DataSource = marks;
 		}
 
-		private void comboBoxStudentLessons_SelectedIndexChanged(object sender, EventArgs e)
+		private void comboBoxStudentSubjects_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			var lesson = getSelectedLesson();
+			var subject = getSelectedSubject();
 
-			if (lesson != null)
+			if (subject != null)
 			{
-				presenter.GetStudentLessonMarks(getSelectedStudent(), lesson);
+				presenter.GetStudentSubjectMarks(getSelectedStudent(), subject);
 			}
 		}
 
 		private void buttonAddMark_Click(object sender, EventArgs e)
 		{
-			var lesson = getSelectedLesson();
+			var subject = getSelectedSubject();
 
-			if (lesson != null)
+			if (subject != null)
 			{
-				presenter.AddStudentMark(getSelectedStudent(), getSelectedLesson(), int.Parse(textBoxMark.Text));
+				presenter.AddStudentMark(getSelectedStudent(), getSelectedSubject(), int.Parse(textBoxMark.Text));
 
 				textBoxMark.Text = string.Empty;
 			}
@@ -125,38 +127,38 @@ namespace ITStep.Views
 
 		private Mark getSelectedMark()
 		{
-			return listBoxLessonMarks.SelectedItem as Mark;
+			return listBoxSubjectMarks.SelectedItem as Mark;
 		}
 
-		private void listBoxLessonMarks_KeyDown(object sender, KeyEventArgs e)
+		private void listBoxSubjectMarks_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Delete)
 			{
 				var deleteMark = MessageBox.Show(
-					$"Are you sure you want to delete mark \"{getSelectedMark().Score}\" for lesson {getSelectedLesson().Name}?", 
+					$"Are you sure you want to delete mark \"{getSelectedMark().Score}\" for subject {getSelectedSubject().Name}?", 
 					"Confirm action",
 					MessageBoxButtons.YesNo
 					);
 
 				if (deleteMark == DialogResult.Yes)
 				{
-					presenter.DeleteStudentMark(getSelectedStudent(), getSelectedLesson(), getSelectedMark());
+					presenter.DeleteStudentMark(getSelectedStudent(), getSelectedSubject(), getSelectedMark());
 				}
 			}
 		}
 
-		private void checkBoxLessonsWithMarks_CheckedChanged(object sender, EventArgs e)
+		private void checkBoxSubjectsWithMarks_CheckedChanged(object sender, EventArgs e)
 		{
-			comboBoxStudentLessons.DataSource = null;
-			listBoxLessonMarks.DataSource = null;
+			comboBoxStudentSubjects.DataSource = null;
+			listBoxSubjectMarks.DataSource = null;
 
-			if (checkBoxLessonsWithMarks.Checked)
+			if (checkBoxSubjectsWithMarks.Checked)
 			{
-				presenter.GetStudentLessonsWithMarksPresent(getSelectedStudent());
+				presenter.GetStudentSubjectsWithMarksPresent(getSelectedStudent());
 			}
 			else
 			{
-				presenter.GetAllLessons();
+				presenter.GetAllSubjects();
 			}
 		}
 	}

@@ -33,35 +33,35 @@ namespace ITStep.Presenters
 			StudentsService.UpdateStudent(new Student { Id = id, FirstName = firstName, LastName = lastName });
 		}
 
-		public void GetStudentLessonsWithMarksPresent(Student student)
+		public void GetStudentSubjectsWithMarksPresent(Student student)
 		{
-			view.SetGroupStudentLessons(StudentsService.GetStudentLessonsWithMarksPresent(student));
+			view.SetGroupStudentSubjects(StudentsService.GetStudentSubjectsWithMarksPresent(student));
 		}
 
-		public void GetAllLessons()
+		public void GetAllSubjects()
 		{
-			view.SetGroupStudentLessons(LessonsService.GetAllLessons());
+			view.SetGroupStudentSubjects(SubjectsService.GetAllSubjects());
 		}
 
-		public void GetStudentLessonMarks(Student student, Lesson lesson)
+		public void GetStudentSubjectMarks(Student student, Subject subject)
 		{
-			view.SetGroupStudentLessonMarks(StudentsService.GetStudentLessonMarks(student, lesson));
+			view.SetGroupStudentSubjectMarks(StudentsService.GetStudentSubjectMarks(student, subject));
 		}
 
-		public void AddStudentMark(Student student, Lesson lesson, int score)
+		public void AddStudentMark(Student student, Subject subject, int score)
 		{
-			MarksService.AddMark(student, lesson, score);
+			MarksService.AddMark(student, subject, score);
 
-			// Update lesson marks
-			GetStudentLessonMarks(student, lesson);
+			// Update subject marks
+			GetStudentSubjectMarks(student, subject);
 		}
 
-		public void DeleteStudentMark(Student student, Lesson lesson, Mark mark)
+		public void DeleteStudentMark(Student student, Subject subject, Mark mark)
 		{
 			MarksService.DeleteMark(mark);
 
-			// Update lesson marks
-			GetStudentLessonMarks(student, lesson);
+			// Update subject marks
+			GetStudentSubjectMarks(student, subject);
 		}
 	}
 }

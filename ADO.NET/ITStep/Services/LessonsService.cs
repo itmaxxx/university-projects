@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace ITStep.Services
 {
-	public static class LessonsService
+	public static class SubjectsService
 	{
-		public static List<Lesson> GetAllLessons()
+		public static List<Subject> GetAllSubjects()
 		{
 			using (var db = new DatabaseContext())
 			{
-				return db.Lessons.ToList();
+				return db.Subjects.ToList();
 			}
 		}
 	}
