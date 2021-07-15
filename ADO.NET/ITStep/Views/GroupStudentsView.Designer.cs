@@ -56,12 +56,16 @@ namespace ITStep.Views
 			// 
 			// buttonAddGroupStudent
 			// 
+			this.buttonAddGroupStudent.BackColor = System.Drawing.Color.WhiteSmoke;
+			this.buttonAddGroupStudent.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
+			this.buttonAddGroupStudent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.buttonAddGroupStudent.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.buttonAddGroupStudent.UseVisualStyleBackColor = false;
 			this.buttonAddGroupStudent.Location = new System.Drawing.Point(6, 98);
 			this.buttonAddGroupStudent.Name = "buttonAddGroupStudent";
 			this.buttonAddGroupStudent.Size = new System.Drawing.Size(252, 23);
 			this.buttonAddGroupStudent.TabIndex = 1;
 			this.buttonAddGroupStudent.Text = "Add student";
-			this.buttonAddGroupStudent.UseVisualStyleBackColor = true;
 			this.buttonAddGroupStudent.Click += new System.EventHandler(this.buttonAddGroupStudent_Click);
 			// 
 			// listBoxGroupStudents
@@ -163,12 +167,16 @@ namespace ITStep.Views
 			// 
 			// buttonAddMark
 			// 
+			this.buttonAddMark.BackColor = System.Drawing.Color.WhiteSmoke;
+			this.buttonAddMark.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
+			this.buttonAddMark.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.buttonAddMark.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.buttonAddMark.UseVisualStyleBackColor = false;
 			this.buttonAddMark.Location = new System.Drawing.Point(177, 247);
 			this.buttonAddMark.Name = "buttonAddMark";
 			this.buttonAddMark.Size = new System.Drawing.Size(81, 23);
 			this.buttonAddMark.TabIndex = 8;
 			this.buttonAddMark.Text = "Add mark";
-			this.buttonAddMark.UseVisualStyleBackColor = true;
 			this.buttonAddMark.Click += new System.EventHandler(this.buttonAddMark_Click);
 			// 
 			// textBoxMark
@@ -223,12 +231,16 @@ namespace ITStep.Views
 			// 
 			// buttonUpdateStudent
 			// 
+			this.buttonUpdateStudent.BackColor = System.Drawing.Color.WhiteSmoke;
+			this.buttonUpdateStudent.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
+			this.buttonUpdateStudent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.buttonUpdateStudent.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.buttonUpdateStudent.UseVisualStyleBackColor = true;
 			this.buttonUpdateStudent.Location = new System.Drawing.Point(6, 71);
 			this.buttonUpdateStudent.Name = "buttonUpdateStudent";
 			this.buttonUpdateStudent.Size = new System.Drawing.Size(252, 23);
 			this.buttonUpdateStudent.TabIndex = 1;
 			this.buttonUpdateStudent.Text = "Update student";
-			this.buttonUpdateStudent.UseVisualStyleBackColor = true;
 			this.buttonUpdateStudent.Click += new System.EventHandler(this.buttonUpdateStudent_Click);
 			// 
 			// textBoxSelectedStudentFirstName

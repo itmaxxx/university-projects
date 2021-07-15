@@ -38,22 +38,30 @@ namespace ITStep.Views
 			// 
 			// buttonGroups
 			// 
+			this.buttonGroups.BackColor = System.Drawing.Color.WhiteSmoke;
+			this.buttonGroups.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
+			this.buttonGroups.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.buttonGroups.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.buttonGroups.Location = new System.Drawing.Point(181, 327);
 			this.buttonGroups.Name = "buttonGroups";
 			this.buttonGroups.Size = new System.Drawing.Size(109, 23);
 			this.buttonGroups.TabIndex = 1;
 			this.buttonGroups.Text = "Groups";
-			this.buttonGroups.UseVisualStyleBackColor = true;
+			this.buttonGroups.UseVisualStyleBackColor = false;
 			this.buttonGroups.Click += new System.EventHandler(this.buttonGroups_Click);
 			// 
 			// buttonSubjects
 			// 
+			this.buttonSubjects.BackColor = System.Drawing.Color.WhiteSmoke;
+			this.buttonSubjects.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
+			this.buttonSubjects.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.buttonSubjects.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.buttonSubjects.Location = new System.Drawing.Point(296, 327);
 			this.buttonSubjects.Name = "buttonSubjects";
 			this.buttonSubjects.Size = new System.Drawing.Size(110, 23);
 			this.buttonSubjects.TabIndex = 2;
 			this.buttonSubjects.Text = "Subjects";
-			this.buttonSubjects.UseVisualStyleBackColor = true;
+			this.buttonSubjects.UseVisualStyleBackColor = false;
 			this.buttonSubjects.Click += new System.EventHandler(this.buttonSubjects_Click);
 			// 
 			// pictureBox1

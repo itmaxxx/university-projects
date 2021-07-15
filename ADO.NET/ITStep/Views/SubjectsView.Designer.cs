@@ -46,12 +46,16 @@ namespace ITStep.Views
 			// 
 			// buttonAddSubject
 			// 
+			this.buttonAddSubject.BackColor = System.Drawing.Color.WhiteSmoke;
+			this.buttonAddSubject.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
+			this.buttonAddSubject.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.buttonAddSubject.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.buttonAddSubject.UseVisualStyleBackColor = true;
 			this.buttonAddSubject.Location = new System.Drawing.Point(6, 62);
 			this.buttonAddSubject.Name = "buttonAddSubject";
 			this.buttonAddSubject.Size = new System.Drawing.Size(252, 23);
 			this.buttonAddSubject.TabIndex = 1;
 			this.buttonAddSubject.Text = "Add subject";
-			this.buttonAddSubject.UseVisualStyleBackColor = true;
 			this.buttonAddSubject.Click += new System.EventHandler(this.buttonAddSubject_Click);
 			// 
 			// listBoxSubjects
@@ -114,12 +118,16 @@ namespace ITStep.Views
 			// 
 			// buttonUpdate
 			// 
+			this.buttonUpdate.BackColor = System.Drawing.Color.WhiteSmoke;
+			this.buttonUpdate.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
+			this.buttonUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.buttonUpdate.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.buttonUpdate.UseVisualStyleBackColor = true;
 			this.buttonUpdate.Location = new System.Drawing.Point(6, 45);
 			this.buttonUpdate.Name = "buttonUpdate";
 			this.buttonUpdate.Size = new System.Drawing.Size(252, 23);
 			this.buttonUpdate.TabIndex = 1;
 			this.buttonUpdate.Text = "Update subject";
-			this.buttonUpdate.UseVisualStyleBackColor = true;
 			this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
 			// 
 			// textBoxSelectedSubjectName

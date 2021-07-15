@@ -47,12 +47,16 @@ namespace ITStep.Views
 			// 
 			// buttonAddGroup
 			// 
+			this.buttonAddGroup.BackColor = System.Drawing.Color.WhiteSmoke;
+			this.buttonAddGroup.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
+			this.buttonAddGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.buttonAddGroup.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.buttonAddGroup.UseVisualStyleBackColor = true;
 			this.buttonAddGroup.Location = new System.Drawing.Point(6, 62);
 			this.buttonAddGroup.Name = "buttonAddGroup";
 			this.buttonAddGroup.Size = new System.Drawing.Size(252, 23);
 			this.buttonAddGroup.TabIndex = 1;
 			this.buttonAddGroup.Text = "Add group";
-			this.buttonAddGroup.UseVisualStyleBackColor = true;
 			this.buttonAddGroup.Click += new System.EventHandler(this.buttonAddGroup_Click);
 			// 
 			// listBoxGroups
@@ -118,12 +122,16 @@ namespace ITStep.Views
 			// 
 			// buttonUpdate
 			// 
+			this.buttonUpdate.BackColor = System.Drawing.Color.WhiteSmoke;
+			this.buttonUpdate.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
+			this.buttonUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.buttonUpdate.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.buttonUpdate.UseVisualStyleBackColor = true;
 			this.buttonUpdate.Location = new System.Drawing.Point(6, 45);
 			this.buttonUpdate.Name = "buttonUpdate";
 			this.buttonUpdate.Size = new System.Drawing.Size(252, 23);
 			this.buttonUpdate.TabIndex = 1;
 			this.buttonUpdate.Text = "Update group";
-			this.buttonUpdate.UseVisualStyleBackColor = true;
 			this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
 			// 
 			// textBoxSelectedGroupName
@@ -135,12 +143,16 @@ namespace ITStep.Views
 			// 
 			// buttonGroupDetails
 			// 
+			this.buttonGroupDetails.BackColor = System.Drawing.Color.WhiteSmoke;
+			this.buttonGroupDetails.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
+			this.buttonGroupDetails.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.buttonGroupDetails.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.buttonGroupDetails.UseVisualStyleBackColor = true;
 			this.buttonGroupDetails.Location = new System.Drawing.Point(6, 74);
 			this.buttonGroupDetails.Name = "buttonGroupDetails";
 			this.buttonGroupDetails.Size = new System.Drawing.Size(252, 23);
 			this.buttonGroupDetails.TabIndex = 2;
 			this.buttonGroupDetails.Text = "Group details";
-			this.buttonGroupDetails.UseVisualStyleBackColor = true;
 			this.buttonGroupDetails.Click += new System.EventHandler(this.buttonGroupDetails_Click);
 			// 
 			// GroupsView
