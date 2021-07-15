@@ -8,14 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ITStep
+namespace ITStep.Views
 {
-	public partial class MainForm : Form
+	public partial class GroupStudentsView : Form
 	{
-		public MainForm()
+		public GroupStudentsView()
 		{
 			InitializeComponent();
 		}
 
+		private void GroupStudentsView_Load(object sender, EventArgs e)
+		{
+
+		}
 	}
 }

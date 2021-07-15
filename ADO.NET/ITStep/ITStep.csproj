@@ -1,23 +1,168 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BE9EDB26-CAA4-4B22-B7A2-D3370ABBE7F9}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows</TargetFramework>
-    <UseWindowsForms>true</UseWindowsForms>
+    <RootNamespace>ITStep</RootNamespace>
+    <AssemblyName>ITStep</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
-
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="Presenters\" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
-
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.8" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.8" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.8">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <Compile Include="Migrations\202107151519118_InitialCreate.cs" />
+    <Compile Include="Migrations\202107151519118_InitialCreate.Designer.cs">
+      <DependentUpon>202107151519118_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107151550167_FieldsNames.cs" />
+    <Compile Include="Migrations\202107151550167_FieldsNames.Designer.cs">
+      <DependentUpon>202107151550167_FieldsNames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107151628574_InitialData.cs" />
+    <Compile Include="Migrations\202107151628574_InitialData.Designer.cs">
+      <DependentUpon>202107151628574_InitialData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107151630480_InitialDataFix.cs" />
+    <Compile Include="Migrations\202107151630480_InitialDataFix.Designer.cs">
+      <DependentUpon>202107151630480_InitialDataFix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107151704266_InitialDataFix1.cs" />
+    <Compile Include="Migrations\202107151704266_InitialDataFix1.Designer.cs">
+      <DependentUpon>202107151704266_InitialDataFix1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107151713511_FixMark.cs" />
+    <Compile Include="Migrations\202107151713511_FixMark.Designer.cs">
+      <DependentUpon>202107151713511_FixMark.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107151734335_StudentFullname.cs" />
+    <Compile Include="Migrations\202107151734335_StudentFullname.Designer.cs">
+      <DependentUpon>202107151734335_StudentFullname.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Presenters\GroupsPresenter.cs" />
+    <Compile Include="Presenters\GroupsStudentsPresenter.cs" />
+    <Compile Include="Services\GroupsService.cs" />
+    <Compile Include="Services\StudentsService.cs" />
+    <Compile Include="Views\AddStudentView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddStudentView.Designer.cs">
+      <DependentUpon>AddStudentView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DatabaseContext.cs" />
+    <Compile Include="Models\Group.cs" />
+    <Compile Include="Models\Lesson.cs" />
+    <Compile Include="Models\Mark.cs" />
+    <Compile Include="Models\Student.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\GroupStudentsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\GroupStudentsView.Designer.cs">
+      <DependentUpon>GroupStudentsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GroupsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\GroupsView.Designer.cs">
+      <DependentUpon>GroupsView.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Migrations\202107151519118_InitialCreate.resx">
+      <DependentUpon>202107151519118_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107151550167_FieldsNames.resx">
+      <DependentUpon>202107151550167_FieldsNames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107151628574_InitialData.resx">
+      <DependentUpon>202107151628574_InitialData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107151630480_InitialDataFix.resx">
+      <DependentUpon>202107151630480_InitialDataFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107151704266_InitialDataFix1.resx">
+      <DependentUpon>202107151704266_InitialDataFix1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107151713511_FixMark.resx">
+      <DependentUpon>202107151713511_FixMark.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107151734335_StudentFullname.resx">
+      <DependentUpon>202107151734335_StudentFullname.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Views\GroupStudentsView.resx">
+      <DependentUpon>GroupStudentsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\GroupsView.resx">
+      <DependentUpon>GroupsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
   </ItemGroup>
-
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
