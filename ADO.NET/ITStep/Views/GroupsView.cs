@@ -14,7 +14,7 @@ namespace ITStep.Views
 {
 	public partial class GroupsView : Form
 	{
-		private GroupsPresenter presenter;
+		private readonly GroupsPresenter presenter;
 
 		public GroupsView()
 		{
@@ -40,8 +40,9 @@ namespace ITStep.Views
 		private void buttonAddGroup_Click(object sender, EventArgs e)
 		{
 			presenter.AddGroup(textBoxGroupName.Text);
-
 			presenter.LoadGroups();
+			
+			textBoxGroupName.Text = string.Empty;
 		}
 
 		private Group getSelectedGroup()
@@ -61,6 +62,14 @@ namespace ITStep.Views
 			presenter.UpdateGroup(getSelectedGroup().Id, textBoxSelectedGroupName.Text);
 
 			presenter.LoadGroups();
+		}
+
+		private void listBoxGroups_DoubleClick(object sender, EventArgs e)
+		{
+			var groupStudentsView = new GroupStudentsView(getSelectedGroup());
+			this.Hide();
+			groupStudentsView.ShowDialog();
+			this.Show();
 		}
 	}
 }

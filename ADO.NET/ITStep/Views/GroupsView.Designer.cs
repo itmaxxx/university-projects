@@ -33,11 +33,11 @@ namespace ITStep.Views
 			this.listBoxGroups = new System.Windows.Forms.ListBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.label1 = new System.Windows.Forms.Label();
 			this.textBoxGroupName = new System.Windows.Forms.TextBox();
+			this.label1 = new System.Windows.Forms.Label();
 			this.groupBoxGroup = new System.Windows.Forms.GroupBox();
-			this.textBoxSelectedGroupName = new System.Windows.Forms.TextBox();
 			this.buttonUpdate = new System.Windows.Forms.Button();
+			this.textBoxSelectedGroupName = new System.Windows.Forms.TextBox();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBoxGroup.SuspendLayout();
@@ -61,6 +61,7 @@ namespace ITStep.Views
 			this.listBoxGroups.Size = new System.Drawing.Size(297, 394);
 			this.listBoxGroups.TabIndex = 0;
 			this.listBoxGroups.SelectedIndexChanged += new System.EventHandler(this.listBoxGroups_SelectedIndexChanged);
+			this.listBoxGroups.DoubleClick += new System.EventHandler(this.listBoxGroups_DoubleClick);
 			// 
 			// groupBox1
 			// 
@@ -84,6 +85,13 @@ namespace ITStep.Views
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Add group";
 			// 
+			// textBoxGroupName
+			// 
+			this.textBoxGroupName.Location = new System.Drawing.Point(6, 36);
+			this.textBoxGroupName.Name = "textBoxGroupName";
+			this.textBoxGroupName.Size = new System.Drawing.Size(252, 20);
+			this.textBoxGroupName.TabIndex = 3;
+			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
@@ -92,13 +100,6 @@ namespace ITStep.Views
 			this.label1.Size = new System.Drawing.Size(65, 13);
 			this.label1.TabIndex = 2;
 			this.label1.Text = "Group name";
-			// 
-			// textBoxGroupName
-			// 
-			this.textBoxGroupName.Location = new System.Drawing.Point(6, 36);
-			this.textBoxGroupName.Name = "textBoxGroupName";
-			this.textBoxGroupName.Size = new System.Drawing.Size(252, 20);
-			this.textBoxGroupName.TabIndex = 3;
 			// 
 			// groupBoxGroup
 			// 
@@ -111,13 +112,6 @@ namespace ITStep.Views
 			this.groupBoxGroup.TabStop = false;
 			this.groupBoxGroup.Text = "Group";
 			// 
-			// textBoxSelectedGroupName
-			// 
-			this.textBoxSelectedGroupName.Location = new System.Drawing.Point(6, 19);
-			this.textBoxSelectedGroupName.Name = "textBoxSelectedGroupName";
-			this.textBoxSelectedGroupName.Size = new System.Drawing.Size(252, 20);
-			this.textBoxSelectedGroupName.TabIndex = 0;
-			// 
 			// buttonUpdate
 			// 
 			this.buttonUpdate.Location = new System.Drawing.Point(6, 45);
@@ -127,6 +121,13 @@ namespace ITStep.Views
 			this.buttonUpdate.Text = "Update group";
 			this.buttonUpdate.UseVisualStyleBackColor = true;
 			this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
+			// 
+			// textBoxSelectedGroupName
+			// 
+			this.textBoxSelectedGroupName.Location = new System.Drawing.Point(6, 19);
+			this.textBoxSelectedGroupName.Name = "textBoxSelectedGroupName";
+			this.textBoxSelectedGroupName.Size = new System.Drawing.Size(252, 20);
+			this.textBoxSelectedGroupName.TabIndex = 0;
 			// 
 			// GroupsView
 			// 

@@ -85,15 +85,10 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Presenters\GroupsPresenter.cs" />
-    <Compile Include="Presenters\GroupsStudentsPresenter.cs" />
+    <Compile Include="Presenters\GroupStudentsPresenter.cs" />
     <Compile Include="Services\GroupsService.cs" />
+    <Compile Include="Services\MarksService.cs" />
     <Compile Include="Services\StudentsService.cs" />
-    <Compile Include="Views\AddStudentView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\AddStudentView.Designer.cs">
-      <DependentUpon>AddStudentView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Models\DatabaseContext.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\Lesson.cs" />

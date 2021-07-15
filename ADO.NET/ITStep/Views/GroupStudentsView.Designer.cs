@@ -29,31 +29,38 @@ namespace ITStep.Views
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.buttonAddGroup = new System.Windows.Forms.Button();
+			this.buttonAddGroupStudent = new System.Windows.Forms.Button();
 			this.listBoxGroupStudents = new System.Windows.Forms.ListBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.textBoxStudentLastName = new System.Windows.Forms.TextBox();
+			this.label2 = new System.Windows.Forms.Label();
 			this.textBoxStudentFirstName = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.groupBoxGroup = new System.Windows.Forms.GroupBox();
-			this.buttonUpdate = new System.Windows.Forms.Button();
-			this.textBoxSelectedStudentFirstName = new System.Windows.Forms.TextBox();
-			this.textBoxStudentLastName = new System.Windows.Forms.TextBox();
-			this.label2 = new System.Windows.Forms.Label();
 			this.textBoxSelectedStudentLastName = new System.Windows.Forms.TextBox();
+			this.buttonUpdateStudent = new System.Windows.Forms.Button();
+			this.textBoxSelectedStudentFirstName = new System.Windows.Forms.TextBox();
+			this.comboBoxStudentLessons = new System.Windows.Forms.ComboBox();
+			this.label3 = new System.Windows.Forms.Label();
+			this.listBoxLessonMarks = new System.Windows.Forms.ListBox();
+			this.label4 = new System.Windows.Forms.Label();
+			this.textBoxMark = new System.Windows.Forms.TextBox();
+			this.buttonAddMark = new System.Windows.Forms.Button();
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.groupBoxGroup.SuspendLayout();
 			this.SuspendLayout();
 			// 
-			// buttonAddGroup
+			// buttonAddGroupStudent
 			// 
-			this.buttonAddGroup.Location = new System.Drawing.Point(6, 98);
-			this.buttonAddGroup.Name = "buttonAddGroup";
-			this.buttonAddGroup.Size = new System.Drawing.Size(252, 23);
-			this.buttonAddGroup.TabIndex = 1;
-			this.buttonAddGroup.Text = "Add student";
-			this.buttonAddGroup.UseVisualStyleBackColor = true;
+			this.buttonAddGroupStudent.Location = new System.Drawing.Point(6, 98);
+			this.buttonAddGroupStudent.Name = "buttonAddGroupStudent";
+			this.buttonAddGroupStudent.Size = new System.Drawing.Size(252, 23);
+			this.buttonAddGroupStudent.TabIndex = 1;
+			this.buttonAddGroupStudent.Text = "Add student";
+			this.buttonAddGroupStudent.UseVisualStyleBackColor = true;
+			this.buttonAddGroupStudent.Click += new System.EventHandler(this.buttonAddGroupStudent_Click);
 			// 
 			// listBoxGroupStudents
 			// 
@@ -62,6 +69,7 @@ namespace ITStep.Views
 			this.listBoxGroupStudents.Name = "listBoxGroupStudents";
 			this.listBoxGroupStudents.Size = new System.Drawing.Size(297, 394);
 			this.listBoxGroupStudents.TabIndex = 0;
+			this.listBoxGroupStudents.SelectedIndexChanged += new System.EventHandler(this.listBoxGroupStudents_SelectedIndexChanged);
 			// 
 			// groupBox2
 			// 
@@ -69,13 +77,29 @@ namespace ITStep.Views
 			this.groupBox2.Controls.Add(this.label2);
 			this.groupBox2.Controls.Add(this.textBoxStudentFirstName);
 			this.groupBox2.Controls.Add(this.label1);
-			this.groupBox2.Controls.Add(this.buttonAddGroup);
+			this.groupBox2.Controls.Add(this.buttonAddGroupStudent);
 			this.groupBox2.Location = new System.Drawing.Point(327, 304);
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.Size = new System.Drawing.Size(264, 134);
 			this.groupBox2.TabIndex = 6;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Add student";
+			// 
+			// textBoxStudentLastName
+			// 
+			this.textBoxStudentLastName.Location = new System.Drawing.Point(6, 72);
+			this.textBoxStudentLastName.Name = "textBoxStudentLastName";
+			this.textBoxStudentLastName.Size = new System.Drawing.Size(252, 20);
+			this.textBoxStudentLastName.TabIndex = 5;
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(6, 56);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(56, 13);
+			this.label2.TabIndex = 4;
+			this.label2.Text = "Last name";
 			// 
 			// textBoxStudentFirstName
 			// 
@@ -105,24 +129,38 @@ namespace ITStep.Views
 			// 
 			// groupBoxGroup
 			// 
+			this.groupBoxGroup.Controls.Add(this.buttonAddMark);
+			this.groupBoxGroup.Controls.Add(this.textBoxMark);
+			this.groupBoxGroup.Controls.Add(this.label4);
+			this.groupBoxGroup.Controls.Add(this.listBoxLessonMarks);
+			this.groupBoxGroup.Controls.Add(this.label3);
+			this.groupBoxGroup.Controls.Add(this.comboBoxStudentLessons);
 			this.groupBoxGroup.Controls.Add(this.textBoxSelectedStudentLastName);
-			this.groupBoxGroup.Controls.Add(this.buttonUpdate);
+			this.groupBoxGroup.Controls.Add(this.buttonUpdateStudent);
 			this.groupBoxGroup.Controls.Add(this.textBoxSelectedStudentFirstName);
 			this.groupBoxGroup.Location = new System.Drawing.Point(327, 12);
 			this.groupBoxGroup.Name = "groupBoxGroup";
-			this.groupBoxGroup.Size = new System.Drawing.Size(264, 101);
+			this.groupBoxGroup.Size = new System.Drawing.Size(264, 286);
 			this.groupBoxGroup.TabIndex = 7;
 			this.groupBoxGroup.TabStop = false;
 			this.groupBoxGroup.Text = "Student";
 			// 
-			// buttonUpdate
+			// textBoxSelectedStudentLastName
 			// 
-			this.buttonUpdate.Location = new System.Drawing.Point(6, 71);
-			this.buttonUpdate.Name = "buttonUpdate";
-			this.buttonUpdate.Size = new System.Drawing.Size(252, 23);
-			this.buttonUpdate.TabIndex = 1;
-			this.buttonUpdate.Text = "Update student";
-			this.buttonUpdate.UseVisualStyleBackColor = true;
+			this.textBoxSelectedStudentLastName.Location = new System.Drawing.Point(6, 45);
+			this.textBoxSelectedStudentLastName.Name = "textBoxSelectedStudentLastName";
+			this.textBoxSelectedStudentLastName.Size = new System.Drawing.Size(252, 20);
+			this.textBoxSelectedStudentLastName.TabIndex = 2;
+			// 
+			// buttonUpdateStudent
+			// 
+			this.buttonUpdateStudent.Location = new System.Drawing.Point(6, 71);
+			this.buttonUpdateStudent.Name = "buttonUpdateStudent";
+			this.buttonUpdateStudent.Size = new System.Drawing.Size(252, 23);
+			this.buttonUpdateStudent.TabIndex = 1;
+			this.buttonUpdateStudent.Text = "Update student";
+			this.buttonUpdateStudent.UseVisualStyleBackColor = true;
+			this.buttonUpdateStudent.Click += new System.EventHandler(this.buttonUpdateStudent_Click);
 			// 
 			// textBoxSelectedStudentFirstName
 			// 
@@ -131,28 +169,58 @@ namespace ITStep.Views
 			this.textBoxSelectedStudentFirstName.Size = new System.Drawing.Size(252, 20);
 			this.textBoxSelectedStudentFirstName.TabIndex = 0;
 			// 
-			// textBoxStudentLastName
+			// comboBoxStudentLessons
 			// 
-			this.textBoxStudentLastName.Location = new System.Drawing.Point(6, 72);
-			this.textBoxStudentLastName.Name = "textBoxStudentLastName";
-			this.textBoxStudentLastName.Size = new System.Drawing.Size(252, 20);
-			this.textBoxStudentLastName.TabIndex = 5;
+			this.comboBoxStudentLessons.FormattingEnabled = true;
+			this.comboBoxStudentLessons.Location = new System.Drawing.Point(6, 117);
+			this.comboBoxStudentLessons.Name = "comboBoxStudentLessons";
+			this.comboBoxStudentLessons.Size = new System.Drawing.Size(252, 21);
+			this.comboBoxStudentLessons.TabIndex = 3;
+			this.comboBoxStudentLessons.SelectedIndexChanged += new System.EventHandler(this.comboBoxStudentLessons_SelectedIndexChanged);
 			// 
-			// label2
+			// label3
 			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(6, 56);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(56, 13);
-			this.label2.TabIndex = 4;
-			this.label2.Text = "Last name";
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(6, 101);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(41, 13);
+			this.label3.TabIndex = 4;
+			this.label3.Text = "Lesson";
 			// 
-			// textBoxSelectedStudentLastName
+			// listBoxLessonMarks
 			// 
-			this.textBoxSelectedStudentLastName.Location = new System.Drawing.Point(6, 45);
-			this.textBoxSelectedStudentLastName.Name = "textBoxSelectedStudentLastName";
-			this.textBoxSelectedStudentLastName.Size = new System.Drawing.Size(252, 20);
-			this.textBoxSelectedStudentLastName.TabIndex = 2;
+			this.listBoxLessonMarks.FormattingEnabled = true;
+			this.listBoxLessonMarks.Location = new System.Drawing.Point(6, 161);
+			this.listBoxLessonMarks.Name = "listBoxLessonMarks";
+			this.listBoxLessonMarks.Size = new System.Drawing.Size(252, 82);
+			this.listBoxLessonMarks.TabIndex = 5;
+			this.listBoxLessonMarks.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxLessonMarks_KeyDown);
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(9, 145);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(36, 13);
+			this.label4.TabIndex = 6;
+			this.label4.Text = "Marks";
+			// 
+			// textBoxMark
+			// 
+			this.textBoxMark.Location = new System.Drawing.Point(6, 249);
+			this.textBoxMark.Name = "textBoxMark";
+			this.textBoxMark.Size = new System.Drawing.Size(165, 20);
+			this.textBoxMark.TabIndex = 7;
+			// 
+			// buttonAddMark
+			// 
+			this.buttonAddMark.Location = new System.Drawing.Point(177, 247);
+			this.buttonAddMark.Name = "buttonAddMark";
+			this.buttonAddMark.Size = new System.Drawing.Size(81, 23);
+			this.buttonAddMark.TabIndex = 8;
+			this.buttonAddMark.Text = "Add mark";
+			this.buttonAddMark.UseVisualStyleBackColor = true;
+			this.buttonAddMark.Click += new System.EventHandler(this.buttonAddMark_Click);
 			// 
 			// GroupStudentsView
 			// 
@@ -176,17 +244,23 @@ namespace ITStep.Views
 
 		#endregion
 
-		private System.Windows.Forms.Button buttonAddGroup;
+		private System.Windows.Forms.Button buttonAddGroupStudent;
 		private System.Windows.Forms.ListBox listBoxGroupStudents;
 		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.TextBox textBoxStudentFirstName;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.GroupBox groupBoxGroup;
-		private System.Windows.Forms.Button buttonUpdate;
+		private System.Windows.Forms.Button buttonUpdateStudent;
 		private System.Windows.Forms.TextBox textBoxSelectedStudentFirstName;
 		private System.Windows.Forms.TextBox textBoxStudentLastName;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.TextBox textBoxSelectedStudentLastName;
+		private System.Windows.Forms.ComboBox comboBoxStudentLessons;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.ListBox listBoxLessonMarks;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Button buttonAddMark;
+		private System.Windows.Forms.TextBox textBoxMark;
 	}
 }
