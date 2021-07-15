@@ -8,18 +8,18 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace _03_PhoneBook.Controllers
+namespace _03_PhoneBook.Presenters
 {
-    public class ContactsController
+    public class ContactsPresenter
     {
         public List<Contact> Contacts { get; set; }
 
         private string path = Environment.CurrentDirectory + "//contacts.json";
-        private JsonSerializerOptions options = new JsonSerializerOptions { WriteIndented = true };
 
-        public ContactsController()
+        public ContactsPresenter()
         {
             Contacts = new List<Contact>();
+
             Load();
         }
 
@@ -27,7 +27,11 @@ namespace _03_PhoneBook.Controllers
         {
             try
             {
-                using (FileStream fs = new FileStream("contacts.json", FileMode.Create))
+                //var json = JsonSerializer.Serialize(Contacts);
+
+                //File.WriteAllText(path, json);
+
+                using (var fs = new FileStream(path, FileMode.Create))
                 {
                     await JsonSerializer.SerializeAsync(fs, Contacts);
                 }
@@ -42,19 +46,18 @@ namespace _03_PhoneBook.Controllers
         {
             if (File.Exists(path))
             {
-                using (FileStream fs = new FileStream("contacts.json", FileMode.OpenOrCreate))
-                {
-                    // TODO: Read from file stream and write to contacts var
-                    //Contacts = JsonSerializer.Deserialize<List<Contact>>();
-                }
+                var data = File.ReadAllText(path);
+                var parsed = JsonSerializer.Deserialize<List<Contact>>(data);
+
+                Contacts = parsed;
             }
         }
 
         public void Delete(Contact contact)
         {
             var result = Contacts.Remove(contact);
-            MessageBox.Show(result.ToString());
 
+            MessageBox.Show(result.ToString());
         }
 
         public void SortByName()
@@ -62,7 +65,7 @@ namespace _03_PhoneBook.Controllers
             Contacts = Contacts.OrderBy(c => c.Fullname).ToList();
         }
 
-        public void SortByNumber()
+        public void SortByPhone()
         {
             Contacts = Contacts.OrderBy(c => c.Phone).ToList();
         }
