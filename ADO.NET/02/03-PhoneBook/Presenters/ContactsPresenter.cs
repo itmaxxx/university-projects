@@ -13,7 +13,6 @@ namespace _03_PhoneBook.Presenters
     public class ContactsPresenter
     {
         public List<Contact> Contacts { get; set; }
-
         private string path = Environment.CurrentDirectory + "//contacts.json";
 
         public ContactsPresenter()
@@ -27,10 +26,6 @@ namespace _03_PhoneBook.Presenters
         {
             try
             {
-                //var json = JsonSerializer.Serialize(Contacts);
-
-                //File.WriteAllText(path, json);
-
                 using (var fs = new FileStream(path, FileMode.Create))
                 {
                     await JsonSerializer.SerializeAsync(fs, Contacts);
