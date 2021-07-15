@@ -137,7 +137,7 @@ namespace ITStep.Views
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
 			this.Name = "GroupsView";
-			this.Text = "GroupsView";
+			this.Text = "Groups";
 			this.Load += new System.EventHandler(this.GroupsView_Load);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox2.ResumeLayout(false);
