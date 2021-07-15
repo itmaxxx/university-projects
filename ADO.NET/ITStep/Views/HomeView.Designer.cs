@@ -30,11 +30,31 @@ namespace ITStep.Views
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeView));
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.buttonGroups = new System.Windows.Forms.Button();
 			this.buttonSubjects = new System.Windows.Forms.Button();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
+			// 
+			// buttonGroups
+			// 
+			this.buttonGroups.Location = new System.Drawing.Point(181, 327);
+			this.buttonGroups.Name = "buttonGroups";
+			this.buttonGroups.Size = new System.Drawing.Size(109, 23);
+			this.buttonGroups.TabIndex = 1;
+			this.buttonGroups.Text = "Groups";
+			this.buttonGroups.UseVisualStyleBackColor = true;
+			this.buttonGroups.Click += new System.EventHandler(this.buttonGroups_Click);
+			// 
+			// buttonSubjects
+			// 
+			this.buttonSubjects.Location = new System.Drawing.Point(296, 327);
+			this.buttonSubjects.Name = "buttonSubjects";
+			this.buttonSubjects.Size = new System.Drawing.Size(110, 23);
+			this.buttonSubjects.TabIndex = 2;
+			this.buttonSubjects.Text = "Subjects";
+			this.buttonSubjects.UseVisualStyleBackColor = true;
+			this.buttonSubjects.Click += new System.EventHandler(this.buttonSubjects_Click);
 			// 
 			// pictureBox1
 			// 
@@ -45,24 +65,6 @@ namespace ITStep.Views
 			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
 			this.pictureBox1.TabIndex = 0;
 			this.pictureBox1.TabStop = false;
-			// 
-			// buttonGroups
-			// 
-			this.buttonGroups.Location = new System.Drawing.Point(181, 327);
-			this.buttonGroups.Name = "buttonGroups";
-			this.buttonGroups.Size = new System.Drawing.Size(109, 23);
-			this.buttonGroups.TabIndex = 1;
-			this.buttonGroups.Text = "Groups";
-			this.buttonGroups.UseVisualStyleBackColor = true;
-			// 
-			// buttonSubjects
-			// 
-			this.buttonSubjects.Location = new System.Drawing.Point(296, 327);
-			this.buttonSubjects.Name = "buttonSubjects";
-			this.buttonSubjects.Size = new System.Drawing.Size(110, 23);
-			this.buttonSubjects.TabIndex = 2;
-			this.buttonSubjects.Text = "Subjects";
-			this.buttonSubjects.UseVisualStyleBackColor = true;
 			// 
 			// HomeView
 			// 

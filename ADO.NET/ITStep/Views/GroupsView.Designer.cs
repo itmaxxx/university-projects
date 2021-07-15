@@ -57,6 +57,7 @@ namespace ITStep.Views
 			// 
 			// listBoxGroups
 			// 
+			this.listBoxGroups.BackColor = System.Drawing.Color.White;
 			this.listBoxGroups.FormattingEnabled = true;
 			this.listBoxGroups.Location = new System.Drawing.Point(6, 19);
 			this.listBoxGroups.Name = "listBoxGroups";
@@ -146,6 +147,7 @@ namespace ITStep.Views
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(599, 450);
 			this.Controls.Add(this.groupBoxGroup);
 			this.Controls.Add(this.groupBox2);

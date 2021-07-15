@@ -16,5 +16,21 @@ namespace ITStep.Views
 		{
 			InitializeComponent();
 		}
+
+		private void buttonGroups_Click(object sender, EventArgs e)
+		{
+			var groupsView = new GroupsView();
+			this.Hide();
+			groupsView.ShowDialog();
+			this.Show();
+		}
+
+		private void buttonSubjects_Click(object sender, EventArgs e)
+		{
+			var subjectsView = new SubjectsView();
+			this.Hide();
+			subjectsView.ShowDialog();
+			this.Show();
+		}
 	}
 }

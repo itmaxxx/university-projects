@@ -39,16 +39,16 @@ namespace ITStep.Views
 			this.label1 = new System.Windows.Forms.Label();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.groupBoxStudent = new System.Windows.Forms.GroupBox();
+			this.checkBoxSubjectsWithMarks = new System.Windows.Forms.CheckBox();
+			this.buttonAddMark = new System.Windows.Forms.Button();
+			this.textBoxMark = new System.Windows.Forms.TextBox();
+			this.label4 = new System.Windows.Forms.Label();
+			this.listBoxSubjectMarks = new System.Windows.Forms.ListBox();
+			this.label3 = new System.Windows.Forms.Label();
+			this.comboBoxStudentSubjects = new System.Windows.Forms.ComboBox();
 			this.textBoxSelectedStudentLastName = new System.Windows.Forms.TextBox();
 			this.buttonUpdateStudent = new System.Windows.Forms.Button();
 			this.textBoxSelectedStudentFirstName = new System.Windows.Forms.TextBox();
-			this.comboBoxStudentSubjects = new System.Windows.Forms.ComboBox();
-			this.label3 = new System.Windows.Forms.Label();
-			this.listBoxSubjectMarks = new System.Windows.Forms.ListBox();
-			this.label4 = new System.Windows.Forms.Label();
-			this.textBoxMark = new System.Windows.Forms.TextBox();
-			this.buttonAddMark = new System.Windows.Forms.Button();
-			this.checkBoxSubjectsWithMarks = new System.Windows.Forms.CheckBox();
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.groupBoxStudent.SuspendLayout();
@@ -148,6 +148,72 @@ namespace ITStep.Views
 			this.groupBoxStudent.TabStop = false;
 			this.groupBoxStudent.Text = "Student";
 			// 
+			// checkBoxSubjectsWithMarks
+			// 
+			this.checkBoxSubjectsWithMarks.AutoSize = true;
+			this.checkBoxSubjectsWithMarks.Checked = true;
+			this.checkBoxSubjectsWithMarks.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBoxSubjectsWithMarks.Location = new System.Drawing.Point(58, 100);
+			this.checkBoxSubjectsWithMarks.Name = "checkBoxSubjectsWithMarks";
+			this.checkBoxSubjectsWithMarks.Size = new System.Drawing.Size(118, 17);
+			this.checkBoxSubjectsWithMarks.TabIndex = 9;
+			this.checkBoxSubjectsWithMarks.Text = "subjects with marks";
+			this.checkBoxSubjectsWithMarks.UseVisualStyleBackColor = true;
+			this.checkBoxSubjectsWithMarks.CheckedChanged += new System.EventHandler(this.checkBoxSubjectsWithMarks_CheckedChanged);
+			// 
+			// buttonAddMark
+			// 
+			this.buttonAddMark.Location = new System.Drawing.Point(177, 247);
+			this.buttonAddMark.Name = "buttonAddMark";
+			this.buttonAddMark.Size = new System.Drawing.Size(81, 23);
+			this.buttonAddMark.TabIndex = 8;
+			this.buttonAddMark.Text = "Add mark";
+			this.buttonAddMark.UseVisualStyleBackColor = true;
+			this.buttonAddMark.Click += new System.EventHandler(this.buttonAddMark_Click);
+			// 
+			// textBoxMark
+			// 
+			this.textBoxMark.Location = new System.Drawing.Point(6, 249);
+			this.textBoxMark.Name = "textBoxMark";
+			this.textBoxMark.Size = new System.Drawing.Size(165, 20);
+			this.textBoxMark.TabIndex = 7;
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(9, 145);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(36, 13);
+			this.label4.TabIndex = 6;
+			this.label4.Text = "Marks";
+			// 
+			// listBoxSubjectMarks
+			// 
+			this.listBoxSubjectMarks.FormattingEnabled = true;
+			this.listBoxSubjectMarks.Location = new System.Drawing.Point(6, 161);
+			this.listBoxSubjectMarks.Name = "listBoxSubjectMarks";
+			this.listBoxSubjectMarks.Size = new System.Drawing.Size(252, 82);
+			this.listBoxSubjectMarks.TabIndex = 5;
+			this.listBoxSubjectMarks.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxSubjectMarks_KeyDown);
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(6, 101);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(48, 13);
+			this.label3.TabIndex = 4;
+			this.label3.Text = "Subjects";
+			// 
+			// comboBoxStudentSubjects
+			// 
+			this.comboBoxStudentSubjects.FormattingEnabled = true;
+			this.comboBoxStudentSubjects.Location = new System.Drawing.Point(6, 117);
+			this.comboBoxStudentSubjects.Name = "comboBoxStudentSubjects";
+			this.comboBoxStudentSubjects.Size = new System.Drawing.Size(252, 21);
+			this.comboBoxStudentSubjects.TabIndex = 3;
+			this.comboBoxStudentSubjects.SelectedIndexChanged += new System.EventHandler(this.comboBoxStudentSubjects_SelectedIndexChanged);
+			// 
 			// textBoxSelectedStudentLastName
 			// 
 			this.textBoxSelectedStudentLastName.Location = new System.Drawing.Point(6, 45);
@@ -172,75 +238,10 @@ namespace ITStep.Views
 			this.textBoxSelectedStudentFirstName.Size = new System.Drawing.Size(252, 20);
 			this.textBoxSelectedStudentFirstName.TabIndex = 0;
 			// 
-			// comboBoxStudentSubjects
-			// 
-			this.comboBoxStudentSubjects.FormattingEnabled = true;
-			this.comboBoxStudentSubjects.Location = new System.Drawing.Point(6, 117);
-			this.comboBoxStudentSubjects.Name = "comboBoxStudentSubjects";
-			this.comboBoxStudentSubjects.Size = new System.Drawing.Size(252, 21);
-			this.comboBoxStudentSubjects.TabIndex = 3;
-			this.comboBoxStudentSubjects.SelectedIndexChanged += new System.EventHandler(this.comboBoxStudentSubjects_SelectedIndexChanged);
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(6, 101);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(46, 13);
-			this.label3.TabIndex = 4;
-			this.label3.Text = "Subjects";
-			// 
-			// listBoxSubjectMarks
-			// 
-			this.listBoxSubjectMarks.FormattingEnabled = true;
-			this.listBoxSubjectMarks.Location = new System.Drawing.Point(6, 161);
-			this.listBoxSubjectMarks.Name = "listBoxSubjectMarks";
-			this.listBoxSubjectMarks.Size = new System.Drawing.Size(252, 82);
-			this.listBoxSubjectMarks.TabIndex = 5;
-			this.listBoxSubjectMarks.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxSubjectMarks_KeyDown);
-			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(9, 145);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(36, 13);
-			this.label4.TabIndex = 6;
-			this.label4.Text = "Marks";
-			// 
-			// textBoxMark
-			// 
-			this.textBoxMark.Location = new System.Drawing.Point(6, 249);
-			this.textBoxMark.Name = "textBoxMark";
-			this.textBoxMark.Size = new System.Drawing.Size(165, 20);
-			this.textBoxMark.TabIndex = 7;
-			// 
-			// buttonAddMark
-			// 
-			this.buttonAddMark.Location = new System.Drawing.Point(177, 247);
-			this.buttonAddMark.Name = "buttonAddMark";
-			this.buttonAddMark.Size = new System.Drawing.Size(81, 23);
-			this.buttonAddMark.TabIndex = 8;
-			this.buttonAddMark.Text = "Add mark";
-			this.buttonAddMark.UseVisualStyleBackColor = true;
-			this.buttonAddMark.Click += new System.EventHandler(this.buttonAddMark_Click);
-			// 
-			// checkBoxSubjectsWithMarks
-			// 
-			this.checkBoxSubjectsWithMarks.AutoSize = true;
-			this.checkBoxSubjectsWithMarks.Checked = true;
-			this.checkBoxSubjectsWithMarks.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBoxSubjectsWithMarks.Location = new System.Drawing.Point(58, 100);
-			this.checkBoxSubjectsWithMarks.Name = "checkBoxSubjectsWithMarks";
-			this.checkBoxSubjectsWithMarks.Size = new System.Drawing.Size(114, 17);
-			this.checkBoxSubjectsWithMarks.TabIndex = 9;
-			this.checkBoxSubjectsWithMarks.Text = "subjects with marks";
-			this.checkBoxSubjectsWithMarks.UseVisualStyleBackColor = true;
-			this.checkBoxSubjectsWithMarks.CheckedChanged += new System.EventHandler(this.checkBoxSubjectsWithMarks_CheckedChanged);
-			// 
 			// GroupStudentsView
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(599, 450);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);

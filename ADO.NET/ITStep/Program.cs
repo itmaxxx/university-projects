@@ -17,7 +17,7 @@ namespace ITStep
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new GroupsView());
+			Application.Run(new HomeView());
 		}
 	}
 }
